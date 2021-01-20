@@ -1,0 +1,43 @@
+{
+    "name": "dolphin836/slim4-api-skeleton",
+    "description": "基于 Slim 框架的 API 脚手架。",
+    "keywords": ["Slim", "脚手架", "MVC"],
+    "type": "project",
+    "homepage": "https://github.com/dolphin836/Slim4-API-Skeleton",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dolphin.wang",
+            "email": "wanghaibing836@gmail.com",
+            "homepage": "https://haibing.site"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "ext-redis": "*",
+        "slim/slim": "4.*",
+        "vlucas/phpdotenv": "^2.4",
+        "slim/psr7": "^1.1",
+        "doctrine/orm": "^2.7",
+        "php-di/php-di": "^6.2",
+        "guzzlehttp/guzzle": "^7.0",
+        "php-amqplib/php-amqplib": "^2.11",
+        "monolog/monolog": "^2.1",
+        "symfony/yaml": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dolphin\\Ting\\": "app/"
+        }
+    },
+	"scripts": {
+        "start": "php -S localhost:8080 -t public"
+	},
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    }
+}
