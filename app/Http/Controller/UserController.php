@@ -81,4 +81,14 @@ class UserController extends Controller
 
         return new BusinessResponse([]);
     }
+
+    /**
+     * test
+     *
+     * @return Response
+     */
+    public function getUserInfo () : Response
+    {
+        return new BusinessResponse([1,2,3,4]);
+    }
 }
