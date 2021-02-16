@@ -30,6 +30,6 @@ $app = AppFactory::create();
 (require BASEPATH . DIRECTORY_SEPARATOR . 'error.php')($app);
 
 return [
-         'app' => $app,
+    'app' => $app,
     'container' => $container
 ];

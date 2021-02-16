@@ -20,7 +20,7 @@ class UserListResponse implements JsonSerializable
     {
         return [
             'total' => $this->getTotal(),
-             'user' => $this->getUser()
+            'user' => $this->getUser()
         ];
     }
 

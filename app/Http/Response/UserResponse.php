@@ -19,7 +19,7 @@ class UserResponse implements JsonSerializable
     public function jsonSerialize ()
     {
         return [
-             'user_id' => $this->getUserId(),
+            'user_id' => $this->getUserId(),
             'username' => $this->getUsername()
         ];
     }
