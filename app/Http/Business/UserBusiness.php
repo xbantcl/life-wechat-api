@@ -9,6 +9,7 @@ use Dolphin\Ting\Http\Constant\QueueConstant;
 use Dolphin\Ting\Http\Entity\UserSignIn;
 use Dolphin\Ting\Http\Exception\DBException;
 use Dolphin\Ting\Http\Exception\UserException;
+use Dolphin\Ting\Http\Model\User;
 use Dolphin\Ting\Http\Model\UserModel;
 use Dolphin\Ting\Http\Model\UserSignInModel;
 use Dolphin\Ting\Http\Request\UserIdRequest;
@@ -125,6 +126,7 @@ class UserBusiness
         try {
             $user = $this->userModel->getUserByUsernameAndPassword($username, $password);
         } catch (NoResultException $e) {
+            exit($e->getMessage());
             throw new UserException('USERNAME_NON_EXIST_OR_PASSWORD_ERROR');
         } catch (NonUniqueResultException $e) {
             throw new DBException($e);
@@ -159,5 +161,10 @@ class UserBusiness
 
         $this->queue->connection(QueueConstant::VIRTUAL_HOST_DEFAULT);
         $this->queue->send(json_encode($message), QueueConstant::EXCHANGE_DEFAULT);
+    }
+
+    public function test() {
+        $user = User::select()->get()->toArray();
+        return $user;
     }
 }

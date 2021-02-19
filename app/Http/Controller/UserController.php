@@ -89,6 +89,7 @@ class UserController extends Controller
      */
     public function getUserInfo () : Response
     {
-        return new BusinessResponse([1,2,3,4]);
+        $data = $this->userBusiness->test();
+        return new BusinessResponse($data);
     }
 }

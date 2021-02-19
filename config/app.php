@@ -7,7 +7,8 @@ return [
     // 需要框架加载的组件，不需要的直接注释
     'component' => [
         Dolphin\Ting\Bootstrap\Component\Logger::class, // 日志
-        Dolphin\Ting\Bootstrap\Component\EntityManager::class, // ORM
+        //Dolphin\Ting\Bootstrap\Component\EntityManager::class, // ORM
+        Dolphin\Ting\Bootstrap\Component\EloquentManager::class,
         Dolphin\Ting\Bootstrap\Component\Guzzle::class, // Guzzle Http Client
         Dolphin\Ting\Bootstrap\Component\Cache::class, // Cache
         Dolphin\Ting\Bootstrap\Component\Queue::class // 消息队列

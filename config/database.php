@@ -1,10 +1,12 @@
 <?php
 
 return [
-    'driver'   => 'pdo_mysql',
+    'driver'   => 'mysql',
     'host'     => getenv('DB_HOSTNAME') ? getenv('DB_HOSTNAME') : 'localhost',
-    'user'     => getenv('DB_USERNAME') ? getenv('DB_USERNAME') : 'root',
+    'username' => getenv('DB_USERNAME') ? getenv('DB_USERNAME') : 'root',
     'password' => getenv('DB_PASSWORD') ? getenv('DB_PASSWORD') : '',
-    'dbname'   => getenv('DB_DATANAME') ? getenv('DB_DATANAME') : 'test',
-    'charset'  => 'utf8'
+    'database' => getenv('DB_DATANAME') ? getenv('DB_DATANAME') : 'test',
+    'collation' => 'utf8_unicode_ci',
+    'charset'  => 'utf8',
+    'prefix'    => '',
 ];
