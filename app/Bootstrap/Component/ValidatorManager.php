@@ -19,7 +19,7 @@ class ValidatorManager implements ComponentInterface
      */
     public static function register (Container $container)
     {
-        $container->set('validation', function () use ($container) {
+        $container->set('validation', function () use () {
             return new Validator();
         });
     }
