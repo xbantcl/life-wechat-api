@@ -13,4 +13,4 @@ userSignIn:
 userInfo:
   method    : GET
   path      : /userinfo
-  controller: Dolphin\Ting\Http\Controller\UserController:userinfo
+  controller: Dolphin\Ting\Http\Service\UserService:getUserInfo

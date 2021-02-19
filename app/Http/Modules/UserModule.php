@@ -1,50 +1,15 @@
 <?php
 
-namespace Dolphin\Ting\Http\Business;
+namespace Dolphin\Ting\Http\Modules;
 
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
-use Dolphin\Ting\Bootstrap\Component\Queue;
-use Dolphin\Ting\Http\Constant\QueueConstant;
-use Dolphin\Ting\Http\Entity\UserSignIn;
 use Dolphin\Ting\Http\Exception\DBException;
 use Dolphin\Ting\Http\Exception\UserException;
 use Dolphin\Ting\Http\Model\User;
-use Dolphin\Ting\Http\Model\UserModel;
-use Dolphin\Ting\Http\Model\UserSignInModel;
-use Dolphin\Ting\Http\Request\UserIdRequest;
-use Dolphin\Ting\Http\Request\UserRequest;
-use Dolphin\Ting\Http\Response\UserListResponse;
-use Dolphin\Ting\Http\Response\UserResponse;
 use Exception;
 use Psr\Container\ContainerInterface as Container;
 
-class UserBusiness
+class UserModule
 {
-    /**
-     * @var Queue
-     */
-    private $queue;
-
-    /**
-     * @var UserModel
-     */
-    private $userModel;
-
-    /**
-     * @var UserSignInModel
-     */
-    private $userSignInModel;
-
-    public function __construct (Container $container, UserModel $userModel, UserSignInModel $userSignInModel)
-    {
-        $this->queue           = $container->get('Queue');
-
-        $this->userModel       = $userModel;
-
-        $this->userSignInModel = $userSignInModel;
-    }
-
     /**
      * @param  UserIdRequest $request
      *
@@ -64,46 +29,8 @@ class UserBusiness
             throw new UserException('USERNAME_NON_EXIST');
         }
 
-        $userResponse = new UserResponse();
-        $userResponse->setUserId($user->getId());
-        $userResponse->setUsername($user->getUsername());
 
         return $userResponse;
-    }
-
-    /**
-     * 用户列表
-     *
-     * @return UserListResponse
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     *
-     * @author wanghaibing
-     * @date   2020/9/14 14:40
-     */
-    public function getUserList ()
-    {
-        // 查询用户列表
-        $userList = $this->userModel->getUserList();
-
-        $userArr  = [];
-
-        foreach ($userList as $user) {
-            $userResponse = new UserResponse();
-            $userResponse->setUserId($user->getId());
-            $userResponse->setUsername($user->getUsername());
-
-            $userArr[] = $userResponse;
-        }
-        // 查询用户数量
-        $userTotal = $this->userModel->getUserTotal();
-        // 设置 Response
-        $userListResponse = new UserListResponse();
-        $userListResponse->setUser($userArr);
-        $userListResponse->setTotal($userTotal);
-
-        return $userListResponse;
     }
 
     /**
@@ -118,7 +45,7 @@ class UserBusiness
      * @author wanghaibing
      * @date   2020/10/13 12:10
      */
-    public function signIn (UserRequest $userRequest)
+    public function signIn ()
     {
         $username = $userRequest->getUsername();
         $password = $userRequest->getPassword();

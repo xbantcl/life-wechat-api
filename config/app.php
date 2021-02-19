@@ -8,7 +8,8 @@ return [
     'component' => [
         Dolphin\Ting\Bootstrap\Component\Logger::class, // 日志
         //Dolphin\Ting\Bootstrap\Component\EntityManager::class, // ORM
-        Dolphin\Ting\Bootstrap\Component\EloquentManager::class,
+        Dolphin\Ting\Bootstrap\Component\EloquentManager::class, // ORM
+        Dolphin\Ting\Bootstrap\Component\Validator::class, // 参数验证
         Dolphin\Ting\Bootstrap\Component\Guzzle::class, // Guzzle Http Client
         Dolphin\Ting\Bootstrap\Component\Cache::class, // Cache
         Dolphin\Ting\Bootstrap\Component\Queue::class // 消息队列

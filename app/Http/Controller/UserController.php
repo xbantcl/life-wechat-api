@@ -3,11 +3,11 @@
 namespace Dolphin\Ting\Http\Controller;
 
 use DI\Container;
-use Dolphin\Ting\Http\Business\UserBusiness;
+use Dolphin\Ting\Http\Modules\UserModule;
 use Dolphin\Ting\Http\Exception\DBException;
 use Dolphin\Ting\Http\Request\UserIdRequest;
 use Dolphin\Ting\Http\Request\UserRequest;
-use Dolphin\Ting\Http\Response\BusinessResponse;
+use Dolphin\Ting\Http\Response\ServiceResponse;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Dolphin\Ting\Http\Exception\UserException;
@@ -18,11 +18,11 @@ use Doctrine\ORM\NoResultException;
 class UserController extends Controller
 {
     /**
-     * @var UserBusiness
+     * @var UserModule
      */
     private $userBusiness;
 
-    public function __construct(Container $container, UserBusiness $userBusiness)
+    public function __construct(Container $container, UserModule $userBusiness)
     {
         parent::__construct($container);
 
@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $data = $this->userBusiness->getUserById(new UserIdRequest($request));
 
-        return new BusinessResponse($data);
+        return new ServiceResponse($data);
     }
 
     /**
@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         $data = $this->userBusiness->getUserList();
 
-        return new BusinessResponse($data);
+        return new ServiceResponse($data);
     }
 
     /**
@@ -79,7 +79,7 @@ class UserController extends Controller
     {
         $this->userBusiness->signIn(new UserRequest($request));
 
-        return new BusinessResponse([]);
+        return new ServiceResponse([]);
     }
 
     /**
@@ -90,6 +90,6 @@ class UserController extends Controller
     public function getUserInfo () : Response
     {
         $data = $this->userBusiness->test();
-        return new BusinessResponse($data);
+        return new ServiceResponse($data);
     }
 }

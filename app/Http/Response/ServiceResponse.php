@@ -7,7 +7,7 @@ use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Headers;
 use Slim\Psr7\Response;
 
-class BusinessResponse extends Response
+class ServiceResponse extends Response
 {
     protected $data = [];
 

@@ -15,7 +15,7 @@ use Illuminate\Events\Dispatcher;
 class EloquentManager implements ComponentInterface
 {
     /**
-     * EntityManager register.
+     * EloquentManager register.
      *
      * @param Container $container
      */
