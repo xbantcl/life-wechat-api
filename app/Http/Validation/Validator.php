@@ -1,8 +1,10 @@
 <?php namespace Dolphin\Ting\Http\Validation;
 
+use Dolphin\Ting\Http\Response\ServiceResponse;
 use Respect\Validation\Validator as Respect;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
+use Dolphin\Ting\Http\Utils\Help;
 
 /**
  *
@@ -22,9 +24,11 @@ class Validator
             'cli_p' => v::noWhitespace()->notEmpty(), // 客户端平台.
         ];
         //$rules = array_merge($rules, $basicRules);
+        $params = Help::getParams($request);
         foreach ($rules as $field => $rule) {
             try {
-                $rule->setName(ucfirst($field))->assert($request->getParsedBody()[$field]);
+                $val = isset($params[$field]) ? $params[$field] : '';
+                $rule->setName(ucfirst($field))->assert($val);
             } catch (NestedValidationException $e) {
                 $this->errors[$field] = $e->getMessages();
             }
@@ -40,10 +44,11 @@ class Validator
     public function outputError($response)
     {
         if ($this->failed()) {
-            return $response->withJson([
-                'error_code' => -1,
-                'message' => current(current($this->errors)),
-            ]);
+            return new ServiceResponse(
+                [],
+                -1,
+                current(current($this->errors))
+            );
         }
     }
 }

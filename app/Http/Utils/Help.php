@@ -60,7 +60,7 @@ class Help
         if ($uid) {
             return array_merge($request->getParsedBody(), ['uid' => $uid]);
         }
-        return array_merge($request->getParams());
+        return array_merge($request->getParsedBody());
     }
 
     public static function config($key)
