@@ -24,7 +24,7 @@ class UserService extends Service
     {
         $validation = $this->validation->validate($request, [
             'start' => v::optional(v::numericVal()),
-            'limit' => v::optional(v::numeric())
+            'limit' => v::optional(v::numericVal())
         ]);
 
         if ($validation->failed()) {
