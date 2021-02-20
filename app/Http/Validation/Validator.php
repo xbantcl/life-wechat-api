@@ -1,4 +1,4 @@
-<?php namespace Dolphin\Ting\Http\Validation;;
+<?php namespace Dolphin\Ting\Http\Validation;
 
 use Respect\Validation\Validator as Respect;
 use Respect\Validation\Exceptions\NestedValidationException;
@@ -24,7 +24,7 @@ class Validator
         //$rules = array_merge($rules, $basicRules);
         foreach ($rules as $field => $rule) {
             try {
-                $rule->setName(ucfirst($field))->assert($request->getParam($field));
+                $rule->setName(ucfirst($field))->assert($request->getParsedBody()[$field]);
             } catch (NestedValidationException $e) {
                 $this->errors[$field] = $e->getMessages();
             }

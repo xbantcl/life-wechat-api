@@ -23,7 +23,7 @@ class UserService extends Service
     public function getUserInfo(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'start' => v::optional(v::numeric()),
+            'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numeric())
         ]);
 
