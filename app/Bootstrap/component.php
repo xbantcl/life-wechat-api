@@ -13,7 +13,8 @@ return function (Container $container) {
             'database' => require CONFPATH . 'database.php',
             'cache'    => require CONFPATH . 'cache.php',
             'queue'    => require CONFPATH . 'queue.php',
-            'mail'     => require CONFPATH . 'mail.php'
+            'mail'     => require CONFPATH . 'mail.php',
+            'qiniu'    => require CONFPATH . 'qiniu.php'
         ];
     });
     // 启用的组件

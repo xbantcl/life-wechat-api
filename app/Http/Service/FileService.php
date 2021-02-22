@@ -29,15 +29,7 @@ class FileService extends Service
      */
     public function getUploadToken(Request $request, Response $response)
     {
-        $validation = $this->validation->validate($request, [
-            'start' => v::optional(v::numericVal()),
-            'limit' => v::optional(v::numericVal())
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $data = FileModule::getInstance($this->container)->getUploadeToken();
+        $data = FileModule::getInstance($this->container)->getUploadToken();
         return new ServiceResponse($data);
     }
 }

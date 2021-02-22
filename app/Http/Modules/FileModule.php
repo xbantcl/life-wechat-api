@@ -17,8 +17,8 @@ class FileModule extends Module
     {
         parent::__construct($container);
 
-        $this->accessKey = $container->get('accessKey');
-        $this->secretKey = $container->get('scretKey');
+        $this->accessKey = $container->get('Config')['qiniu']['accessKey'];
+        $this->secretKey = $container->get('Config')['qiniu']['secretKey'];
     }
 
     /**
