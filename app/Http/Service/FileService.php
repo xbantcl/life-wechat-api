@@ -37,7 +37,7 @@ class FileService extends Service
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
-        $data = FileModule::getInstance()->getUploadeToken();
+        $data = FileModule::getInstance($this->container)->getUploadeToken();
         return new ServiceResponse($data);
     }
 }

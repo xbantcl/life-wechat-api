@@ -5,7 +5,7 @@ namespace Dolphin\Ting\Http\Modules;
 use Dolphin\Ting\Http\Exception\UserException;
 
 use Exception;
-use olphin\Ting\Http\Modules\Module;
+use Dolphin\Ting\Http\Modules\Module;
 use Psr\Container\ContainerInterface as Container;
 
 class FileModule extends Module

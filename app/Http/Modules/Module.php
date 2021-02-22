@@ -1,4 +1,4 @@
-<?php namespace olphin\Ting\Http\Modules;
+<?php namespace Dolphin\Ting\Http\Modules;
 
 use Psr\Container\ContainerInterface as Container;
 
@@ -31,11 +31,11 @@ class Module
      *
      * @return BaseModule
      */
-    public static function getInstance()
+    public static function getInstance(Container $container)
     {
         $className = get_called_class();
         if (!isset(static::$instance[$className])) {
-            static::$instance[$className] = new $className;
+            static::$instance[$className] = new $className($container);
         }
         return static::$instance[$className];
     }
