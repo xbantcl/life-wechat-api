@@ -2,13 +2,14 @@
 
 namespace Dolphin\Ting\Http\Service;
 
+use Dolphin\Ting\Http\Modules\FileModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
 use Psr\Container\ContainerInterface as Container;
 use Respect\Validation\Validator as v;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
-class UserService extends Service
+class FileService extends Service
 {
     private $validation;
 
@@ -19,7 +20,14 @@ class UserService extends Service
         $this->validation = $container->get('validation');
     }
 
-    public function getUserInfo(Request $request, Response $response)
+    /**
+     * 获取七牛文件上传token
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getUploadToken(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
             'start' => v::optional(v::numericVal()),
@@ -29,7 +37,7 @@ class UserService extends Service
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
-
-        return new ServiceResponse([1,2,3]);
+        $data = FileModule::getInstance()->getUploadeToken();
+        return new ServiceResponse($data);
     }
 }

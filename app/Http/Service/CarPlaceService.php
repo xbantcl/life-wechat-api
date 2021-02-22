@@ -8,7 +8,8 @@ use Respect\Validation\Validator as v;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
-class UserService extends Service
+// 车位相关接口类
+class CarPlaceService extends Service
 {
     private $validation;
 
@@ -19,7 +20,19 @@ class UserService extends Service
         $this->validation = $container->get('validation');
     }
 
-    public function getUserInfo(Request $request, Response $response)
+    public function addCarPlace (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'start' => v::optional(v::numericVal()),
+            'limit' => v::optional(v::numericVal())
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+    }
+
+    public function getCarList (Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
             'start' => v::optional(v::numericVal()),

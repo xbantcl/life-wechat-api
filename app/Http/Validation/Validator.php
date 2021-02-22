@@ -47,7 +47,7 @@ class Validator
             return new ServiceResponse(
                 [],
                 -1,
-                current(current($this->errors))
+                lcfirst(current(current($this->errors)))
             );
         }
     }
