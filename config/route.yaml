@@ -16,5 +16,9 @@ userInfo:
   controller: Dolphin\Ting\Http\Service\UserService:getUserInfo
 uploadToken:
   method    : GET
-  path      : /uploadtoken
+  path      : /api/uploadtoken
+  controller: Dolphin\Ting\Http\Service\FileService:getUploadToken
+circle:
+  method    : POST
+  path      : /api/circle/add
   controller: Dolphin\Ting\Http\Service\FileService:getUploadToken
