@@ -21,4 +21,4 @@ uploadToken:
 circle:
   method    : POST
   path      : /api/circle/add
-  controller: Dolphin\Ting\Http\Service\FileService:getUploadToken
+  controller: Dolphin\Ting\Http\Service\CircleService:add

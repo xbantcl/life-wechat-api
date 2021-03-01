@@ -29,15 +29,12 @@ class CircleModule extends Module
         try {
             Circle::create([
                 'uid' => 1,
-                'content' => 'test',
-                'images' => 'a|b|c',
-                'create_time' => time(),
-                'modify_time' => time()
+                'content' => $content,
+                'images' => $images
             ]);
         } catch (Exception $e) {
             throw new CircleException('ADD_CIRCLE_DATA_ERROR');
         }
-
         return true;
     }
 }

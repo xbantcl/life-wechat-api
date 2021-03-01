@@ -5,6 +5,7 @@ namespace Dolphin\Ting\Http\Service;
 use Dolphin\Ting\Http\Modules\CircleModule;
 use Dolphin\Ting\Http\Modules\FileModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
+use Dolphin\Ting\Http\Utils\Help;
 use Psr\Container\ContainerInterface as Container;
 use Respect\Validation\Validator as v;
 use Slim\Psr7\Request;
@@ -22,7 +23,7 @@ class CircleService extends Service
     }
 
     /**
-     * 获取七牛文件上传token
+     * 添加圈子动态数据
      *
      * @param Request $request
      * @param Response $response
@@ -31,13 +32,17 @@ class CircleService extends Service
     public function add(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'content' => v::notEmpty()
+            'content' => v::optional(v::notEmpty()),
+            'images'  => v::optional(v::stringVal())
         ]);
 
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
-        $data = CircleModule::getInstance($this->container)->add(1, 'test');
+        $params = Help::getParams($request);
+        $content = isset($params['content']) ? $params['content'] : '';
+        $images = isset($params['images']) ? $params['images'] : '';
+        $data = CircleModule::getInstance($this->container)->add(1, $content, $images);
         return new ServiceResponse($data);
     }
 }

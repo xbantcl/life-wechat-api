@@ -19,8 +19,6 @@ class Circle extends Model
         'id'          => 'int',
         'uid'         => 'int',
         'content'     => 'string',
-        'images'      => 'string',
-        'create_time' => 'int',
-        'modify_time' => 'int'
+        'images'      => 'string'
     ];
 }
