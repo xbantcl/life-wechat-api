@@ -2,6 +2,7 @@ CREATE TABLE `user` (
     `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '用户名',
     `password` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '密码',
+    `avatar` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '头像',
     `last_sign_in_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后登录时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_username` (`username`)

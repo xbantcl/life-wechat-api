@@ -22,3 +22,8 @@ circle:
   method    : POST
   path      : /api/circle/add
   controller: Dolphin\Ting\Http\Service\CircleService:add
+circle:
+imageDelete:
+  method: POST
+  path: /api/qiniu/delete
+  controller: Dolphin\Ting\Http\Service\FileService:delete

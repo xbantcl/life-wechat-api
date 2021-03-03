@@ -45,4 +45,29 @@ class CircleService extends Service
         $data = CircleModule::getInstance($this->container)->add(1, $content, $images);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取圈子动态数据列表
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function getList(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'start' => v::intVal(),
+            'limit'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['images']) : 10;
+        $data = CircleModule::getInstance($this->container)->getList($start, $limit);
+        return new ServiceResponse($data);
+    }
 }

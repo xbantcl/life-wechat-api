@@ -61,6 +61,8 @@ class Help
         if ($request->getParsedBody()) {
             if (!is_array($request->getParsedBody())) {
                 $params = json_decode($request->getParsedBody());
+            } else {
+                $params = $request->getParsedBody();
             }
         }
         if ($uid) {

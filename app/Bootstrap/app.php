@@ -25,7 +25,7 @@ $app = AppFactory::create();
 // Middleware
 (require BASEPATH . DIRECTORY_SEPARATOR . 'middleware.php')($app);
 // Route
-(require BASEPATH . DIRECTORY_SEPARATOR . 'route.php')($app);
+(require CONFPATH . 'route.php');
 // Exception
 (require BASEPATH . DIRECTORY_SEPARATOR . 'error.php')($app);
 
