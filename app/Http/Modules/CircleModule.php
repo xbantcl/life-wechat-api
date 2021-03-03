@@ -99,6 +99,7 @@ class CircleModule extends Module
                 'timestamp' => '1小时前'
             ];
             unset($item['images']);
+            return $item;
         }, $data);
         return ['start' => $start, 'more' => $more, 'list' => $data];
     }

@@ -53,7 +53,7 @@ class FileModule extends Module
      *
      * @return boolean
      */
-    public function deleteImage($key)
+    public function delete($key)
     {
         $auth = new \Qiniu\Auth($this->accessKey, $this->secretKey);
         $bucket = new BucketManager($auth);

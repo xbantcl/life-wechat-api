@@ -57,8 +57,8 @@ class CircleService extends Service
     public function getList(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'start' => v::intVal(),
-            'limit'  => v::intVal()
+            'start' => v::optional(v::intVal()),
+            'limit'  => v::optional(v::intVal())
         ]);
 
         if ($validation->failed()) {
@@ -66,7 +66,7 @@ class CircleService extends Service
         }
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
-        $limit = isset($params['limit']) ? intval($params['images']) : 10;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 10;
         $data = CircleModule::getInstance($this->container)->getList($start, $limit);
         return new ServiceResponse($data);
     }
