@@ -68,36 +68,36 @@ class CircleModule extends Module
         }
         $data = array_map(function ($item) {
             $item['content'] = [
-                'text' => $item['content'],
-                'images' => explode('|', $item['images']),
-                'isLike' => 0,
-                'like'   => [
+                    'text' => $item['content'],
+                    'images' => explode('|', $item['images'])
+            ];
+            $item['isLike'] = 0;
+            $item['like']  = [
+                [
+                    'uid' => 1,
+                    'username' => '小王子'
+                ],
+                [
+                    'uid' => 2,
+                    'username' => '小一一'
+                ]
+            ];
+            $item['comments'] = [
+                'total' => 2,
+                'comment' => [
                     [
-                        'uid' => 1,
-                        'username' => '小王子'
+                        'uid' => 2,
+                        'username' => '小海',
+                        'content' => '很棒很棒'
                     ],
                     [
                         'uid' => 2,
-                        'username' => '小一一'
+                        'username' => '小高',
+                        'content' => '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒!'
                     ]
-                ],
-                'comments' => [
-                    'total' => 2,
-                    'comment' => [
-                        [
-                            'uid' => 2,
-                            'username' => '小海',
-                            'content' => '很棒很棒'
-                        ],
-                        [
-                            'uid' => 2,
-                            'username' => '小高',
-                            'content' => '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒!'
-                        ]
-                    ]
-                ],
-                'timestamp' => '1小时前'
+                ]
             ];
+            $item['timestamp'] = '1小时前';
             unset($item['images']);
             return $item;
         }, $data);

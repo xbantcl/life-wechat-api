@@ -57,6 +57,7 @@ class FileModule extends Module
     {
         $auth = new \Qiniu\Auth($this->accessKey, $this->secretKey);
         $bucket = new BucketManager($auth);
-        return $bucket->delete($this->imageBucket, $key);
+        $bucket->delete($this->imageBucket, $key);
+        return true;
     }
 }
