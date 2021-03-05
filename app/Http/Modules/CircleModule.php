@@ -4,7 +4,8 @@ namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Exception\CircleException;
 
-use Dolphin\Ting\Http\Model\Circle;
+use Dolphin\Ting\Http\Model\CircleComment;
+use Dolphin\Ting\Http\Model\CirclePost;
 use Exception;
 use Dolphin\Ting\Http\Modules\Module;
 
@@ -27,7 +28,7 @@ class CircleModule extends Module
     public function add($uid, $content, $images = ''): bool
     {
         try {
-            Circle::create([
+            CirclePost::create([
                 'uid' => 1,
                 'content' => $content,
                 'images' => $images
@@ -41,21 +42,25 @@ class CircleModule extends Module
     /**
      * 获取圈子动态数据列表
      *
-     * @param int $start
-     * @param int $limit
+     * @param int     $start      起始位置
+     * @param boolean $isPullDown 下拉刷新
+     * @param int     $limit      限制条数
      *
      * @return array
      *
      * @author xbantcl
      * @date   2021/3/2 15:32
      */
-    public function getList($start, $limit = 10): array
+    public function getList($start, $isPullDown = false, $limit = 10): array
     {
-        $query = Circle::leftjoin('user as u', 'u.id', '=', 'circle.uid')
-            ->select('u.id', 'u.username', 'u.avatar', 'circle.id', 'circle.content', 'circle.images', 'circle.created_at')
-            ->orderBy('circle.id', 'DESC');
+        $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle.uid')
+            ->select('u.id', 'u.username', 'u.avatar', 'circle.id as post_id', 'circle.content', 'circle.images', 'circle.created_at');
         if ($start > 0) {
-            $query->where('circle.id', '<', $start);
+            if ($isPullDown) {
+                $query->where('circle.id', '>', $start)->orderBy('circle.id', 'ASC');
+            } else {
+                $query->where('circle.id', '<', $start)->orderBy('circle.id', 'DESC');
+            }
         }
         $data = $query->take($limit + 1)->get()->toArray();
         $more = 0;
@@ -66,6 +71,7 @@ class CircleModule extends Module
             $more = 1;
             array_pop($data);
         }
+        $start = end($data)['post_id'];
         $data = array_map(function ($item) {
             $item['content'] = [
                     'text' => $item['content'],
@@ -102,5 +108,32 @@ class CircleModule extends Module
             return $item;
         }, $data);
         return ['start' => $start, 'more' => $more, 'list' => $data];
+    }
+
+    /**
+     * 发布圈子动态评论
+     *
+     * @param int    $uid        评论作者id
+     * @param int    $replyUid   被回复的用户id
+     * @param int    $postId     圈子动态id
+     * @param string $content    评论类容
+     *
+     * @return mixed
+     *
+     * @throws CircleException
+     */
+    public function comment($uid, $replyUid, $postId, $content)
+    {
+        try {
+            $circleComment = CircleComment::create([
+                'uid' => $uid,
+                'reply_uid' => $replyUid,
+                'post_id' => $postId,
+                'content' => $content
+            ]);
+        } catch (\Exception $e) {
+            throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
+        }
+        return $circleComment->id;
     }
 }
