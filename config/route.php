@@ -10,4 +10,9 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('circle/add', 'Dolphin\Ting\Http\Service\CircleService:add');
     $group->post('circle/list', 'Dolphin\Ting\Http\Service\CircleService:getList');
     $group->post('circle/comment', 'Dolphin\Ting\Http\Service\CircleService:comment');
+
+    // ------------------ 车位相关接口 -------------------------------
+    $group->post('carplace/add', 'Dolphin\Ting\Http\Service\CarPlaceService:add');
+    $group->post('carplace/list', 'Dolphin\Ting\Http\Service\CarPlaceService:getList');
+    $group->post('carplace/comment', 'Dolphin\Ting\Http\Service\CarPlaceService:comment');
 });

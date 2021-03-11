@@ -7,7 +7,6 @@ use Dolphin\Ting\Http\Exception\CircleException;
 use Dolphin\Ting\Http\Model\CircleComment;
 use Dolphin\Ting\Http\Model\CirclePost;
 use Exception;
-use Dolphin\Ting\Http\Modules\Module;
 
 class CircleModule extends Module
 {
@@ -53,13 +52,14 @@ class CircleModule extends Module
      */
     public function getList($start, $isPullDown = false, $limit = 10): array
     {
-        $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle.uid')
-            ->select('u.id', 'u.username', 'u.avatar', 'circle.id as post_id', 'circle.content', 'circle.images', 'circle.created_at');
+        $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle_posts.uid')
+            ->select('u.id', 'u.username', 'u.avatar', 'circle_posts.id as post_id', 'circle_posts.content', 'circle_posts.images', 'circle_posts.created_at')
+            ->orderBy('circle_posts.id', 'DESC');
         if ($start > 0) {
             if ($isPullDown) {
-                $query->where('circle.id', '>', $start)->orderBy('circle.id', 'ASC');
+                $query->where('circle_posts.id', '>', $start);
             } else {
-                $query->where('circle.id', '<', $start)->orderBy('circle.id', 'DESC');
+                $query->where('circle_posts.id', '<', $start);
             }
         }
         $data = $query->take($limit + 1)->get()->toArray();
@@ -71,13 +71,43 @@ class CircleModule extends Module
             $more = 1;
             array_pop($data);
         }
-        $start = end($data)['post_id'];
-        $data = array_map(function ($item) {
+        if ($isPullDown) {
+            $start = current($data)['post_id'];
+        } else {
+            $start = end($data)['post_id'];
+        }
+        // 查询动态评论
+        $postIds = array_map(function ($item) {
+            return $item['post_id'];
+        }, $data);
+        $comments = CircleComment::leftjoin('user as u', 'u.id', '=', 'circle_comments.uid')
+            ->leftjoin('user as u1', 'u1.id', '=', 'circle_comments.reply_uid')
+            ->select('circle_comments.uid', 'u.username', 'u1.username as reply_username', 'circle_comments.content', 'circle_comments.post_id')
+            ->whereIn('circle_comments.post_id', $postIds)
+            ->get()->toArray();
+        $tmpComments = [];
+        foreach ($comments as $comment) {
+            $postId = $comment['post_id'];
+            if (is_null($comment['reply_username'])) {
+                $comment['reply_username'] = '';
+            }
+            unset($comment['post_id']);
+            if (!isset($tmpComments[$postId])) {
+                $tmpComments[$postId] = [
+                    'total' => 1,
+                    'comment' => [$comment]
+                ];
+            } else {
+                $tmpComments[$postId]['total'] ++;
+                array_push($tmpComments[$postId]['comment'], $comment);
+            }
+        }
+        $data = array_map(function ($item) use ($tmpComments) {
             $item['content'] = [
                     'text' => $item['content'],
                     'images' => explode('|', $item['images'])
             ];
-            $item['isLike'] = 0;
+            $item['islike'] = 0;
             $item['like']  = [
                 [
                     'uid' => 1,
@@ -88,21 +118,11 @@ class CircleModule extends Module
                     'username' => '小一一'
                 ]
             ];
-            $item['comments'] = [
-                'total' => 2,
-                'comment' => [
-                    [
-                        'uid' => 2,
-                        'username' => '小海',
-                        'content' => '很棒很棒'
-                    ],
-                    [
-                        'uid' => 2,
-                        'username' => '小高',
-                        'content' => '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒!'
-                    ]
-                ]
-            ];
+            if (isset($tmpComments[$item['post_id']])) {
+                $item['comments'] = $tmpComments[$item['post_id']];
+            } else {
+                $item['comments'] = [];
+            }
             $item['timestamp'] = '1小时前';
             unset($item['images']);
             return $item;

@@ -32,8 +32,39 @@ CREATE TABLE IF NOT EXISTS `circle_comments`(
     `post_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '圈子动态id',
     `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '评论用户id',
     `reply_uid` BIGINT(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '被回复用户id',
-    `content` VARCHAR(600) DEFAULT '' COMMENT '动态类容'，
+    `content` VARCHAR(600) DEFAULT '' COMMENT '评论类容',
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='圈子动态评论';
+
+CREATE TABLE IF NOT EXISTS `car_places`(
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
+    `status` ENUM('出租', '出售') DEFAULT '出租' COMMENT '车位状态',
+    `price` FLOAT NOT NULL DEFAULT 0 COMMENT '车位租售价格',
+    `post_status` TINYINT(2) UNSIGNED DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布',
+    `is_standard` TINYINT(2) UNSIGNED DEFAULT 1 COMMENT '是否是标准车位: 1-不是，2-是',
+    `floorage` FLOAT NOT NULL DEFAULT 0 COMMENT '建筑面积',
+    `floor` VARCHAR(16) NOT NULL DEFAULT '负一楼' COMMENT '楼层',
+    `subdistrict` VARCHAR(64) NOT NULL COMMENT '小区名称',
+    `building_number` INT NOT NULL DEFAULT  1 COMMENT '楼号',
+    `describe` VARCHAR(512) DEFAULT '' COMMENT '车位描述',
+    `phone_number` VARCHAR(11) DEFAULT '' COMMENT '手机号码',
+    `weixin` VARCHAR(20) DEFAULT '' COMMENT '微信号',
+    `images` VARCHAR(128) DEFAULT '' COMMENT '图片',
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='车位';
+
+CREATE TABLE IF NOT EXISTS `car_place_comments`(
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `car_place_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '车位id',
+    `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '评论用户id',
+    `reply_uid` BIGINT(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '被回复用户id',
+    `content` VARCHAR(600) DEFAULT '' COMMENT '评论类容',
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='车位评论';
