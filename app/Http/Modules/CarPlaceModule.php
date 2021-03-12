@@ -6,15 +6,13 @@ use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Exception\CarPlaceException;
 use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Utils\Help;
-use Psr\Container\ContainerInterface as Container;
-use Qiniu\Storage\BucketManager;
 
 class CarPlaceModule extends Module
 {
     /**
      * 发布车位信息
      *
-     * @param $status
+     * @param $carPlaceStatus
      * @param $price
      * @param $isStandard
      * @param $floorage
@@ -29,12 +27,13 @@ class CarPlaceModule extends Module
      * @return mixed
      * @throws CarPlaceException
      */
-    public function addCarPlace($status, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
+    public function add($carPlaceStatus, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
     {
         try {
             $carPlace = CarPlace::create([
                 'uid' => 1,
-                'status' => $status,
+                'subdistrict_id' => 1,
+                'car_place_status' => $carPlaceStatus,
                 'price' => $price,
                 'is_standard' => $isStandard,
                 'floorage' => $floorage,
@@ -64,7 +63,7 @@ class CarPlaceModule extends Module
     {
         try {
             $query = CarPlace::where('post_status', '=', CarPlaceConstant::ON_SHELVES)
-                ->select('status', 'is_standard', 'floor', 'subdistrict', 'images', 'building_number', 'updated_at')
+                ->select('id', 'car_place_status', 'is_standard', 'floor', 'subdistrict', 'images', 'building_number', 'updated_at')
                 ->orderBy('id', 'desc');
             if ($start > 0) {
                 $query->where('id', '<', $start);
@@ -78,10 +77,10 @@ class CarPlaceModule extends Module
                 $more = 1;
                 array_pop($data);
             }
-            $start = end($data)['post_id'];
+            $start = end($data)['id'];
             $data = array_map(function ($item) use ($data) {
                 $item['images'] = explode('|', $item['images']);
-                $item['updated_at'] = Help::timeAgo($item['updated_at']);
+                $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
                 return $item;
             }, $data);
             return ['start' => $start, 'more' => $more, 'list' => $data];
