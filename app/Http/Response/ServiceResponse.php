@@ -11,7 +11,7 @@ class ServiceResponse extends Response
 {
     protected $data = [];
 
-    public function __construct($data = [], $code = 0, $note = '')
+    public function __construct($data = [], $code = 0, $note = 'success')
     {
         $header = new Headers();
         $header->addHeader('Content-Type', 'application/json');

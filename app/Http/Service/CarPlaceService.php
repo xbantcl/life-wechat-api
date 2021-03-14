@@ -32,7 +32,7 @@ class CarPlaceService extends Service
     public function add (Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'car_place_status' => v::in(['出租', '出售'])->notEmpty(),
+            'type' => v::in(['出租', '出售'])->notEmpty(),
             'price' => v::floatVal(),
             'is_standard' => v::in([1, 2])->notEmpty(),
             'floorage' => v::floatVal(),
@@ -49,7 +49,7 @@ class CarPlaceService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $carPlaceStatus = isset($params['car_place_status']) ? trim($params['car_place_status']) : '出售';
+        $type = isset($params['type']) ? trim($params['type']) : '出售';
         $price = isset($params['price']) ? floatval($params['price']) : 0;
         $isStandard = isset($params['is_standard']) ? intval($params['is_standard']) : 1;
         $floorage = isset($params['floorage']) ? floatval($params['floorage']) : 0;
@@ -60,7 +60,7 @@ class CarPlaceService extends Service
         $describe = isset($params['describe']) ? trim($params['describe']) : '';
         $weixin = isset($params['weixin']) ? trim($params['weixin']) : '';
         $images = isset($params['images']) ? trim($params['images']) : '';
-        $data = CarPlaceModule::getInstance($this->container)->add($carPlaceStatus, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images);
+        $data = CarPlaceModule::getInstance($this->container)->add($type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images);
         return new ServiceResponse($data);
     }
 
@@ -74,6 +74,8 @@ class CarPlaceService extends Service
     public function getList (Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
+            'is_pull_down' => v::in([0,1]),
+            'type' => v::in(['all', '出售', '出租'])->notEmpty(),
             'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numericVal())
         ]);
@@ -84,7 +86,9 @@ class CarPlaceService extends Service
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
-        $data = CarPlaceModule::getInstance($this->container)->getList($start, $limit);
+        $type = isset($params['type']) ? trim($params['type']) : 'all';
+        $isPullDown = isset($params['is_pull_down']) ? boolval($params['is_pull_down']) : false;
+        $data = CarPlaceModule::getInstance($this->container)->getList($start, $type, $isPullDown, $limit);
         return new ServiceResponse($data);
     }
 }

@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `car_places`(
     `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
     `subdistrict_id` INT NOT NULL COMMENT '小区id',
-    `car_place_status` ENUM('出租', '出售') DEFAULT '出租' COMMENT '车位状态',
+    `type` ENUM('出租', '出售') DEFAULT '出租' COMMENT '车位状态',
     `price` FLOAT NOT NULL DEFAULT 0 COMMENT '车位租售价格',
     `post_status` TINYINT(2) UNSIGNED DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布',
     `is_standard` TINYINT(2) UNSIGNED DEFAULT 1 COMMENT '是否是标准车位: 1-不是，2-是',

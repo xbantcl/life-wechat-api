@@ -12,7 +12,7 @@ class CarPlaceModule extends Module
     /**
      * 发布车位信息
      *
-     * @param $carPlaceStatus
+     * @param $type
      * @param $price
      * @param $isStandard
      * @param $floorage
@@ -27,13 +27,13 @@ class CarPlaceModule extends Module
      * @return mixed
      * @throws CarPlaceException
      */
-    public function add($carPlaceStatus, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
+    public function add($type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
     {
         try {
             $carPlace = CarPlace::create([
                 'uid' => 1,
                 'subdistrict_id' => 1,
-                'car_place_status' => $carPlaceStatus,
+                'type' => $type,
                 'price' => $price,
                 'is_standard' => $isStandard,
                 'floorage' => $floorage,
@@ -54,19 +54,26 @@ class CarPlaceModule extends Module
     /**
      * 获取车位列表
      *
-     * @param int $start
+     * @param $start
+     * @param $type
+     * @param bool $isPullDown
      * @param int $limit
-     *
-     * @return mixed
+     * @return array
+     * @throws CarPlaceException
      */
-    public function getList($start, $limit = 5)
+    public function getList($start, $type, $isPullDown = false, $limit = 5)
     {
         try {
             $query = CarPlace::where('post_status', '=', CarPlaceConstant::ON_SHELVES)
-                ->select('id', 'car_place_status', 'is_standard', 'floor', 'subdistrict', 'images', 'building_number', 'updated_at')
+                ->select('id', 'type', 'is_standard', 'floor', 'price', 'subdistrict', 'images', 'building_number', 'updated_at')
+                ->where('type', '=', $type)
                 ->orderBy('id', 'desc');
             if ($start > 0) {
-                $query->where('id', '<', $start);
+                if ($isPullDown) {
+                    $query->where('id', '>', $start);
+                } else {
+                    $query->where('id', '<', $start);
+                }
             }
             $data = $query->take($limit + 1)->get()->toArray();
             $more = 0;
@@ -79,8 +86,9 @@ class CarPlaceModule extends Module
             }
             $start = end($data)['id'];
             $data = array_map(function ($item) use ($data) {
-                $item['images'] = explode('|', $item['images']);
+                $item['thumb'] = current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
+                unset($item['images']);
                 return $item;
             }, $data);
             return ['start' => $start, 'more' => $more, 'list' => $data];
