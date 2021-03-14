@@ -66,8 +66,10 @@ class CarPlaceModule extends Module
         try {
             $query = CarPlace::where('post_status', '=', CarPlaceConstant::ON_SHELVES)
                 ->select('id', 'type', 'is_standard', 'floor', 'price', 'subdistrict', 'images', 'building_number', 'updated_at')
-                ->where('type', '=', $type)
                 ->orderBy('id', 'desc');
+            if (strtolower($type) != 'all') {
+                $query = $query->where('type', '=', $type);
+            }
             if ($start > 0) {
                 if ($isPullDown) {
                     $query->where('id', '>', $start);
