@@ -107,4 +107,24 @@ class CarPlaceModule extends Module
             throw new CarPlaceException('GET_CAR_PLACE_LIST_ERROR');
         }
     }
+
+    /**
+     * 获取车位详情
+     *
+     * @param $id
+     * @return mixed
+     * @throws CarPlaceException
+     */
+    public function detail($id)
+    {
+        try {
+            $data = CarPlace::select('type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
+                'subdistrict', 'images', 'building_number', 'updated_at', 'describe', 'weixin')
+                ->where('post_status', '=', CarPlaceConstant::ON_SHELVES)
+                ->first();
+            return $data;
+        } catch (\Exception $e) {
+            throw new CarPlaceException('GET_CAR_PLACE_DETAIL_ERROR');
+        }
+    }
 }

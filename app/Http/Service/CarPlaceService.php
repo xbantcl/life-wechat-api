@@ -91,4 +91,26 @@ class CarPlaceService extends Service
         $data = CarPlaceModule::getInstance($this->container)->getList($start, $type, $isPullDown, $limit);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取车位详情
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function detail (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = isset($params['id']) ? intval($params['id']) : 0;
+        $data = CarPlaceModule::getInstance($this->container)->detail($id);
+        return new ServiceResponse($data);
+    }
 }
