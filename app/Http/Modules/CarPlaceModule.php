@@ -86,10 +86,19 @@ class CarPlaceModule extends Module
                 $more = 1;
                 array_pop($data);
             }
-            $start = end($data)['id'];
+            if ($isPullDown) {
+                $start = current($data)['id'];
+            } else {
+                $start = end($data)['id'];
+            }
             $data = array_map(function ($item) use ($data) {
                 $item['thumb'] = current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
+                if ($item['is_standard'] === CarPlaceConstant::STANDARD) {
+                    $item['is_standard'] = '标准车位';
+                } else {
+                    $item['is_standard'] = '非标准车位';
+                }
                 unset($item['images']);
                 return $item;
             }, $data);
