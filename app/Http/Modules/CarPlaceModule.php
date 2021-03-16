@@ -5,6 +5,7 @@ namespace Dolphin\Ting\Http\Modules;
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Exception\CarPlaceException;
 use Dolphin\Ting\Http\Model\CarPlace;
+use Dolphin\Ting\Http\Model\CarPlaceComment;
 use Dolphin\Ting\Http\Utils\Help;
 
 class CarPlaceModule extends Module
@@ -135,10 +136,39 @@ class CarPlaceModule extends Module
                 } else {
                     $data['price'] = $data['price'] . '元/月';
                 }
+                $data['images'] = explode('|', $data['images']);
             }
             return $data;
         } catch (\Exception $e) {
             throw new CarPlaceException('GET_CAR_PLACE_DETAIL_ERROR');
         }
     }
+
+    /**
+     * 发布车位评论
+     *
+     * @param int    $uid        评论作者id
+     * @param int    $replyUid   被回复的用户id
+     * @param int    $carPlaceId 车位id
+     * @param string $content    评论类容
+     *
+     * @return mixed
+     *
+     * @throws CarPlaceException
+     */
+    public function comment($uid, $replyUid, $carPlaceId, $content)
+    {
+        try {
+            $carPlaceComment = CarPlaceComment::create([
+                'uid' => $uid,
+                'reply_uid' => $replyUid,
+                'car_place_id' => $carPlaceId,
+                'content' => $content
+            ]);
+        } catch (\Exception $e) {
+            throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
+        }
+        return $carPlaceComment->id;
+    }
+
 }
