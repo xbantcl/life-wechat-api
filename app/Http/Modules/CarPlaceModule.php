@@ -166,9 +166,31 @@ class CarPlaceModule extends Module
                 'content' => $content
             ]);
         } catch (\Exception $e) {
-            throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
+            throw new CarPlaceException('ADD_CAR_PLACE_COMMENT_ERROR');
         }
         return $carPlaceComment->id;
+    }
+
+    /**
+     * 获取车位评论列表
+     *
+     * @param int $carPlaceId 车位id
+     * @return mixed
+     * @throws CarPlaceException
+     */
+    public function commentList($carPlaceId)
+    {
+        try {
+            $comments = CarPlaceComment::leftjoin('user as u', 'u.id', '=', 'car_place_comments.uid')
+                ->leftjoin('user as u1', 'u1.id', '=', 'circle_comments.reply_uid')
+                ->select('car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
+                    'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id')
+                ->where('circle_comments.car_place_id', $carPlaceId)
+                ->get()->toArray();
+            return $comments;
+        } catch (\Exception $e) {
+            throw new CarPlaceException('GET_COMMENTS_ERROR');
+        }
     }
 
 }

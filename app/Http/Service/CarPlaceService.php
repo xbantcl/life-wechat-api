@@ -139,4 +139,27 @@ class CarPlaceService extends Service
         $data = CarPlaceModule::getInstance($this->container)->comment(1, $replyUid, $carPlaceId, $params['content']);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取车位评论列表
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function commentList(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'car_place_id'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
+        $data = CarPlaceModule::getInstance($this->container)->commentList($carPlaceId);
+        return new ServiceResponse($data);
+    }
 }
