@@ -118,9 +118,10 @@ class CarPlaceModule extends Module
     public function detail($id)
     {
         try {
-            $data = CarPlace::select('type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
+            $data = CarPlace::select('id', 'type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
                 'subdistrict', 'images', 'building_number', 'updated_at', 'describe', 'weixin')
                 ->where('post_status', '=', CarPlaceConstant::ON_SHELVES)
+                ->where('id', '=', $id)
                 ->first()->toArray();
             if (!empty($data)) {
                 if ($data['is_standard'] == CarPlaceConstant::STANDARD) {
