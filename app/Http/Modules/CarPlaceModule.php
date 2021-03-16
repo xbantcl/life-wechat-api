@@ -121,7 +121,20 @@ class CarPlaceModule extends Module
             $data = CarPlace::select('type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
                 'subdistrict', 'images', 'building_number', 'updated_at', 'describe', 'weixin')
                 ->where('post_status', '=', CarPlaceConstant::ON_SHELVES)
-                ->first();
+                ->first()->toArray();
+            if (!empty($data)) {
+                if ($data['is_standard'] == CarPlaceConstant::STANDARD) {
+                    $data['is_standard'] = '标准车位';
+                } else {
+                    $data['is_standard'] = '非标准车位';
+                }
+                $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
+                if ($data['type'] == '出售') {
+                    $data['price'] = $data['price'] . '万';
+                } else {
+                    $data['price'] = $data['price'] . '元/月';
+                }
+            }
             return $data;
         } catch (\Exception $e) {
             throw new CarPlaceException('GET_CAR_PLACE_DETAIL_ERROR');
