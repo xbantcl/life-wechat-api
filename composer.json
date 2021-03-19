@@ -27,7 +27,8 @@
         "respect/validation": "^2.2",
         "illuminate/database": "8.28.1",
         "illuminate/events": "8.28.1",
-        "qiniu/php-sdk": "7.3.0"
+        "qiniu/php-sdk": "7.3.0",
+        "adhocore/jwt": "*"
     },
     "autoload": {
         "psr-4": {

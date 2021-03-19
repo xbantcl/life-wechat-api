@@ -183,13 +183,30 @@ class CarPlaceModule extends Module
         try {
             $comments = CarPlaceComment::leftjoin('user as u', 'u.id', '=', 'car_place_comments.uid')
                 ->leftjoin('user as u1', 'u1.id', '=', 'circle_comments.reply_uid')
-                ->select('car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
+                ->select('car_place_comments.id', 'car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
                     'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id')
                 ->where('circle_comments.car_place_id', $carPlaceId)
                 ->get()->toArray();
             return $comments;
         } catch (\Exception $e) {
             throw new CarPlaceException('GET_COMMENTS_ERROR');
+        }
+    }
+
+    /**
+     * 删除评论
+     *
+     * @param $id
+     * @return bool
+     * @throws CarPlaceException
+     */
+    public function deleteComment($id)
+    {
+        try {
+            CarPlaceComment::where('id', '=', $id)->delete();
+            return true;
+        } catch (\Exception $e) {
+            throw new CarPlaceException('DELETE_COMMENT_ERROR');
         }
     }
 

@@ -1,5 +1,8 @@
 <?php namespace Dolphin\Ting\Http\Utils;
 
+use Ahc\Jwt\JWT;
+use Ahc\Jwt\JWTException;
+
 class Help
 {
     /**
@@ -149,5 +152,29 @@ class Help
         }else{
             return $posttime;
         }
+    }
+
+    /**
+     * 获取token
+     * @param array $payload
+     */
+    public static function getToken(array $payload)
+    {
+        return (new JWT('@3imd53AcdD.%#j', 'HS512', 1800))->encode($payload);
+    }
+
+    /**
+     * 验证token
+     * @param string $token
+     * @return array|bool
+     */
+    public static function decode($token)
+    {
+        try {
+            $payload = (new JWT('topSecret', 'HS512', 1800))->decode($token);
+        } catch (JWTException $e) {
+            return false;
+        }
+        return $payload;
     }
 }

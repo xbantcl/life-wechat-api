@@ -162,4 +162,27 @@ class CarPlaceService extends Service
         $data = CarPlaceModule::getInstance($this->container)->commentList($carPlaceId);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 删除车位评论
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function deleteComment(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = isset($params['']) ? intval($params['id']) : 0;
+        $data = CarPlaceModule::getInstance($this->container)->deleteComment($id);
+        return new ServiceResponse($data);
+    }
 }
