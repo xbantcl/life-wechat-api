@@ -4,8 +4,5 @@ namespace Dolphin\Ting\Http\Constant;
 
 class UserConstant
 {
-    /**
-     * 默认密码
-     */
-    const DEFAULT_PASSWORD = '12345678';
+    const AVATARS = [1,2,3,4,5];
 }

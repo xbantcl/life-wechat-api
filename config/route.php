@@ -19,3 +19,8 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/comment/list', 'Dolphin\Ting\Http\Service\CarPlaceService:commentList');
     $group->post('carplace/comment/delete', 'Dolphin\Ting\Http\Service\CarPlaceService:deleteComment');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
+
+$app->group('/api/', function (RouteCollectorProxy $group) {
+    $group->post('/api/user/login', 'Dolphin\Ting\Http\Service\UserService:login');
+    $group->post('/api/user/register', 'Dolphin\Ting\Http\Service\UserService:register');
+});

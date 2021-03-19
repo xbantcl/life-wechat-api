@@ -3,6 +3,7 @@
 namespace Dolphin\Ting\Http\Service;
 
 use Dolphin\Ting\Http\Response\ServiceResponse;
+use Dolphin\Ting\Http\Utils\Help;
 use Psr\Container\ContainerInterface as Container;
 use Respect\Validation\Validator as v;
 use Slim\Psr7\Request;
@@ -19,17 +20,47 @@ class UserService extends Service
         $this->validation = $container->get('validation');
     }
 
-    public function getUserInfo(Request $request, Response $response)
+    /**
+     * 用户登录
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function login(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'start' => v::optional(v::numericVal()),
-            'limit' => v::optional(v::numericVal())
+            'phone' => v::notEmpty(),
+            'password' => v::notEmpty()
         ]);
 
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
+        $params = Help::getParams($request);
+        $data = UserModule::getInstance($this->container)->login(trim($params['phone']), trim($params['password']));
+        return new ServiceResponse($data);
+    }
 
-        return new ServiceResponse([1,2,3]);
+    /**
+     * 用户注册
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function register(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'phone' => v::notEmpty(),
+            'password' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $data = UserModule::getInstance($this->container)->register(trim($params['phone']), trim($params['password']));
+        return new ServiceResponse($data);
     }
 }

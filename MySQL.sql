@@ -2,7 +2,10 @@ CREATE TABLE `user` (
     `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '用户名',
     `password` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '密码',
+    `phone` VARCHAR(16) NOT NULL COMMENT '手机号码',
     `avatar` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '头像',
+    `subdistrict_id` INT NOT NULL DEFAULT 0 COMMENT '小区id',
+    `salt` VARCHAR(16) NOT NULL COMMENT '盐值',
     `last_sign_in_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后登录时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_username` (`username`)
