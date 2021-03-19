@@ -10,5 +10,4 @@ return function ($app) {
     $app->addRoutingMiddleware();
     // Cross Origin Resource Sharing Middleware
     $app->add(new CORSMiddleware());
-    $app->add(new AuthMiddleware());
 };
