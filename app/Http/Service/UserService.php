@@ -43,6 +43,22 @@ class UserService extends Service
         return new ServiceResponse($data);
     }
 
+    public function wxLogin(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'encryptedData' => v::notEmpty(),
+            'iv' => v::notEmpty(),
+            'rawData' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $data = UserModule::getInstance($this->container)->wxLogin(trim($params['encryptedData']), trim($params['iv']), $params['rawData']);
+        return new ServiceResponse($data);
+    }
+
     /**
      * 用户注册
      *

@@ -3,13 +3,12 @@
 namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\UserConstant;
-use Dolphin\Ting\Http\Exception\DBException;
 use Dolphin\Ting\Http\Exception\UserException;
 use Dolphin\Ting\Http\Model\User;
 use Dolphin\Ting\Http\Utils\Help;
 use Exception;
 
-class UserModule
+class UserModule extends Module
 {
 
     /**
@@ -40,7 +39,6 @@ class UserModule
         unset($user->salt);
         return ['user' => $user, 'token' => $token];
     }
-
 
     /**
      * 用户注册

@@ -6,9 +6,9 @@ CREATE TABLE `user` (
     `avatar` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '头像',
     `subdistrict_id` INT NOT NULL DEFAULT 0 COMMENT '小区id',
     `salt` VARCHAR(16) NOT NULL COMMENT '盐值',
+    `openid` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '微信openid',
     `last_sign_in_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后登录时间',
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `uk_username` (`username`)
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户信息表';
 
 CREATE TABLE `user_sign_in` (
