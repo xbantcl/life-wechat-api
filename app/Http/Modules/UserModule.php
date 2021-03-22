@@ -6,6 +6,7 @@ use Dolphin\Ting\Http\Constant\UserConstant;
 use Dolphin\Ting\Http\Exception\UserException;
 use Dolphin\Ting\Http\Model\User;
 use Dolphin\Ting\Http\Utils\Help;
+use Dolphin\Ting\Http\Utils\WXBizDataCrypt;
 use Exception;
 
 class UserModule extends Module

@@ -1,24 +1,4 @@
-<?php
-/**
- * error code 说明.
- * <ul>
-
- *    <li>-41001: encodingAesKey 非法</li>
- *    <li>-41003: aes 解密失败</li>
- *    <li>-41004: 解密后得到的buffer非法</li>
- *    <li>-41005: base64加密失败</li>
- *    <li>-41016: base64解密失败</li>
- * </ul>
- */
-class ErrorCode
-{
-    public static $OK = 0;
-    public static $IllegalAesKey = -41001;
-    public static $IllegalIv = -41002;
-    public static $IllegalBuffer = -41003;
-    public static $DecodeBase64Error = -41004;
-}
-
+<?php namespace Dolphin\Ting\Http\Utils;
 /**
  * 对微信小程序用户加密数据的解密示例代码.
  *
@@ -29,6 +9,23 @@ class WXBizDataCrypt
 {
     private $appid;
     private $sessionKey;
+
+    /**
+     * error code 说明.
+     * <ul>
+
+     *    <li>-41001: encodingAesKey 非法</li>
+     *    <li>-41003: aes 解密失败</li>
+     *    <li>-41004: 解密后得到的buffer非法</li>
+     *    <li>-41005: base64加密失败</li>
+     *    <li>-41016: base64解密失败</li>
+     * </ul>
+     */
+    public static $OK = 0;
+    public static $IllegalAesKey = -41001;
+    public static $IllegalIv = -41002;
+    public static $IllegalBuffer = -41003;
+    public static $DecodeBase64Error = -41004;
 
     /**
      * 构造函数
@@ -53,13 +50,13 @@ class WXBizDataCrypt
     public function decryptData( $encryptedData, $iv, &$data )
     {
         if (strlen($this->sessionKey) != 24) {
-            return ErrorCode::$IllegalAesKey;
+            return self::$IllegalAesKey;
         }
         $aesKey=base64_decode($this->sessionKey);
 
 
         if (strlen($iv) != 24) {
-            return ErrorCode::$IllegalIv;
+            return self::$IllegalIv;
         }
         $aesIV=base64_decode($iv);
 
@@ -70,13 +67,13 @@ class WXBizDataCrypt
         $dataObj=json_decode( $result );
         if( $dataObj  == NULL )
         {
-            return ErrorCode::$IllegalBuffer;
+            return self::$IllegalBuffer;
         }
         if( $dataObj->watermark->appid != $this->appid )
         {
-            return ErrorCode::$IllegalBuffer;
+            return self::$IllegalBuffer;
         }
         $data = $result;
-        return ErrorCode::$OK;
+        return self::$OK;
     }
 }
