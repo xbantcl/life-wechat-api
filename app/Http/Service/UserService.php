@@ -2,6 +2,7 @@
 
 namespace Dolphin\Ting\Http\Service;
 
+use Dolphin\Ting\Http\Modules\UserModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
 use Dolphin\Ting\Http\Utils\Help;
 use Psr\Container\ContainerInterface as Container;
