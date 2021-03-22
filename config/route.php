@@ -23,4 +23,5 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('user/login', 'Dolphin\Ting\Http\Service\UserService:login');
     $group->post('user/register', 'Dolphin\Ting\Http\Service\UserService:register');
+    $group->post('user/wx/login', 'Dolphin\Ting\Http\Service\UserService:wxLogin');
 });

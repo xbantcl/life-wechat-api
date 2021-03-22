@@ -19,6 +19,7 @@ class UserService extends Service
         parent::__construct($container);
 
         $this->validation = $container->get('validation');
+
     }
 
     /**
@@ -43,19 +44,34 @@ class UserService extends Service
         return new ServiceResponse($data);
     }
 
+    /**
+     * 微信授权登录
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
     public function wxLogin(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
             'encryptedData' => v::notEmpty(),
             'iv' => v::notEmpty(),
-            'rawData' => v::notEmpty()
+            'username' => v::notEmpty(),
+            'avatar' => v::notEmpty(),
+            'code' => v::notEmpty()
         ]);
 
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $data = UserModule::getInstance($this->container)->wxLogin(trim($params['encryptedData']), trim($params['iv']), $params['rawData']);
+        $data = UserModule::getInstance($this->container)->wxLogin(
+            trim($params['code']),
+            trim($params['username']),
+            trim($params['avatar']),
+            $params['encryptedData'],
+            tirm($params['iv'])
+        );
         return new ServiceResponse($data);
     }
 

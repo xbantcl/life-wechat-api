@@ -1,4 +1,4 @@
-<?php
+<?php namespace Dolphin\Ting\Http\Utils;
 /**
  * Class Curl  curl简单封装 get post
  */

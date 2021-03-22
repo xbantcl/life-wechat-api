@@ -2,7 +2,7 @@
 
 return [
     'program' => [
-        'appid'      => getenv("APPID") ? getenv("APPID") : '',
-        'sessionKey' => getenv("SESSION_KEY") ? getenv("SESSION_KEY") : ''
+        'appid'  => getenv("APPID") ? getenv("APPID") : '',
+        'secret' => getenv("SECRET") ? getenv("SECRET") : ''
     ]
 ];

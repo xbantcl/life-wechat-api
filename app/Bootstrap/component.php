@@ -14,7 +14,8 @@ return function (Container $container) {
             'cache'    => require CONFPATH . 'cache.php',
             'queue'    => require CONFPATH . 'queue.php',
             'mail'     => require CONFPATH . 'mail.php',
-            'qiniu'    => require CONFPATH . 'qiniu.php'
+            'qiniu'    => require CONFPATH . 'qiniu.php',
+            'weixin'   => require CONFPATH . 'weixin.php',
         ];
     });
     // 启用的组件
