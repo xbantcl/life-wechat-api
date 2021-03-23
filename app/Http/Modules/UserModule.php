@@ -103,8 +103,8 @@ class UserModule extends Module
             $authWxUrl = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . $this->appid .
                 '&secret=' . $this->secret .
                 '&js_code=' . $code . '&grant_type=authorization_code';
-            $res = json_decode(Curl::get($authWxUrl));
-            if (isset($res['errcode']) && $res['errcode'] === 0) {
+            $res = json_decode(Curl::get($authWxUrl), true);
+            if (isset($res['openid'])) {
                 $user = User::select('id', 'avatar', 'username', 'openid')
                     ->where('openid', '=', $res['openid'])
                     ->first();
@@ -114,9 +114,10 @@ class UserModule extends Module
                         'avatar' => $avatar,
                         'openid' => $res['openid']
                     ]);
-                } elseif ($user->avatar !== $avatar || $user->username !== $username) {
+                } else {
                     $user->avatar = $avatar;
                     $user->username = $username;
+                    $user->last_sign_in_time = date('Y-m-d H:i:s');
                     $user->save();
                 }
                 $token = Help::getToken(['uid' => $user->id]);

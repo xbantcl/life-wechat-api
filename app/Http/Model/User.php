@@ -13,6 +13,7 @@ class User extends Model
      */
     protected $table = 'user';
 
+    public $guarded = ['id'];
     /**
      * The attributes excluded from the model's JSON form.
      *
