@@ -103,7 +103,7 @@ class UserModule extends Module
             $authWxUrl = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . $this->appid .
                 '&secret=' . $this->secret .
                 '&js_code=' . $code . '&grant_type=authorization_code';
-            $res = Curl::get($authWxUrl);
+            $res = json_decode(Curl::get($authWxUrl));
             if (isset($res['errcode']) && $res['errcode'] === 0) {
                 $user = User::select('id', 'avatar', 'username', 'openid')
                     ->where('openid', '=', $res['openid'])
@@ -122,7 +122,7 @@ class UserModule extends Module
                 $token = Help::getToken(['uid' => $user->id]);
                 return ['user' => ['uid' => $user->id, 'username' => $user->username, 'avatar' => $user->avatar], 'token' => $token];
             } else {
-                throw new UserException('WEIXIN_LOGIN_ERROR', [], '微信错误码: ' . $res['errcode']);
+                throw new UserException('WEIXIN_LOGIN_ERROR', [], $res['errmsg']);
             }
         } catch (\Exception $e) {
             throw new UserException('LOGIN_ERROR', [], $e->getMessage());
