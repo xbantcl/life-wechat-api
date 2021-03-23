@@ -24,6 +24,10 @@ class ServiceResponse extends Response
             'note' => $note,
             'data' => $data
         ]));
+        $response->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+            ->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+            ->withHeader('Content-Type', 'application/json');
 
         parent::__construct(StatusCodeInterface::STATUS_OK, $header, $responseBody);
     }

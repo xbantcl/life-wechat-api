@@ -72,7 +72,7 @@ class UserModule extends Module
     {
         try {
             $salt = Help::getSalt();
-            $avatar = UserConstant::AVATARS[range(0, 5)];
+            $avatar = UserConstant::AVATARS[rand(0, 4)];
             $username = '温度' . substr(md5(\uniqid(mt_rand(1, 10000000))), 0, 6);
             $user = User::create([
                 'phone' => $phone,
@@ -100,6 +100,11 @@ class UserModule extends Module
     public function wxLogin($code, $username, $avatar)
     {
         try {
+            if ('youke' === $code) {
+                $uid = 99999999;
+                $token = Help::getToken(['uid' => $uid]);
+                return ['user' => ['uid' => $uid], 'token' => $token];
+            }
             $authWxUrl = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . $this->appid .
                 '&secret=' . $this->secret .
                 '&js_code=' . $code . '&grant_type=authorization_code';
