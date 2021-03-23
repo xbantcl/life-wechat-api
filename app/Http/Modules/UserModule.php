@@ -101,7 +101,7 @@ class UserModule extends Module
     {
         try {
             $authWxUrl = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . $this->appid .
-                '&secret=' + $this->secret .
+                '&secret=' . $this->secret .
                 '&js_code=' . $code . '&grant_type=authorization_code';
             $res = Curl::get($authWxUrl);
             if (isset($res['errcode']) && $res['errcode'] === 0) {
