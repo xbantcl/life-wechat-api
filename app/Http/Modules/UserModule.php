@@ -122,7 +122,7 @@ class UserModule extends Module
                 $token = Help::getToken(['uid' => $user->id]);
                 return ['user' => ['uid' => $user->id, 'username' => $user->username, 'avatar' => $user->avatar], 'token' => $token];
             } else {
-                throw new UserException('WEIXIN_LOGIN_ERROR', [], $res['errmsg']);
+                throw new UserException('WEIXIN_LOGIN_ERROR', [], '微信错误码: ' . $res['errcode']);
             }
         } catch (\Exception $e) {
             throw new UserException('LOGIN_ERROR', [], $e->getMessage());
