@@ -10,6 +10,7 @@ class UserException extends CommonException
         'PASSWORD_ERROR'      => [102, '用户密码错误'],
         'REGISTER_USER_ERROR' => [103, '用户注册失败'],
         'WEIXIN_LOGIN_ERROR'  => [104, '微信授权登录失败'],
-        'LOGIN_ERROR'         => [105, '用户登录失败']
+        'LOGIN_ERROR'         => [105, '用户登录失败'],
+        'USERNAME_EXIST'      => [106, '用户已经存在']
     ];
 }

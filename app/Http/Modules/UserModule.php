@@ -74,6 +74,12 @@ class UserModule extends Module
             $salt = Help::getSalt();
             $avatar = UserConstant::AVATARS[rand(0, 4)];
             $username = '温度' . substr(md5(\uniqid(mt_rand(1, 10000000))), 0, 6);
+            $user = User::select('id')
+                ->where('phone', '=', $phone)
+                ->first();
+            if ($user) {
+                throw new UserException('USERNAME_EXIST');
+            }
             $user = User::create([
                 'phone' => $phone,
                 'password' => Help::encryptPassword($password, $salt),
