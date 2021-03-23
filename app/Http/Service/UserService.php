@@ -54,8 +54,6 @@ class UserService extends Service
     public function wxLogin(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'encryptedData' => v::notEmpty(),
-            'iv' => v::notEmpty(),
             'username' => v::notEmpty(),
             'avatar' => v::notEmpty(),
             'code' => v::notEmpty()
@@ -68,9 +66,7 @@ class UserService extends Service
         $data = UserModule::getInstance($this->container)->wxLogin(
             trim($params['code']),
             trim($params['username']),
-            trim($params['avatar']),
-            $params['encryptedData'],
-            tirm($params['iv'])
+            trim($params['avatar'])
         );
         return new ServiceResponse($data);
     }

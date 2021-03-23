@@ -91,11 +91,18 @@ class UserModule extends Module
      * 微信授权登录
      *
      * @param $code
+     * @param $username
+     * @param $avatar
+     *
+     * @return array
+     * @throws UserException
      */
     public function wxLogin($code, $username, $avatar)
     {
         try {
-            $authWxUrl = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + $this->appid + '&secret=' + $this->secret + '&js_code=JSCODE&grant_type=authorization_code';
+            $authWxUrl = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . $this->appid .
+                '&secret=' + $this->secret .
+                '&js_code=' . $code . '&grant_type=authorization_code';
             $res = Curl::get($authWxUrl);
             if (isset($res['errcode']) && $res['errcode'] === 0) {
                 $user = User::select('id', 'avatar', 'username', 'openid')
@@ -107,8 +114,13 @@ class UserModule extends Module
                         'avatar' => $avatar,
                         'openid' => $res['openid']
                     ]);
+                } elseif ($user->avatar !== $avatar || $user->username !== $username) {
+                    $user->avatar = $avatar;
+                    $user->username = $username;
+                    $user->save();
                 }
-                return ['uid' => $user->id, 'username' => $user->openid];
+                $token = Help::getToken(['uid' => $user->id]);
+                return ['user' => ['uid' => $user->id, 'username' => $user->username, 'avatar' => $user->avatar], 'token' => $token];
             } else {
                 throw new UserException('WEIXIN_LOGIN_ERROR', [], $res['errmsg']);
             }
