@@ -53,7 +53,7 @@ class UserModule extends Module
                 throw new UserException('PASSWORD_ERROR');
             }
             $token = Help::getToken(['uid' => $user->id]);
-        } catch (\Exception $e) {
+        } catch (\mysqli_sql_exception $e) {
             throw new UserException('LOGIN_ERROR');
         }
         unset($user->salt);
@@ -88,7 +88,7 @@ class UserModule extends Module
             ]);
             $token = Help::getToken(['uid' => $user->id]);
             return ['user' => ['uid' => $user->id, 'avatar' => $avatar, 'username' => $username], 'token' => $token];
-        } catch (Exception $e) {
+        } catch (\mysqli_sql_exception $e) {
             throw new UserException('REGISTER_USER_ERROR');
         }
     }
@@ -136,7 +136,7 @@ class UserModule extends Module
             } else {
                 throw new UserException('WEIXIN_LOGIN_ERROR', [], $res['errmsg']);
             }
-        } catch (\Exception $e) {
+        } catch (\mysqli_sql_exception $e) {
             throw new UserException('LOGIN_ERROR', [], $e->getMessage());
         }
     }
