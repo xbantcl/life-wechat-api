@@ -183,7 +183,7 @@ class CarPlaceModule extends Module
     {
         try {
             $comments = CarPlaceComment::leftjoin('user as u', 'u.id', '=', 'car_place_comments.uid')
-                ->leftjoin('user as u1', 'u1.id', '=', 'circle_comments.reply_uid')
+                ->leftjoin('user as u1', 'u1.id', '=', 'car_place_comments.reply_uid')
                 ->select('car_place_comments.id', 'car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
                     'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id')
                 ->where('car_place_comments.car_place_id', $carPlaceId)

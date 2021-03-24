@@ -105,7 +105,7 @@ class CircleModule extends Module
         $data = array_map(function ($item) use ($tmpComments) {
             $item['content'] = [
                     'text' => $item['content'],
-                    'images' => array_map(function($image) {return 'http://qov9mnf59.hn-bkt.clouddn.com/'. $image;},explode('|', $item['images']))
+                    'images' => explode('|', $item['images'])
             ];
             $item['islike'] = 0;
             $item['like']  = [
