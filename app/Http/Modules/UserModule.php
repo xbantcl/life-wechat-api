@@ -84,7 +84,8 @@ class UserModule extends Module
                 'phone' => $phone,
                 'password' => Help::encryptPassword($password, $salt),
                 'avatar' => $avatar,
-                'username' => $username
+                'username' => $username,
+                'salt' => $salt
             ]);
             $token = Help::getToken(['uid' => $user->id]);
             return ['user' => ['uid' => $user->id, 'avatar' => $avatar, 'username' => $username], 'token' => $token];
