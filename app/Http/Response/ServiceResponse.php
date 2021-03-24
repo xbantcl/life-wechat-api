@@ -14,6 +14,9 @@ class ServiceResponse extends Response
     public function __construct($data = [], $code = 0, $note = 'success')
     {
         $header = new Headers();
+        $header->addHeader('Access-Control-Allow-Origin', '*');
+        $header->addHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        $header->addHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         $header->addHeader('Content-Type', 'application/json');
 
         $responseFactory = new ResponseFactory();
@@ -24,10 +27,6 @@ class ServiceResponse extends Response
             'note' => $note,
             'data' => $data
         ]));
-        $response->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-            ->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-            ->withHeader('Content-Type', 'application/json');
 
         parent::__construct(StatusCodeInterface::STATUS_OK, $header, $responseBody);
     }

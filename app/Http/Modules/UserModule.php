@@ -43,7 +43,7 @@ class UserModule extends Module
     public function login($phone, $password)
     {
         try {
-            $user = User::select('id', 'avatar', 'username', 'salt')
+            $user = User::select('id', 'avatar', 'username', 'password', 'salt')
                 ->where('phone', '=', $phone)
                 ->first();
             if (empty($user)) {
