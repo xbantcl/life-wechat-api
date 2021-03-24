@@ -171,7 +171,7 @@ class Help
     public static function decode($token)
     {
         try {
-            $payload = (new JWT('topSecret', 'HS512', 1800))->decode($token);
+            $payload = (new JWT('@3imd53AcdD.%#j', 'HS512', 1800))->decode($token);
         } catch (JWTException $e) {
             return false;
         }

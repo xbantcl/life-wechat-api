@@ -13,6 +13,7 @@ class CarPlaceModule extends Module
     /**
      * 发布车位信息
      *
+     * @param $uid
      * @param $type
      * @param $price
      * @param $isStandard
@@ -28,11 +29,11 @@ class CarPlaceModule extends Module
      * @return mixed
      * @throws CarPlaceException
      */
-    public function add($type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
+    public function add($uid, $type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
     {
         try {
             $carPlace = CarPlace::create([
-                'uid' => 1,
+                'uid' => $uid,
                 'subdistrict_id' => 1,
                 'type' => $type,
                 'price' => $price,
@@ -196,14 +197,15 @@ class CarPlaceModule extends Module
     /**
      * 删除评论
      *
+     * @param $uid
      * @param $id
      * @return bool
      * @throws CarPlaceException
      */
-    public function deleteComment($id)
+    public function deleteComment($uid, $id)
     {
         try {
-            CarPlaceComment::where('id', '=', $id)->delete();
+            CarPlaceComment::where('id', '=', $id)->where('uid', '=', $uid)->delete();
             return true;
         } catch (\Exception $e) {
             throw new CarPlaceException('DELETE_COMMENT_ERROR');

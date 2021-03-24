@@ -14,12 +14,14 @@ use Slim\Psr7\Response;
 class CircleService extends Service
 {
     private $validation;
+    private $uid;
 
     public function __construct (Container $container)
     {
         parent::__construct($container);
 
         $this->validation = $container->get('validation');
+        $this->uid = $container->get('uid');
     }
 
     /**
@@ -42,7 +44,7 @@ class CircleService extends Service
         $params = Help::getParams($request);
         $content = isset($params['content']) ? $params['content'] : '';
         $images = isset($params['images']) ? $params['images'] : '';
-        $data = CircleModule::getInstance($this->container)->add(1, $content, $images);
+        $data = CircleModule::getInstance($this->container)->add($this->uid, $content, $images);
         return new ServiceResponse($data);
     }
 
@@ -95,7 +97,7 @@ class CircleService extends Service
         $params = Help::getParams($request);
         $replyUid = isset($params['reply_uid']) ? intval($params['reply_uid']) : 0;
         $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
-        $data = CircleModule::getInstance($this->container)->comment(1, $replyUid, $postId, $params['content']);
+        $data = CircleModule::getInstance($this->container)->comment($this->uid, $replyUid, $postId, $params['content']);
         return new ServiceResponse($data);
     }
 }

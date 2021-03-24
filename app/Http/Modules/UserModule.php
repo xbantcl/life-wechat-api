@@ -29,6 +29,7 @@ class UserModule extends Module
         $this->appid = $container->get('Config')['weixin']['program']['appid'];
         $this->secret = $container->get('Config')['weixin']['program']['secret'];
 
+
     }
     /**
      * 用户登录

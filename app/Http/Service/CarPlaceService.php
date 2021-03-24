@@ -14,12 +14,13 @@ use Slim\Psr7\Response;
 class CarPlaceService extends Service
 {
     private $validation;
+    private $uid;
 
     public function __construct (Container $container)
     {
         parent::__construct($container);
-
         $this->validation = $container->get('validation');
+        $this->uid = $container->get('uid');
     }
 
     /**
@@ -60,7 +61,7 @@ class CarPlaceService extends Service
         $describe = isset($params['describe']) ? trim($params['describe']) : '';
         $weixin = isset($params['weixin']) ? trim($params['weixin']) : '';
         $images = isset($params['images']) ? trim($params['images']) : '';
-        $data = CarPlaceModule::getInstance($this->container)->add($type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images);
+        $data = CarPlaceModule::getInstance($this->container)->add($this->uid, $type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images);
         return new ServiceResponse($data);
     }
 
@@ -136,7 +137,7 @@ class CarPlaceService extends Service
         $params = Help::getParams($request);
         $replyUid = isset($params['reply_uid']) ? intval($params['reply_uid']) : 0;
         $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->comment(1, $replyUid, $carPlaceId, $params['content']);
+        $data = CarPlaceModule::getInstance($this->container)->comment($this->uid, $replyUid, $carPlaceId, $params['content']);
         return new ServiceResponse($data);
     }
 
@@ -182,7 +183,7 @@ class CarPlaceService extends Service
         }
         $params = Help::getParams($request);
         $id = isset($params['']) ? intval($params['id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->deleteComment($id);
+        $data = CarPlaceModule::getInstance($this->container)->deleteComment($this->uid, $id);
         return new ServiceResponse($data);
     }
 }

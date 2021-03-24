@@ -28,7 +28,7 @@ class CircleModule extends Module
     {
         try {
             CirclePost::create([
-                'uid' => 1,
+                'uid' => $uid,
                 'content' => $content,
                 'images' => $images
             ]);

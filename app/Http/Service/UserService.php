@@ -19,7 +19,6 @@ class UserService extends Service
         parent::__construct($container);
 
         $this->validation = $container->get('validation');
-
     }
 
     /**
