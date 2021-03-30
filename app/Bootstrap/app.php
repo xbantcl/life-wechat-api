@@ -16,6 +16,7 @@ date_default_timezone_set(getenv('TIMEZONE'));
 define('ENV', getenv("ENV"));
 // Create Container
 $container = new Container();
+$container->set('uid', 0);
 // Set Container
 AppFactory::setContainer($container);
 // Create App
