@@ -61,7 +61,7 @@ class SecondhandGoodsService extends Service
     }
 
     /**
-     * 获取车位列表
+     * 获取商品列表
      *
      * @param Request $request
      * @param Response $response
@@ -71,7 +71,7 @@ class SecondhandGoodsService extends Service
     {
         $validation = $this->validation->validate($request, [
             'is_pull_down' => v::in([0,1]),
-            'type' => v::in(['all', '出售', '出租'])->notEmpty(),
+            'category' => v::in(['all', '数码产品', '家用电器', '儿童玩具', '家居用品', '其他物品'])->notEmpty(),
             'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numericVal())
         ]);
@@ -82,14 +82,14 @@ class SecondhandGoodsService extends Service
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
-        $type = isset($params['type']) ? trim($params['type']) : 'all';
+        $category = isset($params['category']) ? trim($params['category']) : 'all';
         $isPullDown = isset($params['is_pull_down']) ? boolval($params['is_pull_down']) : false;
-        $data = CarPlaceModule::getInstance($this->container)->getList($start, $type, $isPullDown, $limit);
+        $data = SecondhandGoodsModule::getInstance($this->container)->getList($start, $category, $isPullDown, $limit);
         return new ServiceResponse($data);
     }
 
     /**
-     * 获取车位详情
+     * 获取商品详情
      *
      * @param Request $request
      * @param Response $response
@@ -106,79 +106,7 @@ class SecondhandGoodsService extends Service
         }
         $params = Help::getParams($request);
         $id = isset($params['id']) ? intval($params['id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->detail($id);
-        return new ServiceResponse($data);
-    }
-
-    /**
-     * 发布车位评论
-     *
-     * @param Request $request
-     * @param Response $response
-     *
-     * @return ServiceResponse
-     */
-    public function comment(Request $request, Response $response)
-    {
-        $validation = $this->validation->validate($request, [
-            'reply_uid' => v::optional(v::intVal()),
-            'car_place_id'  => v::intVal(),
-            'content'  => v::notEmpty()
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $params = Help::getParams($request);
-        $replyUid = isset($params['reply_uid']) ? intval($params['reply_uid']) : 0;
-        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->comment($this->uid, $replyUid, $carPlaceId, $params['content']);
-        return new ServiceResponse($data);
-    }
-
-    /**
-     * 获取车位评论列表
-     *
-     * @param Request $request
-     * @param Response $response
-     *
-     * @return ServiceResponse
-     */
-    public function commentList(Request $request, Response $response)
-    {
-        $validation = $this->validation->validate($request, [
-            'car_place_id'  => v::intVal()
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $params = Help::getParams($request);
-        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->commentList($carPlaceId);
-        return new ServiceResponse($data);
-    }
-
-    /**
-     * 删除车位评论
-     *
-     * @param Request $request
-     * @param Response $response
-     *
-     * @return ServiceResponse
-     */
-    public function deleteComment(Request $request, Response $response)
-    {
-        $validation = $this->validation->validate($request, [
-            'id'  => v::intVal()
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $params = Help::getParams($request);
-        $id = isset($params['']) ? intval($params['id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->deleteComment($this->uid, $id);
+        $data = SecondhandGoodsModule::getInstance($this->container)->detail($id);
         return new ServiceResponse($data);
     }
 }
