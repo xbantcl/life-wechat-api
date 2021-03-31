@@ -20,7 +20,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/comment/list', 'Dolphin\Ting\Http\Service\CarPlaceService:commentList');
 
     // ------------------ 二手商品相关接口 -------------------------------
-    $group->post('secondhand/list', 'Dolphin\Ting\Http\Service\SecondhandService:getList');
+    $group->post('secondhand/list', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:getList');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
@@ -36,5 +36,5 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/comment/delete', 'Dolphin\Ting\Http\Service\CarPlaceService:deleteComment');
 
     // ------------------ 二手商品相关接口 -------------------------------
-    $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandService:add');
+    $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:add');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
