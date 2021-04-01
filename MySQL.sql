@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `secondhand_goods`(
     `images` VARCHAR(128) DEFAULT '' COMMENT '图片',
     `price` FLOAT NOT NULL DEFAULT 0 COMMENT '商品价格',
     `original_price` FLOAT NOT NULL DEFAULT 0 COMMENT '商品原始价格',
-    `decribe` VARCHAR(600) DEFAULT '' COMMENT '描述类容',
+    `describe` VARCHAR(600) DEFAULT '' COMMENT '描述类容',
     `delivery` ENUM('自取', '包邮') DEFAULT '自取' COMMENT '配送方式',
     `address` VARCHAR(256) NOT NULL DEFAULT '' COMMENT '商品地址',
     `category` ENUM('数码产品', '家用电器', '儿童玩具', '家居用品', '其他物品') NOT NULL COMMENT '商品分类',

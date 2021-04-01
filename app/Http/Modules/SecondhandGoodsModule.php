@@ -62,17 +62,18 @@ class SecondhandGoodsModule extends Module
     public function getList($start, $category, $isPullDown = false, $limit = 5)
     {
         try {
-            $query = SecondhandGoods::where('status', '=', SecondhandGoodsConstant::ON_SHELVES)
-                ->select('id', 'title', 'price', 'images', 'address', 'updated_at')
-                ->orderBy('id', 'desc');
+            $query = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
+                ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
+                    'secondhand_goods.images', 'secondhand_goods.updated_at', 'u.username', 'u.avatar')
+                ->orderBy('secondhand_goods.id', 'desc');
             if (strtolower($category) !== 'all') {
-                $query = $query->where('category', '=', $category);
+                $query = $query->where('secondhand_goods.category', '=', $category);
             }
             if ($start > 0) {
                 if ($isPullDown) {
-                    $query->where('id', '>', $start);
+                    $query->where('secondhand_goods.id', '>', $start);
                 } else {
-                    $query->where('id', '<', $start);
+                    $query->where('secondhand_goods.id', '<', $start);
                 }
             }
             $data = $query->take($limit + 1)->get()->toArray();
@@ -92,6 +93,7 @@ class SecondhandGoodsModule extends Module
             $data = array_map(function ($item) use ($data) {
                 $item['thumb'] = current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
+                unset($item['images']);
                 return $item;
             }, $data);
             return ['start' => $start, 'more' => $more, 'list' => $data];
@@ -113,11 +115,12 @@ class SecondhandGoodsModule extends Module
             $data = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
                 ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                 'secondhand_goods.address', 'secondhand_goods.images', 'secondhand_goods.updated_at', 'secondhand_goods.describe',
-                'u.username', 'u.avatar')
+                'u.username', 'u.avatar', 'secondhand_goods.delivery')
                 ->where('secondhand_goods.status', '=', SecondhandGoodsConstant::ON_SHELVES)
                 ->where('secondhand_goods.id', '=', $id)
-                ->first()->toArray();
+                ->first();
             if (!empty($data)) {
+                $data = $data->toArray();
                 $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
                 $data['images'] = explode('|', $data['images']);
             }
