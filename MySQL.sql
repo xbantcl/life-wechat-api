@@ -102,3 +102,27 @@ CREATE TABLE IF NOT EXISTS `secondhand_goods_comments`(
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='二手闲置商品评论';
+
+CREATE TABLE IF NOT EXISTS `pinche`(
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
+    `type` TINGINT(1) NOT NULL DEFAULT 1 COMMENT '拼车类型: 1-人找车，2-车找人'
+    `departure_geohash` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '',
+    `destination_geohash` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '',
+    `departure_address` VARCHAR(128) DEFAULT '' COMMENT '出发地地址',
+    `destination_address` VARCHAR(128) DEFAULT '' COMMENT '目的地地址',
+    `departure_lat` DECIMAL(10, 6) DEFAULT '' COMMENT '出发地纬度',
+    `departure_lng` DECIMAL(10, 6) DEFAULT '' COMMENT '出发地经度',
+    `destination_lat` DECIMAL(10, 6) DEFAULT '' COMMENT '目的地纬度',
+    `destination_lng` DECIMAL(10, 6) DEFAULT '' COMMENT '目的地经度',
+    `condition` VARCHAR(512) DEFAULT '' COMMENT '乘车条件',
+    `price` FLOAT NOT NULL DEFAULT 0 COMMENT '路费价格',
+    `sex` ENUM('男', '女') DEFAULT '男' COMMENT '性别',
+    `username` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '名称',
+    `mobile` VARCHAR(11) NOT NULL DEFAULT '' COMMENT '电话',
+    `start_time` INT NOT NULL COMMENT '出发时间',
+    `seat_num` INT NOT NULL DEFAULT 3 COMMENT '座位数',
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='拼车';
