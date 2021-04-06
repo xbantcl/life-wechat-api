@@ -38,4 +38,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:add');
+
+    // ------------------ 拼车相关接口 -----------------------------------
+    $group->post('pinche/add', 'Dolphin\Ting\Http\Service\PincheService:add');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
