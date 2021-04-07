@@ -7,6 +7,7 @@ use Dolphin\Ting\Http\Exception\CircleException;
 use Dolphin\Ting\Http\Exception\PincheException;
 use Dolphin\Ting\Http\Model\Pinche;
 use Dolphin\Ting\Http\Utils\Geohash;
+use Dolphin\Ting\Http\Utils\Help;
 use Exception;
 
 class PincheModule extends Module
@@ -80,7 +81,8 @@ class PincheModule extends Module
             $pinche = Pinche::leftjoin('user as u', 'u.id', '=', 'pinche.uid')
                 ->select('pinche.type', 'pinche.departure_address', 'pinche.destination_address', 'pinche.departure_lat',
                 'pinche.departure_lng', 'pinche.destination_lat', 'pinche.destination_lng', 'pinche.price', 'pinche.username',
-                'pinche.images', 'pinche.seat_num', 'pinche.start_time');
+                'pinche.images', 'pinche.seat_num', 'pinche.start_time')
+                ->where('pinche.status', '=', 2);
             if ($type !== 'all') {
                 $pinche->where('pinche.type', '=', $type);
             }
@@ -94,7 +96,8 @@ class PincheModule extends Module
             $data = $pinche->get()->toArray();
             foreach ($data as $index => &$item) {
                 $item['dpt_distance'] = $geohash->getDistance($departureLat, $departureLng, $item['departure_lat'], $item['departure_lng']);
-                $item['images'] = explode(',', $item['images'])[0];
+                $item['images'] = explode(',', $item['images']);
+                $item['start_time'] = Help::fdate($item['start_time']);
             }
             return $data;
         } catch (\Exception $e) {
