@@ -77,7 +77,7 @@ class PincheModule extends Module
             $destinationGeohash = $geohash->encode($destinationLat, $destinationLng);
         }
         try {
-            $pinche = Pinche::leftjoin('user as u', 'u.id'. '=', 'pinche.uid')
+            $pinche = Pinche::leftjoin('user as u', 'u.id', '=', 'pinche.uid')
                 ->select('pinche.type', 'pinche.departure_address', 'pinche.destination_address', 'pinche.departure_lat',
                 'pinche.departure_lng', 'pinche.destination_lat', 'pinche.destination_lng', 'pinche.price', 'pinche.username',
                 'pinche.images', 'pinche.seat_num', 'pinche.start_time');
