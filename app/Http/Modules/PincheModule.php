@@ -58,7 +58,8 @@ class PincheModule extends Module
                 'sex' => $sex,
                 'images' => $images,
                 'seat_num' => $seatNum,
-                'start_time' => $startTime
+                'start_time' => strtotime($startTime),
+                'status' => 2
             ]);
         } catch (Exception $e) {
             throw new PincheException('ADD_PINCHE_DATA_ERROR');
