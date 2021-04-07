@@ -81,16 +81,16 @@ class PincheModule extends Module
                 ->select('pinche.type', 'pinche.departure_address', 'pinche.destination_address', 'pinche.departure_lat',
                 'pinche.departure_lng', 'pinche.destination_lat', 'pinche.destination_lng', 'pinche.price', 'pinche.username',
                 'pinche.images', 'pinche.seat_num', 'pinche.start_time');
-
-            if ($departureLat) {
-                $pinche->where('pinche.departure_geohash', 'like', substr($departureGeohash, 0, 6));
-            }
-            if ($destinationLat) {
-                $pinche->where('pinche.destination_geohash', 'like', substr($destinationGeohash, 0, 6));
-            }
             if ($type !== 'all') {
                 $pinche->where('pinche.type', '=', $type);
             }
+            if ($departureLat) {
+                $pinche->where('pinche.departure_geohash', 'like', substr($departureGeohash, 0, 6) . '%');
+            }
+            if ($destinationLat) {
+                $pinche->where('pinche.destination_geohash', 'like', substr($destinationGeohash, 0, 6) . '%');
+            }
+
             $data = $pinche->get()->toArray();
             foreach ($data as $index => &$item) {
                 $item['dpt_distance'] = $geohash->getDistance($departureLat, $departureLng, $item['departure_lat'], $item['departure_lng']);

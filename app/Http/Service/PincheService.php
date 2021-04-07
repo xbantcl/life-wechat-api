@@ -94,7 +94,7 @@ class PincheService extends Service
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
-        $type = isset($params['type']) ? intval($params['type']) : 'all';
+        $type = isset($params['type']) ? $params['type'] : 'all';
         $departureLat = isset($params['departure_lat']) ? $params['departure_lat'] : '';
         $departureLng = isset($params['departure_lng']) ? $params['departure_lng'] : '';
         $destinationLat = isset($params['destination_lat']) ? $params['destination_lat'] : '';
