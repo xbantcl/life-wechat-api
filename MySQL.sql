@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `pinche`(
     `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
     `type` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '拼车类型: 1-人找车，2-车找人',
+    `status` TINYINT(2) UNSIGNED DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布',
     `departure_geohash` VARCHAR(16) NOT NULL COMMENT '',
     `destination_geohash` VARCHAR(16) NOT NULL COMMENT '',
     `departure_address` VARCHAR(128) NOT NULL COMMENT '出发地地址',

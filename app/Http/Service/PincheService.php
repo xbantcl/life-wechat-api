@@ -70,4 +70,36 @@ class PincheService extends Service
             $condition, $price, $username, $mobile, $sex, $images, $seatNum, $startTime);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取拼车列表
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getList (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'type' => v::in(['all', 1, 2])->notEmpty(),
+            'departure_lat' => v::notEmpty(),
+            'departure_lng' => v::notEmpty(),
+            'start' => v::optional(v::numericVal()),
+            'limit' => v::optional(v::numericVal())
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 5;
+        $type = isset($params['type']) ? intval($params['type']) : 'all';
+        $departureLat = isset($params['departure_lat']) ? $params['departure_lat'] : '';
+        $departureLng = isset($params['departure_lng']) ? $params['departure_lng'] : '';
+        $destinationLat = isset($params['destination_lat']) ? $params['destination_lat'] : '';
+        $destinationLng = isset($params['destination_lng']) ? $params['destination_lng'] : '';
+        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng);
+        return new ServiceResponse($data);
+    }
 }
