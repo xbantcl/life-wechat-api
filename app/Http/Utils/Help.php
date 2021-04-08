@@ -177,7 +177,7 @@ class Help
         }
         return $payload;
     }
-    
+
     public static function fdate($time) {
         if (!$time) return false;
         $fdate = '';
@@ -199,6 +199,9 @@ class Help
                 case $d < $td:
                     $fdate = '后天' . date('H:i', $time);
                     break;
+                case $d < $dd:
+                    $fdate = '今天' . date('H:i', $time);
+                    break;
                 case $d < 0:
                     $fdate = '明天' . date('H:i', $time);
                     break;
@@ -207,9 +210,6 @@ class Help
                     break;
                 case $d < 3600:
                     $fdate = floor($d / 60) . '分钟前';
-                    break;
-                case $d < $dd:
-                    $fdate = '今天' . date('H:i', $time);
                     break;
                 case $d < $yd:
                     $fdate = '昨天' . date('H:i', $time);

@@ -79,7 +79,7 @@ class PincheModule extends Module
         }
         try {
             $pinche = Pinche::leftjoin('user as u', 'u.id', '=', 'pinche.uid')
-                ->select('pinche.type', 'pinche.departure_address', 'pinche.destination_address', 'pinche.departure_lat',
+                ->select('pinche.id', 'pinche.type', 'pinche.departure_address', 'pinche.destination_address', 'pinche.departure_lat',
                 'pinche.departure_lng', 'pinche.destination_lat', 'pinche.destination_lng', 'pinche.price', 'pinche.username',
                 'pinche.images', 'pinche.seat_num', 'pinche.start_time')
                 ->where('pinche.status', '=', 2);
@@ -87,10 +87,10 @@ class PincheModule extends Module
                 $pinche->where('pinche.type', '=', $type);
             }
             if ($departureLat) {
-                $pinche->where('pinche.departure_geohash', 'like', substr($departureGeohash, 0, 6) . '%');
+                $pinche->where('pinche.departure_geohash', 'like', substr($departureGeohash, 0, 5) . '%');
             }
             if ($destinationLat) {
-                $pinche->where('pinche.destination_geohash', 'like', substr($destinationGeohash, 0, 6) . '%');
+                $pinche->where('pinche.destination_geohash', 'like', substr($destinationGeohash, 0, 5) . '%');
             }
 
             $data = $pinche->get()->toArray();
