@@ -9,9 +9,18 @@ use Dolphin\Ting\Http\Model\Pinche;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
 use Exception;
+use Psr\Container\ContainerInterface as Container;
 
 class PincheModule extends Module
 {
+    private $mapKey;
+
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+
+        $this->mapKey = $container->get('Config')['weixin']['MAP_KEY'];
+    }
     /**
      *
      * @param $uid
@@ -35,8 +44,26 @@ class PincheModule extends Module
      * @date   2021/4/6 15:32
      */
     public function add($uid, $type, $departureAddress, $destinationAddress, $departureLat, $departureLng, $destinationLat, $destinationLng,
-                        $condition, $price, $username, $mobile, $sex, $images, $seatNum, $startTime): bool
+                        $condition, $price, $username, $mobile, $sex, $images, $seatNum, $startTime, $departureName, $destinationName): bool
     {
+        $dptCityId = Help::getCityId($departureAddress);
+        if (!$dptCityId) {
+            $dptAddress = Help::getCityAddressByLatLng($departureLat, $destinationLng, $this->mapKey);
+            if ($dptAddress) {
+                $dptCityId = Help::getCityId($dptAddress);
+            } else {
+                throw new PincheException(GET_ADDRESS_ERROR);
+            }
+        }
+        $dstCityId = Help::getCityId($destinationAddress);
+        if (!$dstCityId) {
+            $dstAddress = Help::getCityAddressByLatLng($destinationLat, $destinationLng, $this->mapKey);
+            if ($dstAddress) {
+                $dstCityId = Help::getCityId($dstAddress);
+            } else {
+                throw new PincheException(GET_ADDRESS_ERROR);
+            }
+        }
         try {
             $geohash = new Geohash();
             $departureGeohash = $geohash->encode($departureLat, $departureLng);
@@ -60,7 +87,11 @@ class PincheModule extends Module
                 'images' => $images,
                 'seat_num' => $seatNum,
                 'start_time' => strtotime($startTime),
-                'status' => 2
+                'status' => 2,
+                'departure_name' => $departureName,
+                'destination_name' => $destinationName,
+                'departure_city_id' => $dptCityId,
+                'destination_city_id' => $dstCityId
             ]);
         } catch (Exception $e) {
             throw new PincheException('ADD_PINCHE_DATA_ERROR');
@@ -68,7 +99,20 @@ class PincheModule extends Module
         return true;
     }
 
-    public function getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng)
+    /**
+     * 获取拼车信息
+     *
+     * @param $type
+     * @param $departureLat
+     * @param $departureLng
+     * @param $destinationLat
+     * @param $destinationLng
+     * @param $dptAddress
+     * @param $dstAddress
+     * @return mixed
+     * @throws PincheException
+     */
+    public function getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptAddress, $dstAddress)
     {
         $geohash = new Geohash();
         if ($departureLat) {
@@ -88,9 +132,13 @@ class PincheModule extends Module
             }
             if ($departureLat) {
                 $pinche->where('pinche.departure_geohash', 'like', substr($departureGeohash, 0, 5) . '%');
+            } elseif ($dptAddress) {
+                $pinche->where('pinche.departure_name', 'like', $dptAddress . '%');
             }
             if ($destinationLat) {
                 $pinche->where('pinche.destination_geohash', 'like', substr($destinationGeohash, 0, 5) . '%');
+            } elseif ($dstAddress) {
+                $pinche->where('pinche.destination_name', 'like', $dstAddress . '%');
             }
 
             $data = $pinche->get()->toArray();

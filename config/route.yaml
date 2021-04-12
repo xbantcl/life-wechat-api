@@ -27,3 +27,4 @@ imageDelete:
   method: POST
   path: /api/qiniu/delete
   controller: Dolphin\Ting\Http\Service\FileService:delete
+

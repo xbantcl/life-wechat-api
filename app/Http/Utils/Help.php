@@ -2,6 +2,7 @@
 
 use Ahc\Jwt\JWT;
 use Ahc\Jwt\JWTException;
+use function GuzzleHttp\Psr7\str;
 
 class Help
 {
@@ -229,6 +230,158 @@ class Help
             }
         }
         return $fdate;
+    }
+
+    public static function cityNameToPinyin($name) {
+        if (strpos($name, '陕西')) {
+            return 'Shanxis.php';
+        } elseif (strpos($name, '四川')) {
+            return 'Sichuan.php';
+        } elseif (strpos($name, '山西')) {
+            return 'Shanxi.php';
+        } elseif (strpos($name, '内蒙古')) {
+            return 'Neimenggu.php';
+        } elseif (strpos($name, '江西')) {
+            return 'Jiangxi.php';
+        } elseif (strpos($name, '辽宁')) {
+            return 'Liaoling.php';
+        } elseif (strpos($name, '宁夏回族')) {
+            return 'Ningxia.php';
+        } elseif (strpos($name, '青海')) {
+            return 'Qinhai.php';
+        } elseif (strpos($name, '山东')) {
+            return 'Shandong.php';
+        } elseif (strpos($name, '上海')) {
+            return 'Shanghai.php';
+        } elseif (strpos($name, '天津')) {
+            return 'Tianjing.php';
+        } elseif (strpos($name, '新疆维吾尔')) {
+            return 'Xinjiang.php';
+        } elseif (strpos($name, '云南')) {
+            return 'Yunnan.php';
+        } elseif (strpos($name, '浙江')) {
+            return 'Zhejiang.php';
+        } elseif (strpos($name, '甘肃')) {
+            return 'Gansu.php';
+        } elseif (strpos($name, '西藏')) {
+            return 'Xizang.php';
+        } elseif (strpos($name, '吉林')) {
+            return 'Jiling.php';
+        } elseif (strpos($name, '安徽')) {
+            return 'Anhui.php';
+        } elseif (strpos($name, '北京')) {
+            return 'Beijing.php';
+        } elseif (strpos($name, '重庆')) {
+            return 'Chongqin.php';
+        } elseif (strpos($name, '福建')) {
+            return 'Fujian.php';
+        } elseif (strpos($name, '广东')) {
+            return 'Guangdong.php';
+        } elseif (strpos($name, '广西壮族')) {
+            return 'Guangxi.php';
+        } elseif (strpos($name, '贵州')) {
+            return 'Guizhou.php';
+        } elseif (strpos($name, '海南')) {
+            return 'Hainan.php';
+        } elseif (strpos($name, '河北')) {
+            return 'Hebei.php';
+        } elseif (strpos($name, '黑龙江')) {
+            return 'Heilongjiang.php';
+        } elseif (strpos($name, '河南')) {
+            return 'Henan.php';
+        } elseif (strpos($name, '湖北')) {
+            return 'Hubei.php';
+        } elseif (strpos($name, '湖南')) {
+            return 'Hunan.php';
+        } elseif (strpos($name, '江苏')) {
+            return 'Jiangshu.php';
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 获取城市id
+     *
+     * @param $address
+     * @return bool|mixed
+     */
+    public static function getCityId($address)
+    {
+        $isLevel2 = false;
+        $provence = explode('省', $address);
+        if (count($provence) === 1) {
+            $provence = explode('市', $address);
+            if (count($provence) === 1) {
+                $provence = explode('自治区', $address);
+                if (count($provence) === 1) {
+                    return false;
+                }
+            } else {
+                $isLevel2 = true;
+            }
+        }
+        $cities = self::cityNameToPinyin($provence[0]);
+        if (!$cities) {
+            return false;
+        }
+        $data = require './City/' . $cities;
+        $cityName = '';
+        if (!$isLevel2) {
+            $city = explode('市', $provence[1]);
+            if (count($city) === 1) {
+                $city = explode('自治州', $provence[1]);
+                if (count($city) === 1) {
+                    $city = explode('地区', $provence[1]);
+                    if (ount($city) === 1) {
+                        return false;
+                    }
+                    $cityName = $city[0] . '地区';
+                } else {
+                    $cityName = $city[0] . '自治州';
+                }
+            } else {
+                $cityName = $city[0] . '市';
+            }
+            $cityData = [];
+            foreach ($data['children'] as $item) {
+                if (strpos($item['name'], $cityName)) {
+                    if (!isset($item['children'])) {
+                        return $item['code'];
+                    }
+                    $cityData = $item['children'];
+                    break;
+                }
+            }
+        }
+        $qu = explode('区', $city[1]);
+        if (count($qu) === 1) {
+            $qu = explode('县', $city[1]);
+            if (count($qu) === 1) {
+                return false;
+            }
+        }
+        foreach ($cityData as $item) {
+            if (strpos($item['name'], $qu[0])) {
+                return $item['code'];
+            }
+        }
+    }
+
+    /**
+     * 通过经纬度获取位置名称
+     *
+     * @param $lat
+     * @param $lng
+     */
+    public static function getCityAddressByLatLng($lat, $lng, $mapKey) {
+        $res = Curl::get('https://apis.map.qq.com/ws/geocoder/v1/?location=' . $lat . ',' . $lng . '&key=' . $mapKey);
+        if (isset($res['status']) && $res['status'] === 0) {
+            $addressComponent = $res['result']['address_component'];
+            return $addressComponent['province'] . $addressComponent['city'] . $addressComponent['district'];
+        } else {
+            return false;
+        }
     }
 }
 

@@ -8,5 +8,6 @@ class PincheException extends CommonException
     protected $exception     = [
         'ADD_PINCHE_DATA_ERROR'    => [501, '发布拼车信息失败'],
         'GET_PINCHE_DATA_ERROR'    => [502, '获取拼车信息失败'],
+        'GET_ADDRESS_ERROR'        => [503, '获取拼车地址信息失败']
     ];
 }

@@ -33,6 +33,8 @@ class PincheService extends Service
     {
         $validation = $this->validation->validate($request, [
             'type' => v::in([1, 2])->notEmpty(),
+            'departure_name' => v::notEmpty(),
+            'destination_name' => v::notEmpty(),
             'departure_address' => v::notEmpty(),
             'destination_address' => v::notEmpty(),
             'departure_lat' => v::notEmpty(),
@@ -51,6 +53,8 @@ class PincheService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
+        $departureName = isset($params['departure_name']) ? $params['departure_name'] : '';
+        $destinationName = isset($params['destination_name']) ? $params['destination_name'] : '';
         $departureAddress = isset($params['departure_address']) ? $params['departure_address'] : '';
         $destinationAddress = isset($params['destination_address']) ? $params['destination_address'] : '';
         $departureLat = isset($params['departure_lat']) ? $params['departure_lat'] : '';
@@ -67,7 +71,7 @@ class PincheService extends Service
         $type = isset($params['type']) ? $params['type'] : 1;
         $price = isset($params['price']) ? $params['price'] : 0;
         $data = PincheModule::getInstance($this->container)->add($this->uid, $type, $departureAddress, $destinationAddress, $departureLat, $departureLng, $destinationLat, $destinationLng,
-            $condition, $price, $username, $mobile, $sex, $images, $seatNum, $startTime);
+            $condition, $price, $username, $mobile, $sex, $images, $seatNum, $startTime, $departureName, $destinationName);
         return new ServiceResponse($data);
     }
 
@@ -92,14 +96,15 @@ class PincheService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $dptAddress = isset($params['dpt_address']) ? $params['dpt_address'] : '';
+        $dstAddress = isset($params['dst_address']) ? $params['dst_address'] : '';
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
         $type = isset($params['type']) ? $params['type'] : 'all';
         $departureLat = isset($params['departure_lat']) ? $params['departure_lat'] : '';
         $departureLng = isset($params['departure_lng']) ? $params['departure_lng'] : '';
         $destinationLat = isset($params['destination_lat']) ? $params['destination_lat'] : '';
         $destinationLng = isset($params['destination_lng']) ? $params['destination_lng'] : '';
-        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng);
+        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptAddress, $dstAddress);
         return new ServiceResponse($data);
     }
 }
