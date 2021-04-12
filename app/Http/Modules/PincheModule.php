@@ -19,7 +19,7 @@ class PincheModule extends Module
     {
         parent::__construct($container);
 
-        $this->mapKey = $container->get('Config')['weixin']['MAP_KEY'];
+        $this->mapKey = $container->get('Config')['weixin']['program']['map_key'];
     }
     /**
      *
@@ -52,7 +52,7 @@ class PincheModule extends Module
             if ($dptAddress) {
                 $dptCityId = Help::getCityId($dptAddress);
             } else {
-                throw new PincheException(GET_ADDRESS_ERROR);
+                throw new PincheException('GET_ADDRESS_ERROR');
             }
         }
         $dstCityId = Help::getCityId($destinationAddress);

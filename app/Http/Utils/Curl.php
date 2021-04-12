@@ -20,7 +20,7 @@ class Curl
     public static function get($url, $param = array(), $header = array(), $timeout = 3, $followAction = 0, $gzip = 0, $format = 'html',$log=0)
     {
         $ch = curl_init();
-        if (is_array($param)) {
+        if (is_array($param) && !empty($param)) {
             $url = $url . '?' . http_build_query($param);
         }
         curl_setopt($ch, CURLOPT_URL, $url);

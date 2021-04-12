@@ -233,67 +233,67 @@ class Help
     }
 
     public static function cityNameToPinyin($name) {
-        if (strpos($name, '陕西')) {
+        if (strpos($name, '陕西') !== false) {
             return 'Shanxis.php';
-        } elseif (strpos($name, '四川')) {
+        } elseif (strpos($name, '四川') !== false) {
             return 'Sichuan.php';
-        } elseif (strpos($name, '山西')) {
+        } elseif (strpos($name, '山西') !== false) {
             return 'Shanxi.php';
-        } elseif (strpos($name, '内蒙古')) {
+        } elseif (strpos($name, '内蒙古') !== false) {
             return 'Neimenggu.php';
-        } elseif (strpos($name, '江西')) {
+        } elseif (strpos($name, '江西') !== false) {
             return 'Jiangxi.php';
-        } elseif (strpos($name, '辽宁')) {
+        } elseif (strpos($name, '辽宁') !== false) {
             return 'Liaoling.php';
-        } elseif (strpos($name, '宁夏回族')) {
+        } elseif (strpos($name, '宁夏回族') !== false) {
             return 'Ningxia.php';
-        } elseif (strpos($name, '青海')) {
+        } elseif (strpos($name, '青海') !== false) {
             return 'Qinhai.php';
-        } elseif (strpos($name, '山东')) {
+        } elseif (strpos($name, '山东') !== false) {
             return 'Shandong.php';
-        } elseif (strpos($name, '上海')) {
+        } elseif (strpos($name, '上海') !== false) {
             return 'Shanghai.php';
-        } elseif (strpos($name, '天津')) {
+        } elseif (strpos($name, '天津') !== false) {
             return 'Tianjing.php';
-        } elseif (strpos($name, '新疆维吾尔')) {
+        } elseif (strpos($name, '新疆维吾尔') !== false) {
             return 'Xinjiang.php';
-        } elseif (strpos($name, '云南')) {
+        } elseif (strpos($name, '云南') !== false) {
             return 'Yunnan.php';
-        } elseif (strpos($name, '浙江')) {
+        } elseif (strpos($name, '浙江') !== false) {
             return 'Zhejiang.php';
-        } elseif (strpos($name, '甘肃')) {
+        } elseif (strpos($name, '甘肃') !== false) {
             return 'Gansu.php';
-        } elseif (strpos($name, '西藏')) {
+        } elseif (strpos($name, '西藏') !== false) {
             return 'Xizang.php';
-        } elseif (strpos($name, '吉林')) {
+        } elseif (strpos($name, '吉林') !== false) {
             return 'Jiling.php';
-        } elseif (strpos($name, '安徽')) {
+        } elseif (strpos($name, '安徽') !== false) {
             return 'Anhui.php';
-        } elseif (strpos($name, '北京')) {
+        } elseif (strpos($name, '北京') !== false) {
             return 'Beijing.php';
-        } elseif (strpos($name, '重庆')) {
+        } elseif (strpos($name, '重庆') !== false) {
             return 'Chongqin.php';
-        } elseif (strpos($name, '福建')) {
+        } elseif (strpos($name, '福建') !== false) {
             return 'Fujian.php';
-        } elseif (strpos($name, '广东')) {
+        } elseif (strpos($name, '广东') !== false) {
             return 'Guangdong.php';
-        } elseif (strpos($name, '广西壮族')) {
+        } elseif (strpos($name, '广西壮族') !== false) {
             return 'Guangxi.php';
-        } elseif (strpos($name, '贵州')) {
+        } elseif (strpos($name, '贵州') !== false) {
             return 'Guizhou.php';
-        } elseif (strpos($name, '海南')) {
+        } elseif (strpos($name, '海南') !== false) {
             return 'Hainan.php';
-        } elseif (strpos($name, '河北')) {
+        } elseif (strpos($name, '河北') !== false) {
             return 'Hebei.php';
-        } elseif (strpos($name, '黑龙江')) {
+        } elseif (strpos($name, '黑龙江') !== false) {
             return 'Heilongjiang.php';
-        } elseif (strpos($name, '河南')) {
+        } elseif (strpos($name, '河南') !== false) {
             return 'Henan.php';
-        } elseif (strpos($name, '湖北')) {
+        } elseif (strpos($name, '湖北') !== false) {
             return 'Hubei.php';
-        } elseif (strpos($name, '湖南')) {
+        } elseif (strpos($name, '湖南') !== false) {
             return 'Hunan.php';
-        } elseif (strpos($name, '江苏')) {
+        } elseif (strpos($name, '江苏') !== false) {
             return 'Jiangshu.php';
         } else {
             return false;
@@ -345,7 +345,7 @@ class Help
             }
             $cityData = [];
             foreach ($data['children'] as $item) {
-                if (strpos($item['name'], $cityName)) {
+                if (strpos($item['name'], $cityName) !== false) {
                     if (!isset($item['children'])) {
                         return $item['code'];
                     }
@@ -362,7 +362,7 @@ class Help
             }
         }
         foreach ($cityData as $item) {
-            if (strpos($item['name'], $qu[0])) {
+            if (strpos($item['name'], $qu[0]) !== false) {
                 return $item['code'];
             }
         }
@@ -376,9 +376,10 @@ class Help
      */
     public static function getCityAddressByLatLng($lat, $lng, $mapKey) {
         $res = Curl::get('https://apis.map.qq.com/ws/geocoder/v1/?location=' . $lat . ',' . $lng . '&key=' . $mapKey);
-        if (isset($res['status']) && $res['status'] === 0) {
-            $addressComponent = $res['result']['address_component'];
-            return $addressComponent['province'] . $addressComponent['city'] . $addressComponent['district'];
+        $res = json_decode($res);
+        if (isset($res->status) && $res->status === 0) {
+            $addressComponent = $res->result->address_component;
+            return $addressComponent->province . $addressComponent->city . $addressComponent->district;
         } else {
             return false;
         }
