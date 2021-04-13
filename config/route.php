@@ -25,6 +25,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/list', 'Dolphin\Ting\Http\Service\PincheService:getList');
+    $group->post('pinche/detail', 'Dolphin\Ting\Http\Service\PincheService:detail');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {

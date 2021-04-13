@@ -325,7 +325,7 @@ class Help
         if (!$cities) {
             return false;
         }
-        $data = require './City/' . $cities;
+        $data = require dirname(__FILE__) . '/City/' . $cities;
         $cityName = '';
         if (!$isLevel2) {
             $city = explode('市', $provence[1]);

@@ -152,4 +152,31 @@ class PincheModule extends Module
             throw new PincheException('GET_PINCHE_DATA_ERROR');
         }
     }
+
+    /**
+     * 获取拼车详细信息
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function detail($id)
+    {
+        try {
+            $pinche = Pinche::leftjoin('user as u', 'u.id', '=', 'pinche.uid')
+                ->select('pinche.id', 'pinche.type', 'pinche.departure_name', 'pinche.destination_name', 'pinche.departure_address', 'pinche.destination_address', 'pinche.departure_lat',
+                    'pinche.departure_lng', 'pinche.destination_lat', 'pinche.destination_lng', 'pinche.price', 'pinche.username',
+                    'pinche.images', 'pinche.seat_num', 'pinche.start_time', 'u.avatar', 'pinche.mobile')
+                ->where('pinche.status', '=', 2)
+                ->where('pinche.id', '=', $id)
+                ->first();
+            if ($pinche) {
+                $pinche->images = explode(',', $pinche->images);
+                $item['start_time'] = Help::fdate($pinche->start_time);
+            }
+            return $pinche;
+        } catch (\Exception $e) {
+
+        }
+
+    }
 }

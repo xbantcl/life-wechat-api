@@ -107,4 +107,26 @@ class PincheService extends Service
         $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptAddress, $dstAddress);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取拼车详情
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function detail (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::numericVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = isset($params['id']) ? intval($params['id']) : 0;
+        $data = PincheModule::getInstance($this->container)->detail($id);
+        return new ServiceResponse($data);
+    }
 }
