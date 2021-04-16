@@ -88,6 +88,7 @@ class PincheService extends Service
             'type' => v::in(['all', 1, 2])->notEmpty(),
             'departure_lat' => v::optional(v::notEmpty()),
             'departure_lng' => v::optional(v::notEmpty()),
+            'search_type' => v::in(['location', 'district']),
             'dpt_id' => v::optional(v::numericVal()),
             'dst_id' => v::optional(v::numericVal()),
             'start' => v::optional(v::numericVal()),
@@ -102,11 +103,12 @@ class PincheService extends Service
         $dstId = isset($params['dst_id']) ? $params['dst_id'] : '';
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
         $type = isset($params['type']) ? $params['type'] : 'all';
+        $searchType = isset($params['search_type']) ? $params['search_type'] : 'location';
         $departureLat = isset($params['departure_lat']) ? $params['departure_lat'] : '';
         $departureLng = isset($params['departure_lng']) ? $params['departure_lng'] : '';
         $destinationLat = isset($params['destination_lat']) ? $params['destination_lat'] : '';
         $destinationLng = isset($params['destination_lng']) ? $params['destination_lng'] : '';
-        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptId, $dstId);
+        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptId, $dstId, $searchType);
         return new ServiceResponse($data);
     }
 
