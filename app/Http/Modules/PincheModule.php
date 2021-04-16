@@ -107,12 +107,13 @@ class PincheModule extends Module
      * @param $departureLng
      * @param $destinationLat
      * @param $destinationLng
-     * @param $dptAddress
-     * @param $dstAddress
+     * @param $dptId
+     * @param $dstId
+     *
      * @return mixed
      * @throws PincheException
      */
-    public function getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptAddress, $dstAddress)
+    public function getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptId, $dstId)
     {
         $geohash = new Geohash();
         if ($departureLat) {
@@ -132,13 +133,13 @@ class PincheModule extends Module
             }
             if ($departureLat) {
                 $pinche->where('pinche.departure_geohash', 'like', substr($departureGeohash, 0, 5) . '%');
-            } elseif ($dptAddress) {
-                $pinche->where('pinche.departure_name', 'like', $dptAddress . '%');
+            } elseif ($dptId) {
+                $pinche->where('pinche.departure_city_id', '=', $dptId);
             }
             if ($destinationLat) {
                 $pinche->where('pinche.destination_geohash', 'like', substr($destinationGeohash, 0, 5) . '%');
-            } elseif ($dstAddress) {
-                $pinche->where('pinche.destination_name', 'like', $dstAddress . '%');
+            } elseif ($dstId) {
+                $pinche->where('pinche.destination_city_id', 'like', $dstId);
             }
 
             $data = $pinche->get()->toArray();

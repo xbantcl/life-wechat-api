@@ -86,8 +86,10 @@ class PincheService extends Service
     {
         $validation = $this->validation->validate($request, [
             'type' => v::in(['all', 1, 2])->notEmpty(),
-            'departure_lat' => v::notEmpty(),
-            'departure_lng' => v::notEmpty(),
+            'departure_lat' => v::optional(v::notEmpty()),
+            'departure_lng' => v::optional(v::notEmpty()),
+            'dpt_id' => v::optional(v::numericVal()),
+            'dst_id' => v::optional(v::numericVal()),
             'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numericVal())
         ]);
@@ -96,15 +98,15 @@ class PincheService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $dptAddress = isset($params['dpt_address']) ? $params['dpt_address'] : '';
-        $dstAddress = isset($params['dst_address']) ? $params['dst_address'] : '';
+        $dptId = isset($params['dpt_id']) ? $params['dpt_id'] : '';
+        $dstId = isset($params['dst_id']) ? $params['dst_id'] : '';
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
         $type = isset($params['type']) ? $params['type'] : 'all';
         $departureLat = isset($params['departure_lat']) ? $params['departure_lat'] : '';
         $departureLng = isset($params['departure_lng']) ? $params['departure_lng'] : '';
         $destinationLat = isset($params['destination_lat']) ? $params['destination_lat'] : '';
         $destinationLng = isset($params['destination_lng']) ? $params['destination_lng'] : '';
-        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptAddress, $dstAddress);
+        $data = PincheModule::getInstance($this->container)->getList($type, $departureLat, $departureLng, $destinationLat, $destinationLng, $dptId, $dstId);
         return new ServiceResponse($data);
     }
 
