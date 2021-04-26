@@ -34,6 +34,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 圈子动态接口 -------------------------------
     $group->post('circle/add', 'Dolphin\Ting\Http\Service\CircleService:add');
     $group->post('circle/comment', 'Dolphin\Ting\Http\Service\CircleService:comment');
+    $group->post('circle/user/list', 'Dolphin\Ting\Http\Service\CircleService:getListByUid');
 
     // ------------------ 车位相关接口 -------------------------------
     $group->post('carplace/add', 'Dolphin\Ting\Http\Service\CarPlaceService:add');
@@ -45,4 +46,5 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/add', 'Dolphin\Ting\Http\Service\PincheService:add');
+    $group->post('pinche/user/list', 'Dolphin\Ting\Http\Service\PincheService:getListByUid');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

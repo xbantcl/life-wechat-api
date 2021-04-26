@@ -155,6 +155,50 @@ class PincheModule extends Module
     }
 
     /**
+     * 获取用户发布信息
+     *
+     * @param $uid
+     * @param $start
+     * @param int $limit
+     * @return array
+     * @throws PincheException
+     */
+    public function getListByUid($uid, $start, $limit, $isAdmin = false) {
+        try {
+            if ($uid === 1) {
+                $isAdmin = true;
+            }
+            $query = Pinche::select('id', 'type', 'departure_address', 'destination_address', 'departure_lat',
+                'departure_lng', 'destination_lat', 'destination_lng', 'price', 'username', 'status',
+                'images', 'seat_num', 'start_time')
+                ->orderBy('id', 'DESC');
+            if (!$isAdmin) {
+                $query->where('uid', '=', $uid);
+            }
+            if ($start > 0) {
+                $query->where('circle_posts.id', '<', $start);
+            }
+            $data = $query->take($limit + 1)->get()->toArray();
+            $more = 0;
+            if (empty($data)) {
+                return ['start' => $start, 'more' => $more, 'list' => (object)[]];
+            }
+            if (count($data) > $limit) {
+                $more = 1;
+                array_pop($data);
+            }
+            $start = end($data)['id'];
+            foreach ($data as $index => &$item) {
+                $item['images'] = explode(',', $item['images']);
+                $item['start_time'] = Help::fdate($item['start_time']);
+            }
+            return ['start' => $start, 'more' => $more, 'list' => $data];
+        }  catch (\Exception $e) {
+            throw new PincheException('GET_PINCHE_DATA_ERROR');
+        }
+    }
+
+    /**
      * 获取拼车详细信息
      *
      * @param $id
