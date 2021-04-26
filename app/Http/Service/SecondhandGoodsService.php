@@ -89,6 +89,30 @@ class SecondhandGoodsService extends Service
     }
 
     /**
+     * 获取用户商品列表
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getListByUid (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'start' => v::optional(v::numericVal()),
+            'limit' => v::optional(v::numericVal())
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 5;
+        $data = SecondhandGoodsModule::getInstance($this->container)->getListByUid($this->uid, $start, $limit);
+        return new ServiceResponse($data);
+    }
+
+    /**
      * 获取商品详情
      *
      * @param Request $request

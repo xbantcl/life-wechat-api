@@ -103,6 +103,44 @@ class SecondhandGoodsModule extends Module
     }
 
     /**
+     * 获取用户闲置商品
+     *
+     * @param $uid
+     * @param $start
+     * @param $limit
+     * @param $isAdmin
+     * @return array
+     */
+    public function getListByUid($uid, $start, $limit, $isAdmin) {
+        if ($uid === 1) {
+            $isAdmin = true;
+        }
+        $query = SecondhandGoods::select('id', 'title', 'original_price', 'price', 'images', 'updated_at')
+            ->orderBy('id', 'desc');
+        if (!$isAdmin) {
+            $query->where('uid', '=', $uid);
+        }
+        if ($start > 0) {
+            $query->where('id', '<', $start);
+        }
+        $data = $query->take($limit + 1)->get()->toArray();
+        $more = 0;
+        if (empty($data)) {
+            return ['start' => $start, 'more' => $more, 'list' => (object)[]];
+        }
+        if (count($data) > $limit) {
+            $more = 1;
+            array_pop($data);
+        }
+        $start = end($data)['id'];
+        foreach ($data as $index => &$item) {
+            $item['images'] = explode('|', $item['images']);
+            $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
+        }
+        return ['start' => $start, 'more' => $more, 'list' => $data];
+    }
+
+    /**
      * 获取商品详情
      *
      * @param $id

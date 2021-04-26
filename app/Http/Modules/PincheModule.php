@@ -176,7 +176,7 @@ class PincheModule extends Module
                 $query->where('uid', '=', $uid);
             }
             if ($start > 0) {
-                $query->where('circle_posts.id', '<', $start);
+                $query->where('id', '<', $start);
             }
             $data = $query->take($limit + 1)->get()->toArray();
             $more = 0;
