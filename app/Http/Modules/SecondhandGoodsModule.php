@@ -111,7 +111,7 @@ class SecondhandGoodsModule extends Module
      * @param $isAdmin
      * @return array
      */
-    public function getListByUid($uid, $start, $limit, $isAdmin) {
+    public function getListByUid($uid, $start, $limit, $isAdmin = false) {
         if ($uid === 1) {
             $isAdmin = true;
         }

@@ -98,6 +98,7 @@ class SecondhandGoodsService extends Service
     public function getListByUid (Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
+            'target_uid' => v::optional(v::numericVal()),
             'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numericVal())
         ]);
@@ -108,7 +109,13 @@ class SecondhandGoodsService extends Service
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
-        $data = SecondhandGoodsModule::getInstance($this->container)->getListByUid($this->uid, $start, $limit);
+        $targetUid = isset($params['target_uid']) ? intval($params['target_uid']) : 0;
+        if ($targetUid > 0) {
+            $uid = $targetUid;
+        } else {
+            $uid = $this->uid;
+        }
+        $data = SecondhandGoodsModule::getInstance($this->container)->getListByUid($uid, $start, $limit);
         return new ServiceResponse($data);
     }
 

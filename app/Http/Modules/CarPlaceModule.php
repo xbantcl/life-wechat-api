@@ -110,6 +110,36 @@ class CarPlaceModule extends Module
         }
     }
 
+    public function getListByUid($uid, $start, $limit, $isAdmin = false)
+    {
+        if ($uid === 1) {
+            $isAdmin = true;
+        }
+        $query = CarPlace::select('id', 'content', 'images', 'created_at')
+            ->orderBy('id', 'DESC');
+        if (!$isAdmin) {
+            $query->where('uid', '=', $uid);
+        }
+        if ($start > 0) {
+            $query->where('id', '<', $start);
+        }
+        $data = $query->take($limit + 1)->get()->toArray();
+        $more = 0;
+        if (empty($data)) {
+            return ['start' => $start, 'more' => $more, 'list' => (object)[]];
+        }
+        if (count($data) > $limit) {
+            $more = 1;
+            array_pop($data);
+        }
+        $start = end($data)['id'];
+        foreach ($data as $index => &$item) {
+            $item['images'] = explode('|', $item['images']);
+            $item['created_at'] = date('Y-m-d', strtotime($item['created_at']));
+        }
+        return ['start' => $start, 'more' => $more, 'list' => $data];
+    }
+
     /**
      * 获取车位详情
      *
