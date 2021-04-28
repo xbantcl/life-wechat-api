@@ -153,7 +153,7 @@ class SecondhandGoodsModule extends Module
             $data = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
                 ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                 'secondhand_goods.address', 'secondhand_goods.images', 'secondhand_goods.updated_at', 'secondhand_goods.describe',
-                'u.username', 'u.avatar', 'secondhand_goods.delivery')
+                'u.username', 'u.avatar', 'secondhand_goods.delivery', 'secondhand_goods.uid')
                 ->where('secondhand_goods.status', '=', SecondhandGoodsConstant::ON_SHELVES)
                 ->where('secondhand_goods.id', '=', $id)
                 ->first();
