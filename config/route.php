@@ -22,6 +22,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/detail', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:detail');
     $group->post('secondhand/list', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:getList');
+    $group->post('secondhand/user/list', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:getListByUid');
 
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/list', 'Dolphin\Ting\Http\Service\PincheService:getList');
@@ -43,7 +44,6 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:add');
-    $group->post('secondhand/user/list', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:getListByUid');
 
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/add', 'Dolphin\Ting\Http\Service\PincheService:add');
