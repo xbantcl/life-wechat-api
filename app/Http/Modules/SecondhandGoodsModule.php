@@ -115,15 +115,15 @@ class SecondhandGoodsModule extends Module
         if ($uid === 1) {
             $isAdmin = true;
         }
-        $query = SecondhandGoods::lefjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
+        $query = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
             ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                 'secondhand_goods.images', 'secondhand_goods.updated_at', 'u.username', 'u.avatar')
-            ->orderBy('id', 'desc');
+            ->orderBy('secondhand_goods.id', 'desc');
         if (!$isAdmin) {
-            $query->where('uid', '=', $uid);
+            $query->where('secondhand_goods.uid', '=', $uid);
         }
         if ($start > 0) {
-            $query->where('id', '<', $start);
+            $query->where('secondhand_goods.id', '<', $start);
         }
         $data = $query->take($limit + 1)->get()->toArray();
         $more = 0;
