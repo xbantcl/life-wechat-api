@@ -8,9 +8,17 @@ use Dolphin\Ting\Http\Model\CircleComment;
 use Dolphin\Ting\Http\Model\CirclePost;
 use Dolphin\Ting\Http\Utils\Help;
 use Exception;
+use Psr\Container\ContainerInterface as Container;
 
 class CircleModule extends Module
 {
+    protected $redis;
+
+    public function __construct(Container $container)
+    {
+        $this->redis = $container->get('Cache');
+    }
+
     /**
      * 发布圈子动态
      *
@@ -35,6 +43,24 @@ class CircleModule extends Module
             ]);
         } catch (Exception $e) {
             throw new CircleException('ADD_CIRCLE_DATA_ERROR');
+        }
+        return true;
+    }
+
+    /**
+     * 删除圈子内容
+     *
+     * @param $uid
+     * @param $postId
+     * @return bool
+     * @throws CircleException
+     */
+    public function delete($uid, $postId)
+    {
+        try {
+            CirclePost::where('id', $postId)->where('uid', $uid)->delete();
+        } catch (\Exception $e) {
+            throw new CircleException('DELETE_CIRCLE_COMMENT_ERROR');
         }
         return true;
     }
@@ -104,9 +130,14 @@ class CircleModule extends Module
             }
         }
         $data = array_map(function ($item) use ($tmpComments) {
+            if (empty($item['images'])) {
+                $images = [];
+            } else {
+                $images = explode('|', $item['images']);
+            }
             $item['content'] = [
                     'text' => $item['content'],
-                    'images' => explode('|', $item['images'])
+                    'images' => $images
             ];
             $item['islike'] = 0;
             $item['like']  = [
@@ -195,5 +226,49 @@ class CircleModule extends Module
             throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
         }
         return $circleComment->id;
+    }
+
+    /**
+     * @param $uid
+     * @param $commentId
+     *
+     * @return boolean
+     *
+     * @throws CircleException
+     */
+    public function deleteComment($uid, $commentId)
+    {
+        try {
+            CircleComment::where('uid', '=', $uid)->where('id', '=', $commentId)->delete();
+        } catch (\Exception $e) {
+            throw new CircleException('DELETE_CIRCLE_COMMENT_ERROR');
+        }
+        return true;
+    }
+
+    /**
+     * 点赞
+     *
+     * @param $uid
+     * @param $postId
+     * @param $username
+     * @return bool
+     */
+    public function like($uid, $postId, $username)
+    {
+        $this->redis->HMSET('circle#' . $postId, $uid, $username);
+        return true;
+    }
+
+    /**
+     * 取消点赞
+     * @param $uid
+     * @param $postId
+     * @return bool
+     */
+    public function unlike($uid, $postId)
+    {
+        $this->redis->HDEL('circle#' . $postId, $uid);
+        return true;
     }
 }

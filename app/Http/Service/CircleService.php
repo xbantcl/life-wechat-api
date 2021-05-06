@@ -125,4 +125,98 @@ class CircleService extends Service
         $data = CircleModule::getInstance($this->container)->comment($this->uid, $replyUid, $postId, $params['content']);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 删除圈子动态
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function delete(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'post_id'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
+        $data = CircleModule::getInstance($this->container)->delete($this->uid, $postId);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 删除圈子动态评论
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function deleteComment(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'comment_id'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $commentId = isset($params['comment_id']) ? intval($params['comment_id']) : 0;
+        $data = CircleModule::getInstance($this->container)->deleteComment($this->uid, $commentId);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 点赞圈子动态
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function like(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'post_id'  => v::intVal(),
+            'username' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
+        $username = isset($params['username']) ? trim($params['username']) : '';
+        $data = CircleModule::getInstance($this->container)->up($this->uid, $postId, $username);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 取消点赞圈子动态
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function unlike(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'post_id'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
+        $data = CircleModule::getInstance($this->container)->unUp($this->uid, $postId);
+        return new ServiceResponse($data);
+    }
 }

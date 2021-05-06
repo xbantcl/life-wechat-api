@@ -20,7 +20,7 @@ class Cache implements ComponentInterface
 
             $cache  = new Redis();
             $cache->connect($config['host'], $config['port']);
-
+            $cache->auth($config['password']);
             return $cache;
         });
     }

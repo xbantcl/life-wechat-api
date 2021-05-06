@@ -8,5 +8,7 @@ class CircleException extends CommonException
     protected $exception     = [
         'ADD_CIRCLE_DATA_ERROR'    => [301, '发布圈子数据失败'],
         'ADD_CIRCLE_COMMENT_ERROR' => [302, '发布圈子评论失败'],
+        'DELETE_CIRCLE_DATA_ERROR' => [303, '删除圈子失败'],
+        'DELETE_CIRCLE_COMMENT_ERROR' => [304, '删除圈子评论失败'],
     ];
 }
