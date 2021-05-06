@@ -139,17 +139,12 @@ class CircleModule extends Module
                     'text' => $item['content'],
                     'images' => $images
             ];
-            $item['islike'] = 0;
-            $item['like']  = [
-                [
-                    'uid' => 1,
-                    'username' => '小王子'
-                ],
-                [
-                    'uid' => 2,
-                    'username' => '小一一'
-                ]
-            ];
+            $item['like'] = [];
+            $likers = $this->redis->HGETALL('circle#' . $item['post_id']);
+            foreach ($likers as $key => $value) {
+                $item['like'][] = ['uid' => $key, 'username' => $value];
+            }
+            $item['islike'] = count($item['like']);
             if (isset($tmpComments[$item['post_id']])) {
                 $item['comments'] = $tmpComments[$item['post_id']];
             } else {
@@ -256,7 +251,7 @@ class CircleModule extends Module
      */
     public function like($uid, $postId, $username)
     {
-        $this->redis->HMSET('circle#' . $postId, $uid, $username);
+        $this->redis->HMSET('circle#' . $postId, [$uid => $username]);
         return true;
     }
 
