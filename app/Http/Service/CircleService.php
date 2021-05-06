@@ -193,7 +193,7 @@ class CircleService extends Service
         $params = Help::getParams($request);
         $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
         $username = isset($params['username']) ? trim($params['username']) : '';
-        $data = CircleModule::getInstance($this->container)->up($this->uid, $postId, $username);
+        $data = CircleModule::getInstance($this->container)->like($this->uid, $postId, $username);
         return new ServiceResponse($data);
     }
 
@@ -216,7 +216,7 @@ class CircleService extends Service
         }
         $params = Help::getParams($request);
         $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
-        $data = CircleModule::getInstance($this->container)->unUp($this->uid, $postId);
+        $data = CircleModule::getInstance($this->container)->unlike($this->uid, $postId);
         return new ServiceResponse($data);
     }
 }
