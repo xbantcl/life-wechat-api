@@ -77,7 +77,7 @@ class CircleModule extends Module
      * @author xbantcl
      * @date   2021/3/2 15:32
      */
-    public function getList($start, $isPullDown = false, $limit = 10): array
+    public function getList($uid, $start, $isPullDown = false, $limit = 10): array
     {
         $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle_posts.uid')
             ->select('u.id', 'u.username', 'u.avatar', 'circle_posts.id as post_id', 'circle_posts.content', 'circle_posts.images', 'circle_posts.created_at')
@@ -129,22 +129,31 @@ class CircleModule extends Module
                 array_push($tmpComments[$postId]['comment'], $comment);
             }
         }
-        $data = array_map(function ($item) use ($tmpComments) {
+        $data = array_map(function ($item) use ($tmpComments, $uid) {
             if (empty($item['images'])) {
                 $images = [];
             } else {
                 $images = explode('|', $item['images']);
             }
             $item['content'] = [
-                    'text' => $item['content'],
-                    'images' => $images
+                'text' => $item['content'],
+                'images' => $images
             ];
             $item['like'] = [];
             $likers = $this->redis->HGETALL('circle#' . $item['post_id']);
+            $uids = [];
             foreach ($likers as $key => $value) {
-                $item['like'][] = ['uid' => $key, 'username' => $value];
+                $item['like'][] = ['uid' => $key, 'username' => $value . ','];
+                $uids[] = $key;
             }
-            $item['islike'] = count($item['like']);
+            if (!empty($item['like'])) {
+                $item['like'][count($item['like']) - 1]['username'] = substr($item['like'][count($item['like']) - 1]['username'], 0, -1);
+            }
+            if (in_array($uid, $uids)) {
+                $item['islike'] = 1;
+            } else {
+                $item['islike'] = 0;
+            }
             if (isset($tmpComments[$item['post_id']])) {
                 $item['comments'] = $tmpComments[$item['post_id']];
             } else {

@@ -71,7 +71,7 @@ class CircleService extends Service
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 10;
         $isPullDown = isset($params['is_pull_down']) ? boolval($params['is_pull_down']) : false;
-        $data = CircleModule::getInstance($this->container)->getList($start, $isPullDown, $limit);
+        $data = CircleModule::getInstance($this->container)->getList($this->uid, $start, $isPullDown, $limit);
         return new ServiceResponse($data);
     }
 
