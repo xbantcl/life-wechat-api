@@ -144,11 +144,11 @@ class CircleModule extends Module
             $likers = $this->redis->HGETALL('circle#' . $item['post_id']);
             $uids = [];
             foreach ($likers as $key => $value) {
-                $item['like'][] = ['uid' => $key, 'username' => $value . ','];
+                $item['like'][] = ['uid' => $key, 'username' => ',' . $value];
                 $uids[] = $key;
             }
             if (!empty($item['like'])) {
-                $item['like'][count($item['like']) - 1]['username'] = substr($item['like'][count($item['like']) - 1]['username'], 0, -1);
+                $item['like'][0]['username'] = substr($item['like'][0]['username'], 1);
             }
             if (in_array($uid, $uids)) {
                 $item['islike'] = 1;
