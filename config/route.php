@@ -12,7 +12,6 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('file/delete', 'Dolphin\Ting\Http\Service\FileService:delete');
 
     // ------------------ 圈子动态接口 -------------------------------
-    $group->post('circle/list', 'Dolphin\Ting\Http\Service\CircleService:getList');
 
     // ------------------ 车位相关接口 -------------------------------
     $group->post('carplace/list', 'Dolphin\Ting\Http\Service\CarPlaceService:getList');
@@ -34,6 +33,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 圈子动态接口 -------------------------------
     $group->post('circle/add', 'Dolphin\Ting\Http\Service\CircleService:add');
+    $group->post('circle/list', 'Dolphin\Ting\Http\Service\CircleService:getList');
     $group->post('circle/comment', 'Dolphin\Ting\Http\Service\CircleService:comment');
     $group->post('circle/user/list', 'Dolphin\Ting\Http\Service\CircleService:getListByUid');
     $group->post('circle/delete', 'Dolphin\Ting\Http\Service\CircleService:delete');

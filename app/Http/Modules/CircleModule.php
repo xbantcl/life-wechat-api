@@ -68,6 +68,7 @@ class CircleModule extends Module
     /**
      * 获取圈子动态数据列表
      *
+     * @param int     $uid
      * @param int     $start      起始位置
      * @param boolean $isPullDown 下拉刷新
      * @param int     $limit      限制条数
