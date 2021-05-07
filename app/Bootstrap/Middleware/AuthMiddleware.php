@@ -34,12 +34,12 @@ class AuthMiddleware implements MiddlewareInterface, RequestMethodInterface
         $uri = $request->getRequestTarget();
         if (!empty($params['token'])) {
             $payload = Help::decode($params['token']);
-            if ($payload === false && $uri !== '/api/circle/add') {
+            if ($payload === false && $uri !== '/api/circle/list') {
                 return new ServiceResponse([], -2, '请输入有效token');
             }
             $this->container->set('uid', $payload['uid']);
         } else {
-            if ($uri !== '/api/circle/add') {
+            if ($uri !== '/api/circle/list') {
                 return new ServiceResponse([], -2, '请输入有效token');
             }
         }
