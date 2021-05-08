@@ -182,7 +182,7 @@ class CarPlaceService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $id = isset($params['']) ? intval($params['id']) : 0;
+        $id = isset($params['id']) ? intval($params['id']) : 0;
         $data = CarPlaceModule::getInstance($this->container)->deleteComment($this->uid, $id);
         return new ServiceResponse($data);
     }
