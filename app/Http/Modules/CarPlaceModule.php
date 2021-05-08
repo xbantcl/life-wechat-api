@@ -215,9 +215,15 @@ class CarPlaceModule extends Module
             $comments = CarPlaceComment::leftjoin('user as u', 'u.id', '=', 'car_place_comments.uid')
                 ->leftjoin('user as u1', 'u1.id', '=', 'car_place_comments.reply_uid')
                 ->select('car_place_comments.id', 'car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
-                    'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id')
+                    'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id', 'car_place_comments.created_at')
                 ->where('car_place_comments.car_place_id', $carPlaceId)
+                ->orderBy('car_place_comments.created_at', 'desc')
                 ->get()->toArray();
+            if (!empty($comments)) {
+                foreach ($comments as &$item) {
+                    $item['created_at'] = strtotime($item['created_at']);
+                }
+            }
             return $comments;
         } catch (\Exception $e) {
             throw new CarPlaceException('GET_COMMENTS_ERROR');
@@ -235,7 +241,7 @@ class CarPlaceModule extends Module
     public function deleteComment($uid, $id)
     {
         try {
-            CarPlaceComment::where('id', '=', $id)->where('uid', '=', $uid)->delete();
+            CarPlaceComment::where('id', $id)->where('uid', $uid)->delete();
             return true;
         } catch (\Exception $e) {
             throw new CarPlaceException('DELETE_COMMENT_ERROR');

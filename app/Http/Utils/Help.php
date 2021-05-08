@@ -161,7 +161,7 @@ class Help
      */
     public static function getToken(array $payload)
     {
-        return (new JWT('@3imd53AcdD.%#j', 'HS512', 1800))->encode($payload);
+        return (new JWT('@3imd53AcdD.%#j', 'HS512', 3600 * 24 * 90))->encode($payload);
     }
 
     /**
@@ -172,7 +172,7 @@ class Help
     public static function decode($token)
     {
         try {
-            $payload = (new JWT('@3imd53AcdD.%#j', 'HS512', 1800))->decode($token);
+            $payload = (new JWT('@3imd53AcdD.%#j', 'HS512', 3600 * 24 * 90))->decode($token);
         } catch (JWTException $e) {
             return false;
         }
