@@ -33,7 +33,7 @@ class RentService extends Service
     public function add (Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'type' => v::in(['出租', '找租'])->notEmpty(),
+            'type' => v::in([1, 2])->notEmpty(),
             'price' => v::notEmpty(),
             'mobile' => v::numericVal(),
             'title' => v::notEmpty(),
@@ -48,10 +48,10 @@ class RentService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $type = isset($params['type']) ? trim($params['type']) : '出租';
-        $price = isset($params['price']) ? floatval($params['price']) : '免费';
-        $mobile = isset($params['mobile']) ? intval($params['mobile']) : 1;
-        $title = isset($params['title']) ? floatval($params['title']) : '';
+        $type = isset($params['type']) ? intval($params['type']) : 1;
+        $price = isset($params['price']) ? trim($params['price']) : '免费';
+        $mobile = isset($params['mobile']) ? trim($params['mobile']) : '';
+        $title = isset($params['title']) ? $params['title']: '';
         $category = isset($params['category']) ? trim($params['category']) : '手动工具';
         $address = isset($params['address']) ? trim($params['address']) : '南湖世纪';
         $lat = isset($params['lat']) ? trim($params['lat']) : 1;
