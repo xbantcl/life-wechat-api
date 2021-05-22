@@ -69,7 +69,7 @@ class RentModule extends Module
     {
         try {
             $query = Rent::where('status', 2)
-                ->select('id', 'type', 'title', 'address', 'price', 'images', 'desc', 'updated_at')
+                ->select('id', 'type', 'title', 'address', 'price', 'images', 'desc', 'lat', 'lng', 'updated_at')
                 ->orderBy('id', 'desc');
             if (strtolower($type) != 'all') {
                 $query = $query->where('type', $type);
