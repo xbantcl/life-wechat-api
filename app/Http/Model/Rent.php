@@ -11,7 +11,7 @@ class Rent extends Model
      *
      * @var string
      */
-    protected $table = 'car_places';
+    protected $table = 'rent';
 
     public $guarded = ['id'];
 
