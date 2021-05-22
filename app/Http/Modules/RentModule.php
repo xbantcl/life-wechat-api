@@ -5,7 +5,7 @@ namespace Dolphin\Ting\Http\Modules;
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\RentException;
-use Dolphin\Ting\Http\Model\CarPlace;
+use Dolphin\Ting\Http\Model\Rent;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
