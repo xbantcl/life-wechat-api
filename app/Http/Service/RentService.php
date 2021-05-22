@@ -73,7 +73,7 @@ class RentService extends Service
     {
         $validation = $this->validation->validate($request, [
             'is_pull_down' => v::in([0,1]),
-            'type' => v::in(['all', '出租', '找租'])->notEmpty(),
+            'type' => v::in([1, 2])->notEmpty(),
             'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numericVal())
         ]);
@@ -84,7 +84,7 @@ class RentService extends Service
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
-        $type = isset($params['type']) ? trim($params['type']) : 'all';
+        $type = isset($params['type']) ? $params['type'] : 1;
         $isPullDown = isset($params['is_pull_down']) ? boolval($params['is_pull_down']) : false;
         $lat = isset($params['lat']) ? trim($params['lat']) : '';
         $lng = isset($params['lng']) ? trim($params['lng']) : '';

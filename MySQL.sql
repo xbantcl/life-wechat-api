@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `rent`(
     `uid` BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
     `type` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '租用类型: 1-出租，2-找租',
     `status` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '发布状态: 1-下架，2-发布',
-    `title` TINYINT(2) UNSIGNED DEFAULT 2 COMMENT '标题',
+    `title` VARCHAR(64) NOT NULL COMMENT '标题',
     `mobile` VARCHAR(11) NOT NULL COMMENT '手机号码',
     `price` VARCHAR(11) NOT NULL COMMENT '价格',
     `images` VARCHAR(128) DEFAULT '' COMMENT '图片',

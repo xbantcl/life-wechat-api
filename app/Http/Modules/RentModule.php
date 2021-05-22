@@ -71,7 +71,7 @@ class RentModule extends Module
                 ->select('id', 'type', 'title', 'address', 'price', 'images', 'desc', 'updated_at')
                 ->orderBy('id', 'desc');
             if (strtolower($type) != 'all') {
-                $query = $query->where('type', '=', $type);
+                $query = $query->where('type', $type);
             }
             if ($start > 0) {
                 if ($isPullDown) {
