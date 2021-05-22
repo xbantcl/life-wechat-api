@@ -26,6 +26,8 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/list', 'Dolphin\Ting\Http\Service\PincheService:getList');
     $group->post('pinche/detail', 'Dolphin\Ting\Http\Service\PincheService:detail');
+    // ------------------ 租借相关接口 -----------------------------------
+    $group->post('rent/list', 'Dolphin\Ting\Http\Service\RentService:list');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
@@ -52,4 +54,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/add', 'Dolphin\Ting\Http\Service\PincheService:add');
     $group->post('pinche/user/list', 'Dolphin\Ting\Http\Service\PincheService:getListByUid');
+    // ------------------ 租借相关接口 -----------------------------------
+    $group->post('rent/add', 'Dolphin\Ting\Http\Service\RentService:add');
+
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
