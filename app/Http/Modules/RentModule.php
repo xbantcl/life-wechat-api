@@ -37,6 +37,7 @@ class RentModule extends Module
             $rent = Rent::create([
                 'uid' => $uid,
                 'type' => $type,
+                'status' => 2,
                 'price' => $price,
                 'mobile' => $mobile,
                 'title' => $title,
