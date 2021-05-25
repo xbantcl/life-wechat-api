@@ -85,10 +85,11 @@ class RentService extends Service
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 5;
         $type = isset($params['type']) ? $params['type'] : 1;
+        $title = isset($params['title']) ? trim($params['title']) : '';
         $isPullDown = isset($params['is_pull_down']) ? boolval($params['is_pull_down']) : false;
         $lat = isset($params['lat']) ? trim($params['lat']) : '';
         $lng = isset($params['lng']) ? trim($params['lng']) : '';
-        $data = RentModule::getInstance($this->container)->getList($start, $type, $isPullDown, $limit, $lat, $lng);
+        $data = RentModule::getInstance($this->container)->getList($start, $type, $title, $isPullDown, $limit, $lat, $lng);
         return new ServiceResponse($data);
     }
 

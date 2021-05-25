@@ -59,13 +59,14 @@ class RentModule extends Module
      *
      * @param $start
      * @param $type
+     * @param title
      * @param bool $isPullDown
      * @param int $limit
      * @return array
      *
      * @throws RentException
      */
-    public function getList($start, $type, $isPullDown = false, $limit = 5, $lat = '', $lng = '')
+    public function getList($start, $type, $title = '', $isPullDown = false, $limit = 5, $lat = '', $lng = '')
     {
         try {
             $query = Rent::where('status', 2)
@@ -73,6 +74,9 @@ class RentModule extends Module
                 ->orderBy('id', 'desc');
             if (strtolower($type) != 'all') {
                 $query = $query->where('type', $type);
+            }
+            if (!empty(title)) {
+                $query = $query->where('title', 'like', '%' . $title . '%');
             }
             if ($start > 0) {
                 if ($isPullDown) {
