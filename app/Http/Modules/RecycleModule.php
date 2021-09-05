@@ -10,7 +10,7 @@ use Dolphin\Ting\Http\Model\CarPlaceComment;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
 
-class RentModule extends Module
+class RecycleModule extends Module
 {
     /**
      * 发布租用信息
