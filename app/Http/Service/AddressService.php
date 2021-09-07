@@ -76,7 +76,7 @@ class AddressService extends Service
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
-        $data = AddressModule::getInstance($this->container)->getList();
+        $data = AddressModule::getInstance($this->container)->getList($this->uid);
         return new ServiceResponse($data);
     }
 
