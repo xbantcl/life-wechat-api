@@ -19,13 +19,12 @@ class AddressModule extends Module
      * @param $address
      * @param $lat
      * @param $lng
-     * @param $mark
      * @param $isDefault
      *
      * @return mixed
      * @throws AddressException
      */
-    public function add($uid, $name, $mobile, $gpsAddress, $address, $lat, $lng, $mark, $isDefault)
+    public function add($uid, $name, $mobile, $gpsAddress, $address, $lat, $lng, $isDefault)
     {
         try {
             $addressObj = Address::create([
@@ -36,7 +35,6 @@ class AddressModule extends Module
                 'address' => $address,
                 'lat' => $lat,
                 'lng' => $lng,
-                'mark' => $mark,
                 'is_default' => $isDefault
             ]);
         } catch (\Exception $e) {
