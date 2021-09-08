@@ -53,12 +53,45 @@ class AddressService extends Service
         $address = isset($params['address']) ? trim($params['address']) : '';
         $lat = isset($params['lat']) ? trim($params['lat']) : '';
         $lng = isset($params['lng']) ? trim($params['lng']) : '';
-        $mark = isset($params['mark']) ? trim($params['mark']) : '';
         $isDefault = intval($params['is_default']);
-        $data = AddressModule::getInstance($this->container)->add($this->uid, $name, $mobile, $gpsAddress, $address, $lat, $lng, $mark, $isDefault);
+        $data = AddressModule::getInstance($this->container)->add($this->uid, $name, $mobile, $gpsAddress, $address, $lat, $lng, $isDefault);
         return new ServiceResponse($data);
     }
 
+    /**
+     * 更新地址信息
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
+    public function update(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'name' => v::notEmpty(),
+            'mobile' => v::numericVal(),
+            'address' => v::notEmpty(),
+            'gps_address' => v::notEmpty(),
+            'lat' => v::notEmpty(),
+            'lng' => v::notEmpty(),
+            'is_default' => v::in([1,2])->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $name = isset($params['name']) ? trim($params['name']) : '';
+        $mobile = isset($params['mobile']) ? trim($params['mobile']) : '';
+        $gpsAddress = isset($params['gps_address']) ? trim($params['gps_address']) : '';
+        $address = isset($params['address']) ? trim($params['address']) : '';
+        $lat = isset($params['lat']) ? trim($params['lat']) : '';
+        $lng = isset($params['lng']) ? trim($params['lng']) : '';
+        $isDefault = intval($params['is_default']);
+        $data = AddressModule::getInstance($this->container)->update($id, $name, $mobile, $gpsAddress, $lat, $lng, $address, $isDefault);
+        return new ServiceResponse($data);
+    }
     /**
      * 获取地址列表
      *

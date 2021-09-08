@@ -196,6 +196,7 @@ CREATE TABLE IF NOT EXISTS `address`
     `gps_address` VARCHAR(64)                  DEFAULT '' COMMENT '定位地址',
     `lat`         DECIMAL(10, 6)      NOT NULL COMMENT '纬度',
     `lng`         DECIMAL(10, 6)      NOT NULL COMMENT '经度',
+    `is_default`  TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '是否是默认地址：1-不是，2-是默认地址',
     `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)

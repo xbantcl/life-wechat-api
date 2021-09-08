@@ -57,7 +57,7 @@ class AddressModule extends Module
     public function getList($uid)
     {
         try {
-            $data = Address::select('id', 'name', 'mobile', 'gps_address', 'address', 'mark', 'is_default')
+            $data = Address::select('id', 'name', 'mobile', 'gps_address', 'lat', 'lng', 'address', 'mark', 'is_default')
                 ->where('uid', $uid)
                 ->orderBy('id', 'desc')
                 ->get()->toArray();
@@ -68,7 +68,38 @@ class AddressModule extends Module
     }
 
     /**
-     * 获取地址详情
+     * 更新地址信息
+     *
+     * @param $id
+     * @param $name
+     * @param $mobile
+     * @param $gpsAddress
+     * @param $address
+     * @param $isDefault
+     *
+     * @return mixed
+     * @throws AddressException
+     */
+    public function update($id, $name, $mobile, $gpsAddress, $lat, $lng, $address, $isDefault)
+    {
+        try {
+            $data = Address::where('id', $id)->update([
+                'name' => $name,
+                'mobile' => $mobile,
+                'gps_address' => $gpsAddress,
+                'lat' => $lat,
+                'lng' => $lng,
+                'address' => $address,
+                'is_default' => $isDefault
+            ]);
+            return $data;
+        } catch (\Exception $e) {
+            throw new AddressException('UPDATE_ADDRESS_ERROR');
+        }
+    }
+
+    /**
+     * 获取地址信息
      *
      * @param $id
      * @return mixed
@@ -78,7 +109,7 @@ class AddressModule extends Module
     public function detail($id)
     {
         try {
-            $data = Address::select('id', 'name', 'mobile', 'gps_address', 'address', 'mark', 'is_default')
+            $data = Address::select('id', 'name', 'mobile', 'gps_address', 'lng', 'lat', 'address', 'mark', 'is_default')
                 ->where('id', $id)
                 ->first();
             return $data;

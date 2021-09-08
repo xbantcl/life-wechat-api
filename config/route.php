@@ -59,6 +59,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 地址相关接口 -----------------------------------
     $group->post('address/add', 'Dolphin\Ting\Http\Service\AddressService:add');
+    $group->post('address/update', 'Dolphin\Ting\Http\Service\AddressService:update');
     $group->post('address/list', 'Dolphin\Ting\Http\Service\AddressService:getList');
     $group->post('address/delete', 'Dolphin\Ting\Http\Service\AddressService:delete');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
