@@ -78,9 +78,12 @@ class AddressModule extends Module
      * @return mixed
      * @throws AddressException
      */
-    public function update($id, $name, $mobile, $gpsAddress, $lat, $lng, $address, $isDefault)
+    public function update($uid, $id, $name, $mobile, $gpsAddress, $lat, $lng, $address, $isDefault)
     {
         try {
+            if ($isDefault === 2) {
+                Address::where('uid', $uid)->update(['is_default' => 1]);
+            }
             $data = Address::where('id', $id)->update([
                 'name' => $name,
                 'mobile' => $mobile,
@@ -90,6 +93,7 @@ class AddressModule extends Module
                 'address' => $address,
                 'is_default' => $isDefault
             ]);
+
             return $data;
         } catch (\Exception $e) {
             throw new AddressException('UPDATE_ADDRESS_ERROR');

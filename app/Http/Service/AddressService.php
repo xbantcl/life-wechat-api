@@ -90,7 +90,7 @@ class AddressService extends Service
         $lat = isset($params['lat']) ? trim($params['lat']) : '';
         $lng = isset($params['lng']) ? trim($params['lng']) : '';
         $isDefault = intval($params['is_default']);
-        $data = AddressModule::getInstance($this->container)->update($id, $name, $mobile, $gpsAddress, $lat, $lng, $address, $isDefault);
+        $data = AddressModule::getInstance($this->container)->update($this->uid, $id, $name, $mobile, $gpsAddress, $lat, $lng, $address, $isDefault);
         return new ServiceResponse($data);
     }
     /**
