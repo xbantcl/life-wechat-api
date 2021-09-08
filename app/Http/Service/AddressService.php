@@ -68,6 +68,7 @@ class AddressService extends Service
     public function update(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
+            'id' => v::notEmpty()->intVal(),
             'name' => v::notEmpty(),
             'mobile' => v::numericVal(),
             'address' => v::notEmpty(),
