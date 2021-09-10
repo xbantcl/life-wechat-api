@@ -37,7 +37,7 @@ class RecycleModule extends Module
                 'status' => RecycleConstant::APPOINTMENT,
                 'address_id' => $addressId,
                 'weight' => $weight,
-                'appointment_time' => $appointmentTime,
+                'appointment_time' => strtotime($appointmentTime),
                 'mark' => $mark
             ]);
         } catch (\Exception $e) {
@@ -124,7 +124,7 @@ class RecycleModule extends Module
         try {
             $query = Recycle::leftjoin('address as adr', 'adr.id', '=', 'recycle_order.address_id')
                 ->select('recycle_order.id', 'recycle_order.category', 'recycle_order.weight', 'recycle_order.actual_weight',
-                    'recycle_order.status', 'adr.address')
+                    'recycle_order.status', 'recycle_order.appointment_time', 'adr.address')
                 ->orderBy('recycle_order.id', 'desc');
             if ($uid !== 1) {
                 $query->where('recycle_order.uid', $uid);
