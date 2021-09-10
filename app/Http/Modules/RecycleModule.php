@@ -171,7 +171,7 @@ class RecycleModule extends Module
             $data = Recycle::leftjoin('address as adr', 'adr.id', '=', 'recycle_order.address_id')
                 ->select('recycle_order.id', 'recycle_order.category', 'recycle_order.weight', 'recycle_order.actual_weight',
                     'recycle_order.status', 'adr.address', 'adr.name', 'adr.mobile', 'adr.gps_address', 'adr.lat', 'adr.lng')
-                ->where('id', $id)
+                ->where('recycle_order.id', $id)
                 ->first()->toArray();
             return $data;
         } catch (\Exception $e) {
