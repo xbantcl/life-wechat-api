@@ -69,5 +69,6 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('recycle/update', 'Dolphin\Ting\Http\Service\RecycleService:update');
     $group->post('recycle/status/update', 'Dolphin\Ting\Http\Service\RecycleService:updateStatus');
     $group->post('recycle/list', 'Dolphin\Ting\Http\Service\RecycleService:getList');
+    $group->post('recycle/detail', 'Dolphin\Ting\Http\Service\RecycleService:detail');
     $group->post('recycle/delete', 'Dolphin\Ting\Http\Service\RecycleService:delete');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
