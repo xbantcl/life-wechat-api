@@ -71,7 +71,7 @@ class RecycleModule extends Module
                     'status' => RecycleConstant::APPOINTMENT,
                     'address_id' => $addressId,
                     'weight' => $weight,
-                    'appointment_time' => $appointmentTime,
+                    'appointment_time' => strtotime($appointmentTime),
                     'actual_weight' => $actualWeight,
                     'mark' => $mark
                 ]);

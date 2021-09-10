@@ -46,7 +46,7 @@ class RecycleService extends Service
         }
         $params = Help::getParams($request);
         $addressId = intval($params['address_id']);
-        $appointmentTime = trim($params['appointmentTime']);
+        $appointmentTime = trim($params['appointment_time']);
         $weight = trim($params['weight']);
         $category = trim($params['category']);
         $mark = isset($params['mark']) ? trim($params['mark']) : '';
