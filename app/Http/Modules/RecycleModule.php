@@ -125,16 +125,16 @@ class RecycleModule extends Module
             $query = Recycle::leftjoin('address as adr', 'adr.id', '=', 'recycle_order.address_id')
                 ->select('recycle_order.id', 'recycle_order.category', 'recycle_order.weight', 'recycle_order.actual_weight',
                     'recycle_order.status', 'adr.address')
-                ->orderBy('id', 'desc');
+                ->orderBy('recycle_order.id', 'desc');
             if ($uid !== 1) {
-                $query->where('uid', $uid);
+                $query->where('recycle_order.uid', $uid);
             }
-            $query->where('status', $status);
+            $query->where('recycle_order.status', $status);
             if ($start > 0) {
                 if ($isPullDown) {
-                    $query->where('id', '>', $start);
+                    $query->where('recycle_order.id', '>', $start);
                 } else {
-                    $query->where('id', '<', $start);
+                    $query->where('recycle_order.id', '<', $start);
                 }
             }
             $data = $query->take($limit + 1)->get()->toArray();
