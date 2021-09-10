@@ -119,7 +119,7 @@ class RecycleModule extends Module
      * @return array
      * @throws RecycleException
      */
-    public function getList($uid, $start, $status, $isPullDown = false, $limit = 5)
+    public function getList($uid, $status, $isPullDown = false, $start = 0, $limit = 5)
     {
         try {
             $query = Recycle::leftjoin('address as adr', 'adr.id', '=', 'recycle_order.address_id')

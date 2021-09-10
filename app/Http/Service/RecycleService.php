@@ -3,6 +3,7 @@
 namespace Dolphin\Ting\Http\Service;
 
 use Dolphin\Ting\Http\Model\Recycle;
+use Dolphin\Ting\Http\Modules\RecycleModule;
 use Dolphin\Ting\Http\Modules\RentModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
 use Dolphin\Ting\Http\Utils\Help;
@@ -49,7 +50,7 @@ class RecycleService extends Service
         $weight = trim($params['weight']);
         $category = trim($params['category']);
         $mark = isset($params['mark']) ? trim($params['mark']) : '';
-        $data = Recycle::getInstance($this->container)->add($this->uid, $category, $addressId, $weight, $appointmentTime, $mark);
+        $data = RecycleModule::getInstance($this->container)->add($this->uid, $category, $addressId, $weight, $appointmentTime, $mark);
         return new ServiceResponse($data);
     }
 
@@ -80,7 +81,7 @@ class RecycleService extends Service
         $weight = trim($params['weight']);
         $category = trim($params['category']);
         $mark = isset($params['mark']) ? trim($params['mark']) : '';
-        $data = Recycle::getInstance($this->container)->update($id, $this->uid, $category, $addressId, $weight, $appointmentTime, $mark);
+        $data = RecycleModule::getInstance($this->container)->update($id, $this->uid, $category, $addressId, $weight, $appointmentTime, $mark);
         return new ServiceResponse($data);
     }
 
@@ -105,7 +106,7 @@ class RecycleService extends Service
         $id = intval($params['id']);
         $actualWeight = isset($params['actual_weight']) ? floatval($params['actual_weight']) : 0;
         $status = intval($params['status']);
-        $data = Recycle::getInstance($this->container)->updateStatus($id, $this->uid, $status, $actualWeight);
+        $data = RecycleModule::getInstance($this->container)->updateStatus($id, $this->uid, $status, $actualWeight);
         return new ServiceResponse($data);
     }
 
@@ -122,18 +123,19 @@ class RecycleService extends Service
             'is_pull_down' => v::in([0,1]),
             'status' => v::in([1, 2, 3, 4])->notEmpty(),
             'start' => v::optional(v::numericVal()),
-            'limit' => v::optional(v::numericVal())
+            'limit' => v::optional(v::numericVal()),
+            'is_pull_down' => v::in([0, 1]),
         ]);
 
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $start = intval($params['start']);
-        $limit = intval($params['limit']);
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 5;
         $status = intval($params['status']);
         $isPullDown = boolval($params['is_pull_down']);
-        $data = Recycle::getInstance($this->container)->getList($this->uid, $start, $status, $isPullDown, $limit);
+        $data = RecycleModule::getInstance($this->container)->getList($this->uid, $status, $isPullDown, $start, $limit);
         return new ServiceResponse($data);
     }
 
@@ -154,7 +156,7 @@ class RecycleService extends Service
         }
         $params = Help::getParams($request);
         $id = intval($params['id']);
-        $data = Recycle::getInstance($this->container)->detail($id);
+        $data = RecycleModule::getInstance($this->container)->detail($id);
         return new ServiceResponse($data);
     }
 
@@ -177,7 +179,7 @@ class RecycleService extends Service
         }
         $params = Help::getParams($request);
         $id = intval($params['id']);
-        $data = Recycle::getInstance($this->container)->delete($id);
+        $data = RecycleModule::getInstance($this->container)->delete($id);
         return new ServiceResponse($data);
     }
 }
