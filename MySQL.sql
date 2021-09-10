@@ -202,3 +202,18 @@ CREATE TABLE IF NOT EXISTS `address`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='用户地址';
+
+CREATE TABLE IF NOT EXISTS `recycle_order`
+(
+    `id`               BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid`              BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
+    `address_id`       INT                 NOT NULL COMMENT '用户订单地址',
+    `appointment_time` INT(11)             NOT NULL COMMENT '预约时间',
+    `weight`           VARCHAR(32)                  DEFAULT '' COMMENT '预估重量',
+    `actual_weight`    FLOAT                        DEFAULT 0.0 COMMENT '实际重量',
+    `status`           TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '回收订单状态：1-预约，2-已经接单，3-完成，4-取消',
+    `created_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='回收订单';

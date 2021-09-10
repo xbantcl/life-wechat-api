@@ -54,6 +54,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 拼车相关接口 -----------------------------------
     $group->post('pinche/add', 'Dolphin\Ting\Http\Service\PincheService:add');
     $group->post('pinche/user/list', 'Dolphin\Ting\Http\Service\PincheService:getListByUid');
+
     // ------------------ 租借相关接口 -----------------------------------
     $group->post('rent/add', 'Dolphin\Ting\Http\Service\RentService:add');
 
@@ -62,4 +63,11 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('address/update', 'Dolphin\Ting\Http\Service\AddressService:update');
     $group->post('address/list', 'Dolphin\Ting\Http\Service\AddressService:getList');
     $group->post('address/delete', 'Dolphin\Ting\Http\Service\AddressService:delete');
+
+    // ------------------ 回收相关接口 -----------------------------------
+    $group->post('recycle/add', 'Dolphin\Ting\Http\Service\RecycleService:add');
+    $group->post('recycle/update', 'Dolphin\Ting\Http\Service\RecycleService:update');
+    $group->post('recycle/status/update', 'Dolphin\Ting\Http\Service\RecycleService:updateStatus');
+    $group->post('recycle/list', 'Dolphin\Ting\Http\Service\RecycleService:getList');
+    $group->post('recycle/delete', 'Dolphin\Ting\Http\Service\RecycleService:delete');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
