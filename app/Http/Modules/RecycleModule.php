@@ -172,8 +172,11 @@ class RecycleModule extends Module
                 ->select('recycle_order.id', 'recycle_order.category', 'recycle_order.weight', 'recycle_order.actual_weight',
                     'recycle_order.status', 'adr.address', 'adr.name', 'adr.mobile', 'adr.gps_address', 'adr.lat', 'adr.lng')
                 ->where('recycle_order.id', $id)
-                ->first()->toArray();
-            return $data;
+                ->first();
+            if (empty($data)) {
+                return [];
+            }
+            return $data->toArray();
         } catch (\Exception $e) {
             throw new RecycleException('GET_RECYCLE_ORDER_DETAIL_ERROR');
         }
