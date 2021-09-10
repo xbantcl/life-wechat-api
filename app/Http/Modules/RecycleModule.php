@@ -200,4 +200,19 @@ class RecycleModule extends Module
         }
     }
 
+    /**
+     * 获取回收价格
+     *
+     * @return array
+     * @throws RecycleException
+     */
+    public function getPrice()
+    {
+        try {
+            return RecycleConstant::PRICES;
+        } catch (\Exception $e) {
+            throw new RecycleException('GET_RECYCLE_PRICE_ERROR');
+        }
+    }
+
 }

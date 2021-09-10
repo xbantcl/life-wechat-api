@@ -182,4 +182,17 @@ class RecycleService extends Service
         $data = RecycleModule::getInstance($this->container)->delete($id);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取回收价格
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getPrice(Request $request, Response $response)
+    {
+        $data = RecycleModule::getInstance($this->container)->getPrice();
+        return new ServiceResponse($data);
+    }
 }
