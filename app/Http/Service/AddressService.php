@@ -158,4 +158,17 @@ class AddressService extends Service
         $data = AddressModule::getInstance($this->container)->delete($this->uid, $id);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取默认地址
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getDefaultAddress(Request $request, Response $response)
+    {
+        $data = AddressModule::getInstance($this->container)->getDefaultAddress();
+        return new ServiceResponse($data);
+    }
 }

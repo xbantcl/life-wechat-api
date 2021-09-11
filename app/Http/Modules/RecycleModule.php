@@ -151,6 +151,18 @@ class RecycleModule extends Module
             } else {
                 $start = end($data)['id'];
             }
+            foreach ($data as &$item) {
+                $item['appointment_time'] = date('Y-d-m H:i', $item['appointment_time']);
+                if ($item['category'] == 'paper') {
+                    $item['category'] = '统纸';
+                } elseif ($item['category'] == 'plastic') {
+                    $item['category'] = '塑料';
+                } elseif ($item['category'] == 'metal') {
+                    $item['category'] = '金属';
+                } elseif ($item['category'] == 'dress') {
+                    $item['category'] = '服饰';
+                }
+            }
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
             throw new RecycleException('GET_RECYCLE_ORDER_LIST_ERROR');

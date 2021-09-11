@@ -139,4 +139,19 @@ class AddressModule extends Module
         }
     }
 
+    /**
+     * 获取默认地址
+     *
+     * @param $uid
+     * @return mixed
+     * @throws AddressException
+     */
+    public function getDefaultAddress($uid)
+    {
+        try {
+            return Address::where('uid', $uid)->where('is_default', 2)->first();
+        } catch (\Exception $e) {
+            throw new AddressException('GET_ADDRESS_ERROR');
+        }
+    }
 }
