@@ -182,13 +182,24 @@ class RecycleModule extends Module
         try {
             $data = Recycle::leftjoin('address as adr', 'adr.id', '=', 'recycle_order.address_id')
                 ->select('recycle_order.id', 'recycle_order.category', 'recycle_order.weight', 'recycle_order.actual_weight',
-                    'recycle_order.status', 'adr.address', 'adr.name', 'adr.mobile', 'adr.gps_address', 'adr.lat', 'adr.lng')
+                    'recycle_order.status', 'recycle_order.appointment_time', 'adr.address', 'adr.name', 'adr.mobile', 'adr.gps_address', 'adr.lat', 'adr.lng')
                 ->where('recycle_order.id', $id)
                 ->first();
             if (empty($data)) {
                 return [];
             }
-            return $data->toArray();
+            $data = $data->toArray();
+            if ($data['category'] == 'paper') {
+                $data['category'] = '统纸';
+            } elseif ($data['category'] == 'plastic') {
+                $data['category'] = '塑料';
+            } elseif ($data['category'] == 'metal') {
+                $data['category'] = '金属';
+            } elseif ($data.category == 'dress') {
+                $data['category'] = '服饰';
+            }
+            $data['appointment_time'] = date('Y-m-d H:i', $data['appointment_time']);
+            return $data;
         } catch (\Exception $e) {
             throw new RecycleException('GET_RECYCLE_ORDER_DETAIL_ERROR');
         }
