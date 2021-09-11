@@ -182,7 +182,8 @@ class RecycleModule extends Module
         try {
             $data = Recycle::leftjoin('address as adr', 'adr.id', '=', 'recycle_order.address_id')
                 ->select('recycle_order.id', 'recycle_order.category', 'recycle_order.weight', 'recycle_order.actual_weight',
-                    'recycle_order.status', 'recycle_order.appointment_time', 'adr.address', 'adr.name', 'adr.mobile', 'adr.gps_address', 'adr.lat', 'adr.lng')
+                    'recycle_order.status', 'recycle_order.appointment_time', 'recycle_order.mark', 'adr.address', 'adr.name', 'adr.mobile',
+                    'adr.gps_address', 'adr.lat', 'adr.lng')
                 ->where('recycle_order.id', $id)
                 ->first();
             if (empty($data)) {
@@ -199,6 +200,9 @@ class RecycleModule extends Module
                 $data['category'] = '服饰';
             }
             $data['appointment_time'] = date('Y-m-d H:i', $data['appointment_time']);
+            if (empty($data['mark'])) {
+                $data['mark'] = '无';
+            }
             return $data;
         } catch (\Exception $e) {
             throw new RecycleException('GET_RECYCLE_ORDER_DETAIL_ERROR');
