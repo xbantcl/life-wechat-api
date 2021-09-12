@@ -16,7 +16,7 @@ class ProductModule extends Module
             "id" => 20,
             "name" => "喜茶食验室",
             "sort" => 1,
-            "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/23/f77f2e333a34410384c21da48e138599.jpg",
+            "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/23/f77f2e333a34410384c21da48e138599.jpg",
             "products" => [[
                 "id" => 932,
                 "name" => "芝芝莓莓 ®",
@@ -29,14 +29,14 @@ class ProductModule extends Module
                 "sort" => 5,
                 "images" => [[
                     "id" => 150527,
-                    "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/fbcdfbd39c6548b185c1d0eef790808d.jpg"
+                    "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/fbcdfbd39c6548b185c1d0eef790808d.jpg"
                 ],
                     [
                         "id" => 117035,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/66a64d27c2504838851ce69f2a901326.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/66a64d27c2504838851ce69f2a901326.jpg"
                     ]
                 ],
-                "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/e75452c0d57443be87fdbe9b1dd61da5.jpg",
+                "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/e75452c0d57443be87fdbe9b1dd61da5.jpg",
                 "show_trademark" => false,
                 "activity_ids" => [],
                 "labels" => [[
@@ -205,11 +205,11 @@ class ProductModule extends Module
                     "sort" => 2,
                     "images" => [[
                         "id" => 153382,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/24/5ba38e1966334ff9af2ee27e1a803497.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/24/5ba38e1966334ff9af2ee27e1a803497.jpg"
                     ],
                         [
                             "id" => 147238,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/11/88d10a251f5841a185101aaccfa7952e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/11/88d10a251f5841a185101aaccfa7952e.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -250,11 +250,11 @@ class ProductModule extends Module
                     "sort" => 3,
                     "images" => [[
                         "id" => 141992,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/01/7bf2447422bf4acb95b1a82366eeba34.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/01/7bf2447422bf4acb95b1a82366eeba34.jpg"
                     ],
                         [
                             "id" => 139423,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/26/c2bf42835baf453d8987afa54e796f0e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/26/c2bf42835baf453d8987afa54e796f0e.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -302,15 +302,15 @@ class ProductModule extends Module
                     "sort" => 4,
                     "images" => [[
                         "id" => 145005,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/06/b796c7a8edd44e7e968745cb63eae3a2.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/06/b796c7a8edd44e7e968745cb63eae3a2.jpg"
                     ],
                         [
                             "id" => 137571,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/21/882651cb064e4326b4b73c57cadbf8b8.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/21/882651cb064e4326b4b73c57cadbf8b8.jpg"
                         ],
                         [
                             "id" => 137572,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/21/401a0054f6d040709b316d2c23c7b3c2.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/21/401a0054f6d040709b316d2c23c7b3c2.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -358,15 +358,15 @@ class ProductModule extends Module
                     "sort" => 5,
                     "images" => [[
                         "id" => 145004,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/06/9d1f23859ef0495aade6cbe0d46c492b.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/06/9d1f23859ef0495aade6cbe0d46c492b.jpg"
                     ],
                         [
                             "id" => 137566,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/21/43b09ca3b38a4c08a0b6ad142d1ad2ed.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/21/43b09ca3b38a4c08a0b6ad142d1ad2ed.jpg"
                         ],
                         [
                             "id" => 137567,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/21/8c4264b660714a70bda5f13e92c04377.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/21/8c4264b660714a70bda5f13e92c04377.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -414,15 +414,15 @@ class ProductModule extends Module
                     "sort" => 6,
                     "images" => [[
                         "id" => 145006,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/06/cf932ed0413a42b9a4a59aac686db19b.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/06/cf932ed0413a42b9a4a59aac686db19b.jpg"
                     ],
                         [
                             "id" => 137569,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/21/9c35d5aa21d44791bbd2b7bad308f256.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/21/9c35d5aa21d44791bbd2b7bad308f256.jpg"
                         ],
                         [
                             "id" => 137570,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/21/6a6b02329cd64ddfa1c2ab87dfb0d209.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/21/6a6b02329cd64ddfa1c2ab87dfb0d209.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -470,7 +470,7 @@ class ProductModule extends Module
                     "sort" => 7,
                     "images" => [[
                         "id" => 126120,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/23/ecd4f6fcfdb8406ab297607c517b9790.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/03/23/ecd4f6fcfdb8406ab297607c517b9790.jpg"
                     ]],
                     "name_image" => "",
                     "show_trademark" => false,
@@ -519,7 +519,7 @@ class ProductModule extends Module
                     "sort" => 8,
                     "images" => [[
                         "id" => 126119,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/23/ab0773906b3646278a84fe3dfaa759e9.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/03/23/ab0773906b3646278a84fe3dfaa759e9.jpg"
                     ]],
                     "name_image" => "",
                     "show_trademark" => false,
@@ -568,11 +568,11 @@ class ProductModule extends Module
                     "sort" => 9,
                     "images" => [[
                         "id" => 119991,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/08/df694d96fb574658b11cde291aee699b.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/03/08/df694d96fb574658b11cde291aee699b.jpg"
                     ],
                         [
                             "id" => 121237,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/50d442e74263480580861b2ba99db4b6.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/50d442e74263480580861b2ba99db4b6.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -629,11 +629,11 @@ class ProductModule extends Module
                     "sort" => 10,
                     "images" => [[
                         "id" => 119992,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/08/08e8693f93db4152a16365469509c346.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/03/08/08e8693f93db4152a16365469509c346.jpg"
                     ],
                         [
                             "id" => 121238,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/d0674101531d4140b530fbb23bb0e458.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/d0674101531d4140b530fbb23bb0e458.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -683,11 +683,11 @@ class ProductModule extends Module
                     "sort" => 14,
                     "images" => [[
                         "id" => 2958,
-                        "url" => "https=>//go.cdn.heytea.com/storage/products/2018/12/07/D26Q9kO7a2ctt3ApN39vVuZNMa7OhjX6afuAScUg.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/products/2018/12/07/D26Q9kO7a2ctt3ApN39vVuZNMa7OhjX6afuAScUg.jpg"
                     ],
                         [
                             "id" => 121296,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/672cdb1e78b64cba9c7bd26192f7069c.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/672cdb1e78b64cba9c7bd26192f7069c.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -728,11 +728,11 @@ class ProductModule extends Module
                     "sort" => 15,
                     "images" => [[
                         "id" => 65894,
-                        "url" => "https=>//go.cdn.heytea.com/product/2019/08/08/tmp/abfbe602452f4b9c8143c732b4b99f78.jpg"
+                        "url" => "https://go.cdn.heytea.com/product/2019/08/08/tmp/abfbe602452f4b9c8143c732b4b99f78.jpg"
                     ],
                         [
                             "id" => 121292,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/3105afea13424d76b54cfdd01332aec3.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/3105afea13424d76b54cfdd01332aec3.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -773,11 +773,11 @@ class ProductModule extends Module
                     "sort" => 16,
                     "images" => [[
                         "id" => 51963,
-                        "url" => "https=>//go.cdn.heytea.com/product/2019/06/11/tmp/534fc9ec25414764b3aa479b44549a1c.jpg"
+                        "url" => "https://go.cdn.heytea.com/product/2019/06/11/tmp/534fc9ec25414764b3aa479b44549a1c.jpg"
                     ],
                         [
                             "id" => 121295,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/182cb5f3f04d41b3ac32146dbf38e1a9.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/182cb5f3f04d41b3ac32146dbf38e1a9.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -818,11 +818,11 @@ class ProductModule extends Module
                     "sort" => 17,
                     "images" => [[
                         "id" => 88395,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/12/339aab7f76e24296b1e716fab785c5bb.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/12/339aab7f76e24296b1e716fab785c5bb.jpg"
                     ],
                         [
                             "id" => 121293,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/7579079c0b0a4d7d8b464c3321e8f767.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/7579079c0b0a4d7d8b464c3321e8f767.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -863,11 +863,11 @@ class ProductModule extends Module
                     "sort" => 18,
                     "images" => [[
                         "id" => 88571,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/13/f26206a42b2b48c38bef58c795d30e3a.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/13/f26206a42b2b48c38bef58c795d30e3a.jpg"
                     ],
                         [
                             "id" => 121234,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/f09ec6f23c3543619731b1c37c9e790c.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/f09ec6f23c3543619731b1c37c9e790c.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -917,11 +917,11 @@ class ProductModule extends Module
                     "sort" => 19,
                     "images" => [[
                         "id" => 88364,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/12/5ad4996d0fdd4f3a85a25b8fe95a4db8.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/12/5ad4996d0fdd4f3a85a25b8fe95a4db8.jpg"
                     ],
                         [
                             "id" => 121233,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/78ad5460e80d4587a8f07abc4baf76e9.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/78ad5460e80d4587a8f07abc4baf76e9.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -978,11 +978,11 @@ class ProductModule extends Module
                     "sort" => 20,
                     "images" => [[
                         "id" => 88568,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/13/e479684b39db4cfea36e31c6e434ccd7.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/13/e479684b39db4cfea36e31c6e434ccd7.jpg"
                     ],
                         [
                             "id" => 121241,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/979ca41d0238481ea7c3a7cb73335bd1.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/979ca41d0238481ea7c3a7cb73335bd1.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1039,11 +1039,11 @@ class ProductModule extends Module
                     "sort" => 21,
                     "images" => [[
                         "id" => 66925,
-                        "url" => "https=>//go.cdn.heytea.com/product/2019/08/12/tmp/b297da7e150e46cc98c2138a290c9fb4.jpg"
+                        "url" => "https://go.cdn.heytea.com/product/2019/08/12/tmp/b297da7e150e46cc98c2138a290c9fb4.jpg"
                     ],
                         [
                             "id" => 121231,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/1e1a115b801d439281790230bcfaeb0c.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/1e1a115b801d439281790230bcfaeb0c.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1100,11 +1100,11 @@ class ProductModule extends Module
                     "sort" => 22,
                     "images" => [[
                         "id" => 66934,
-                        "url" => "https=>//go.cdn.heytea.com/product/2019/08/12/tmp/d5ebe688cd0b4f8d922505aac18a6fcb.jpg"
+                        "url" => "https://go.cdn.heytea.com/product/2019/08/12/tmp/d5ebe688cd0b4f8d922505aac18a6fcb.jpg"
                     ],
                         [
                             "id" => 121232,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/a16f9bf3635e4875be1507a598d10ecc.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/a16f9bf3635e4875be1507a598d10ecc.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1161,11 +1161,11 @@ class ProductModule extends Module
                     "sort" => 23,
                     "images" => [[
                         "id" => 23974,
-                        "url" => "https=>//go.cdn.heytea.com/storage/products/2019/03/07/VJeeKv4CvYLoPhgFedawCrao1BfjTF2nNZ46ucKA.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/products/2019/03/07/VJeeKv4CvYLoPhgFedawCrao1BfjTF2nNZ46ucKA.jpg"
                     ],
                         [
                             "id" => 121290,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/f6acd196783c4d4c8cc6e41eaed3062a.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/f6acd196783c4d4c8cc6e41eaed3062a.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1213,11 +1213,11 @@ class ProductModule extends Module
                     "sort" => 24,
                     "images" => [[
                         "id" => 88366,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/12/2bed4fc9c2fe4d61a1ffd7d7835594b7.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/12/2bed4fc9c2fe4d61a1ffd7d7835594b7.jpg"
                     ],
                         [
                             "id" => 121240,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/25ea4c4d3db44e0bae3b080a18f24a69.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/25ea4c4d3db44e0bae3b080a18f24a69.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1267,11 +1267,11 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 150037,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/6def2c810a5c4d1a80912ffad47f3162.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/6def2c810a5c4d1a80912ffad47f3162.jpg"
                     ],
                         [
                             "id" => 150038,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/99f43d68f57c4278b62e5354510223c3.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/99f43d68f57c4278b62e5354510223c3.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1312,11 +1312,11 @@ class ProductModule extends Module
                     "sort" => 11,
                     "images" => [[
                         "id" => 110948,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/12/41041a1dba3243c1859bfba0615d3797.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/02/12/41041a1dba3243c1859bfba0615d3797.jpg"
                     ],
                         [
                             "id" => 121298,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/48db64dea6fa4c4b99ae3a005be469c9.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/48db64dea6fa4c4b99ae3a005be469c9.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1357,11 +1357,11 @@ class ProductModule extends Module
                     "sort" => 12,
                     "images" => [[
                         "id" => 110950,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/12/9b8969a8830a485c945b2e5e353f20dc.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/02/12/9b8969a8830a485c945b2e5e353f20dc.jpg"
                     ],
                         [
                             "id" => 121299,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/127cadc6fe59432390db87caf2fa2b68.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/127cadc6fe59432390db87caf2fa2b68.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1395,11 +1395,11 @@ class ProductModule extends Module
                     "sort" => 13,
                     "images" => [[
                         "id" => 110949,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/12/9b90d1cb46ed434d836352e1bdd9245e.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/02/12/9b90d1cb46ed434d836352e1bdd9245e.jpg"
                     ],
                         [
                             "id" => 121300,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/11/7f8cca1df210430fa3375f650209a91d.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/11/7f8cca1df210430fa3375f650209a91d.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1433,11 +1433,11 @@ class ProductModule extends Module
                     "sort" => 25,
                     "images" => [[
                         "id" => 79221,
-                        "url" => "https=>//go.cdn.heytea.com/product/2019/10/01/tmp/9d41fd6573ab49ab8eeb71b2746c0ba4.jpg"
+                        "url" => "https://go.cdn.heytea.com/product/2019/10/01/tmp/9d41fd6573ab49ab8eeb71b2746c0ba4.jpg"
                     ],
                         [
                             "id" => 116975,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/7dcb32e0d8f047678447e7c30064c030.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/7dcb32e0d8f047678447e7c30064c030.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1473,7 +1473,7 @@ class ProductModule extends Module
                 "id" => 12,
                 "name" => "当季限定",
                 "sort" => 2,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/05/02/c9d862a735af48d280ab8b21a2315514.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/05/02/c9d862a735af48d280ab8b21a2315514.jpg",
                 "products" => [[
                     "id" => 421,
                     "name" => "芝芝桃桃",
@@ -1486,11 +1486,11 @@ class ProductModule extends Module
                     "sort" => 2,
                     "images" => [[
                         "id" => 147227,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/11/f00875e937244d3188f462e43c21170a.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/05/11/f00875e937244d3188f462e43c21170a.jpg"
                     ],
                         [
                             "id" => 139431,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/26/c846a8fc574146ccad2f9a7581a692ef.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/26/c846a8fc574146ccad2f9a7581a692ef.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -1655,11 +1655,11 @@ class ProductModule extends Module
                         "sort" => 1,
                         "images" => [[
                             "id" => 147226,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/11/b95776a518d144ce8039a149c8ecf415.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/11/b95776a518d144ce8039a149c8ecf415.jpg"
                         ],
                             [
                                 "id" => 139334,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/26/d9cdb5e74f93439ebe30fdaa4928b5bd.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/26/d9cdb5e74f93439ebe30fdaa4928b5bd.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -1824,11 +1824,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 140872,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/28/bfbe92590fa244b09353b873a5ca98a3.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/28/bfbe92590fa244b09353b873a5ca98a3.jpg"
                         ],
                             [
                                 "id" => 134740,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/14/1feb8648edad4cc9a37d9b1bdead9b59.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/14/1feb8648edad4cc9a37d9b1bdead9b59.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -1857,7 +1857,7 @@ class ProductModule extends Module
                 "id" => 67,
                 "name" => "人气必喝榜",
                 "sort" => 3,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/23/3b52e3d18fae4290b0a668a776b21645.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/23/3b52e3d18fae4290b0a668a776b21645.jpg",
                 "products" => [[
                     "id" => 944,
                     "name" => "满杯红柚",
@@ -1870,14 +1870,14 @@ class ProductModule extends Module
                     "sort" => 72,
                     "images" => [[
                         "id" => 135796,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/16/334021739fee4274989793ce343156fd.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/04/16/334021739fee4274989793ce343156fd.jpg"
                     ],
                         [
                             "id" => 117022,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/07dae739032e4b5f9034c82cfad32aa4.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/07dae739032e4b5f9034c82cfad32aa4.jpg"
                         ]
                     ],
-                    "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/b6041bf0a93046039123851d0250101f.jpg",
+                    "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/b6041bf0a93046039123851d0250101f.jpg",
                     "show_trademark" => false,
                     "activity_ids" => [],
                     "labels" => [[
@@ -1915,14 +1915,14 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 143240,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/03/26c8a4213c9243e88f4e3f6cfa14c30b.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/03/26c8a4213c9243e88f4e3f6cfa14c30b.jpg"
                         ],
                             [
                                 "id" => 117056,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/1d874e762358478aa3ae4385a1397819.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/1d874e762358478aa3ae4385a1397819.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/b280fca74f744e6896cabdb73ae31f47.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/b280fca74f744e6896cabdb73ae31f47.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -1960,14 +1960,14 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 150526,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/40a6757ad5d34161aedda557f63bf315.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/40a6757ad5d34161aedda557f63bf315.jpg"
                         ],
                             [
                                 "id" => 117044,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/dab56268b0fa44499f3255e95657cf18.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/dab56268b0fa44499f3255e95657cf18.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/4015de8912a14300a877b19569096cda.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/4015de8912a14300a877b19569096cda.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2005,14 +2005,14 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 150527,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/fbcdfbd39c6548b185c1d0eef790808d.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/fbcdfbd39c6548b185c1d0eef790808d.jpg"
                         ],
                             [
                                 "id" => 117035,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/66a64d27c2504838851ce69f2a901326.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/66a64d27c2504838851ce69f2a901326.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/e75452c0d57443be87fdbe9b1dd61da5.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/e75452c0d57443be87fdbe9b1dd61da5.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2181,14 +2181,14 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 150244,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/9faf0150339d4b9f97f15b95aa6e1eea.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/9faf0150339d4b9f97f15b95aa6e1eea.jpg"
                         ],
                             [
                                 "id" => 150263,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/befb6794a056416cb6d2887e8950b99e.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/befb6794a056416cb6d2887e8950b99e.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/a7df1a4418d14475aab48a76268cc8d1.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/05/18/a7df1a4418d14475aab48a76268cc8d1.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2219,14 +2219,14 @@ class ProductModule extends Module
                         "sort" => 7,
                         "images" => [[
                             "id" => 150528,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/0c30e67747c04eeeb05a90b06a79c999.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/0c30e67747c04eeeb05a90b06a79c999.jpg"
                         ],
                             [
                                 "id" => 117074,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/fa956693617d4eecb733b4a7dc9dd333.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/fa956693617d4eecb733b4a7dc9dd333.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/41c6464515484d4797055629ea3ac978.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/41c6464515484d4797055629ea3ac978.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2257,14 +2257,14 @@ class ProductModule extends Module
                         "sort" => 8,
                         "images" => [[
                             "id" => 143245,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/03/489faf24180c45fe974f7711b5c945b0.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/03/489faf24180c45fe974f7711b5c945b0.jpg"
                         ],
                             [
                                 "id" => 116588,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/b9a1a1446e114335b9319a3a82e5e99f.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/b9a1a1446e114335b9319a3a82e5e99f.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/880caa818dd1464d99f1a3b15fc74408.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/880caa818dd1464d99f1a3b15fc74408.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2302,14 +2302,14 @@ class ProductModule extends Module
                         "sort" => 76,
                         "images" => [[
                             "id" => 150529,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/2cbf29cd972346e6afce4ae44bdbd001.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/2cbf29cd972346e6afce4ae44bdbd001.jpg"
                         ],
                             [
                                 "id" => 116602,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/c1c1e721aae848ba9ec0c90642595a07.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/c1c1e721aae848ba9ec0c90642595a07.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/51dd0977ee194011b5a0c8caea5f2634.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/51dd0977ee194011b5a0c8caea5f2634.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2347,14 +2347,14 @@ class ProductModule extends Module
                         "sort" => 82,
                         "images" => [[
                             "id" => 150530,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/8f982f2fedb049bbb42afb1ec660b157.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/8f982f2fedb049bbb42afb1ec660b157.jpg"
                         ],
                             [
                                 "id" => 116600,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/666de01e56fa40a5b57fa6b9f3fd7651.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/666de01e56fa40a5b57fa6b9f3fd7651.jpg"
                             ]
                         ],
-                        "name_image" => "https=>//go.cdn.heytea.com/storage/product/2020/02/28/0c485a9ec288466186b30e1fb65449b9.jpg",
+                        "name_image" => "https://go.cdn.heytea.com/storage/product/2020/02/28/0c485a9ec288466186b30e1fb65449b9.jpg",
                         "show_trademark" => false,
                         "activity_ids" => [],
                         "labels" => [[
@@ -2392,11 +2392,11 @@ class ProductModule extends Module
                         "sort" => 172,
                         "images" => [[
                             "id" => 114333,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/26/2c409b83237148f58ae346c44254a382.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/02/26/2c409b83237148f58ae346c44254a382.jpg"
                         ],
                             [
                                 "id" => 116572,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/f1656b78be914bc7aacfabc2dd87ad6d.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/f1656b78be914bc7aacfabc2dd87ad6d.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2437,11 +2437,11 @@ class ProductModule extends Module
                         "sort" => 202,
                         "images" => [[
                             "id" => 114321,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/26/cd87394ec858482499b89db226e17626.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/02/26/cd87394ec858482499b89db226e17626.jpg"
                         ],
                             [
                                 "id" => 116591,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/135b9a02c96b4be8af8ae7fe827613c3.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/135b9a02c96b4be8af8ae7fe827613c3.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2477,7 +2477,7 @@ class ProductModule extends Module
                 "id" => 17,
                 "name" => "喜茶制冰",
                 "sort" => 4,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/ef7b2a24507a4e20b50355eccc3261db.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/ef7b2a24507a4e20b50355eccc3261db.jpg",
                 "products" => [[
                     "id" => 865,
                     "name" => "锡兰奶茶脆筒",
@@ -2490,11 +2490,11 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 104839,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/10/a80b8ad8282c4c14b619a17e2524abc8.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/01/10/a80b8ad8282c4c14b619a17e2524abc8.jpg"
                     ],
                         [
                             "id" => 117368,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/05/a03b4da4d8984bb6a0d2374c73c3dc11.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/05/a03b4da4d8984bb6a0d2374c73c3dc11.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -2528,11 +2528,11 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 61018,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/07/17/tmp/e9d83a24f39547f98369ce8bfdd781af.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/07/17/tmp/e9d83a24f39547f98369ce8bfdd781af.jpg"
                         ],
                             [
                                 "id" => 117369,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/05/a30e76e5abfb420db8deda04715c7aec.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/05/a30e76e5abfb420db8deda04715c7aec.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2566,11 +2566,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 86879,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/05/1d09b9bff6934df5a55c009c4c7d176c.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/11/05/1d09b9bff6934df5a55c009c4c7d176c.jpg"
                         ],
                             [
                                 "id" => 117140,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/e6f339018d96413897f20e143153718b.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/e6f339018d96413897f20e143153718b.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2604,11 +2604,11 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 106621,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/16/bb5441ab575d478595c2b4cf8e3f82f9.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/16/bb5441ab575d478595c2b4cf8e3f82f9.jpg"
                         ],
                             [
                                 "id" => 117133,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/7ed49e6458364d8faf04850862797f1a.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/7ed49e6458364d8faf04850862797f1a.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2642,11 +2642,11 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 64564,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/08/02/tmp/4e90c2391b174547b164811e4d4256ab.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/08/02/tmp/4e90c2391b174547b164811e4d4256ab.jpg"
                         ],
                             [
                                 "id" => 117147,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/c28d24b339d7480ea11c3f38d7fbca4d.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/c28d24b339d7480ea11c3f38d7fbca4d.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2675,7 +2675,7 @@ class ProductModule extends Module
                 "id" => 3,
                 "name" => "果茶家族",
                 "sort" => 5,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/23/ac7a2ff85b6944fe83df06a79cc19834.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/23/ac7a2ff85b6944fe83df06a79cc19834.jpg",
                 "products" => [[
                     "id" => 903,
                     "name" => "满杯红柚",
@@ -2688,11 +2688,11 @@ class ProductModule extends Module
                     "sort" => 7,
                     "images" => [[
                         "id" => 110879,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/11/cb131fdf77a240759b8b7ca88b6cf60c.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/02/11/cb131fdf77a240759b8b7ca88b6cf60c.jpg"
                     ],
                         [
                             "id" => 117018,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/a680c4a889db4348ac18073afd876d16.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/a680c4a889db4348ac18073afd876d16.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -2733,11 +2733,11 @@ class ProductModule extends Module
                         "sort" => 1,
                         "images" => [[
                             "id" => 125859,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/23/a8cc4a72b43b434488f7be0a83b0ff10.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/23/a8cc4a72b43b434488f7be0a83b0ff10.jpg"
                         ],
                             [
                                 "id" => 125860,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/23/befbd052ffd14a109af3512d762ef7b3.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/23/befbd052ffd14a109af3512d762ef7b3.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2778,7 +2778,7 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 125863,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/23/6e368d7fa41d423eb08ea7f9824aed49.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/23/6e368d7fa41d423eb08ea7f9824aed49.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -2818,11 +2818,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 135047,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/15/44ed201701ef406087100b0c1690daad.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/15/44ed201701ef406087100b0c1690daad.jpg"
                         ],
                             [
                                 "id" => 117036,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/de106edd904148f185f6273835be0baf.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/de106edd904148f185f6273835be0baf.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2863,11 +2863,11 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 145003,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/06/811f5f21b97b494baa7dd860e73ea3d2.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/06/811f5f21b97b494baa7dd860e73ea3d2.jpg"
                         ],
                             [
                                 "id" => 136964,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/19/16acc3dcfc944f65a031192183ed79fa.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/19/16acc3dcfc944f65a031192183ed79fa.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2901,11 +2901,11 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 145000,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/06/f59e648a91b646a0a240f57e8504a63a.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/06/f59e648a91b646a0a240f57e8504a63a.jpg"
                         ],
                             [
                                 "id" => 136961,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/19/35254a5c17104f14b867118cbf5e22bc.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/19/35254a5c17104f14b867118cbf5e22bc.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2939,11 +2939,11 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 110878,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/11/bcfb2519560e422e87d5d6e42311ab33.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/02/11/bcfb2519560e422e87d5d6e42311ab33.jpg"
                         ],
                             [
                                 "id" => 117061,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/eb615f19fc7b4597b2bf2e7d72ecc49b.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/eb615f19fc7b4597b2bf2e7d72ecc49b.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -2972,7 +2972,7 @@ class ProductModule extends Module
                 "id" => 1,
                 "name" => "芝芝茗茶",
                 "sort" => 6,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/3de570175dbb4c74a6291e1b6df4eb6a.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/3de570175dbb4c74a6291e1b6df4eb6a.jpg",
                 "products" => [[
                     "id" => 723,
                     "name" => "芝芝绿妍",
@@ -2985,11 +2985,11 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 86967,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/06/426b9ffb61b54d109c5e0a2fb17e6dd2.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/06/426b9ffb61b54d109c5e0a2fb17e6dd2.jpg"
                     ],
                         [
                             "id" => 116966,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/e15fc76af0d5474db3fd7ea6f7c3038e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/e15fc76af0d5474db3fd7ea6f7c3038e.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -3030,11 +3030,11 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 86975,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/06/71fc31a5917849148bc363187ade15dc.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/11/06/71fc31a5917849148bc363187ade15dc.jpg"
                         ],
                             [
                                 "id" => 117003,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/9b2cde9273b34263a4de537e6c7fcdae.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/9b2cde9273b34263a4de537e6c7fcdae.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3075,11 +3075,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 86978,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/06/8c674061195c47abab7f0ba5389a9277.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/11/06/8c674061195c47abab7f0ba5389a9277.jpg"
                         ],
                             [
                                 "id" => 117006,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/55ae40fc3ddb4f34b637355fb05019e0.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/55ae40fc3ddb4f34b637355fb05019e0.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3120,11 +3120,11 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 86979,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/06/66ee47abea144200ad9545038f07f3e1.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/11/06/66ee47abea144200ad9545038f07f3e1.jpg"
                         ],
                             [
                                 "id" => 117365,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/05/9bf19da3d15e47309857ca6f0a374a0f.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/05/9bf19da3d15e47309857ca6f0a374a0f.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3160,7 +3160,7 @@ class ProductModule extends Module
                 "id" => 15,
                 "name" => "喜茶咖啡",
                 "sort" => 8,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/23/50609654ded746f28ea60485a7e715b5.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/23/50609654ded746f28ea60485a7e715b5.jpg",
                 "products" => [[
                     "id" => 990,
                     "name" => "雪山香草拿铁",
@@ -3173,11 +3173,11 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 127384,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/27/22757b7d429c49929da91462c19308ec.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/03/27/22757b7d429c49929da91462c19308ec.jpg"
                     ],
                         [
                             "id" => 129024,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/01/627939658eff4a9cba5a848dac2d2956.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/01/627939658eff4a9cba5a848dac2d2956.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -3218,11 +3218,11 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 129039,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/01/7a7b828bf69b4ad59a46ad9500c915e6.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/01/7a7b828bf69b4ad59a46ad9500c915e6.jpg"
                         ],
                             [
                                 "id" => 129025,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/01/41e2e384cc824a63aebf2fc8285ea580.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/01/41e2e384cc824a63aebf2fc8285ea580.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3263,11 +3263,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 110986,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/12/0953921c70694dd08017c3566d21bb3e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/02/12/0953921c70694dd08017c3566d21bb3e.jpg"
                         ],
                             [
                                 "id" => 117366,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/05/9ca5660ac7584711a1e687f880c17bd9.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/05/9ca5660ac7584711a1e687f880c17bd9.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3308,11 +3308,11 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 83013,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/10/17/3db0e2c514574207972f6760b6aec5d3.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/10/17/3db0e2c514574207972f6760b6aec5d3.jpg"
                         ],
                             [
                                 "id" => 117130,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/b264c852833d4622ace76ae374f5d7d7.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/b264c852833d4622ace76ae374f5d7d7.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3353,11 +3353,11 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 132284,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/07/0347a8c6fbee4c9c9043fff1ab3a39dc.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/07/0347a8c6fbee4c9c9043fff1ab3a39dc.jpg"
                         ],
                             [
                                 "id" => 132393,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/07/9f200190cba74818b933e8c19efbf267.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/07/9f200190cba74818b933e8c19efbf267.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3391,11 +3391,11 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 132285,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/07/baedb7f7c90343c68490f6ef3b56b39e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/07/baedb7f7c90343c68490f6ef3b56b39e.jpg"
                         ],
                             [
                                 "id" => 132391,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/07/97facddd55fd4235bc6be7a6fbe96251.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/07/97facddd55fd4235bc6be7a6fbe96251.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3424,7 +3424,7 @@ class ProductModule extends Module
                 "id" => 7,
                 "name" => "热饮推荐",
                 "sort" => 9,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/23/72b2d1e753464b5a837618e24bc857c3.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/23/72b2d1e753464b5a837618e24bc857c3.jpg",
                 "products" => [[
                     "id" => 651,
                     "name" => "热阿华田波波",
@@ -3437,11 +3437,11 @@ class ProductModule extends Module
                     "sort" => 4,
                     "images" => [[
                         "id" => 94128,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/12/06/47a76b8d425a41ff988b12d4c1f16e5f.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/12/06/47a76b8d425a41ff988b12d4c1f16e5f.jpg"
                     ],
                         [
                             "id" => 116577,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/35198bd91dc24b02adf8c52a7381b3a3.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/35198bd91dc24b02adf8c52a7381b3a3.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -3482,11 +3482,11 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 94132,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/12/06/72bbb1e88e644114ab4fd66575e35efb.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/12/06/72bbb1e88e644114ab4fd66575e35efb.jpg"
                         ],
                             [
                                 "id" => 116597,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/897eabd7269d4173b5bb7596eec497ad.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/897eabd7269d4173b5bb7596eec497ad.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3527,7 +3527,7 @@ class ProductModule extends Module
                         "sort" => 7,
                         "images" => [[
                             "id" => 150321,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/05/18/3df5323771164e91a34a9b66b5a4a93f.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/05/18/3df5323771164e91a34a9b66b5a4a93f.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -3555,11 +3555,11 @@ class ProductModule extends Module
                         "sort" => 8,
                         "images" => [[
                             "id" => 132286,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/07/b0310c0436e142b8a137e459cba41872.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/07/b0310c0436e142b8a137e459cba41872.jpg"
                         ],
                             [
                                 "id" => 132394,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/07/0d611cf4ca9a4a78996f5f6ae58cc94e.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/07/0d611cf4ca9a4a78996f5f6ae58cc94e.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3593,11 +3593,11 @@ class ProductModule extends Module
                         "sort" => 9,
                         "images" => [[
                             "id" => 94137,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/12/06/53dfa505c0374a3c8c1e591ef5f62cfa.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/12/06/53dfa505c0374a3c8c1e591ef5f62cfa.jpg"
                         ],
                             [
                                 "id" => 117024,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/02b673e5db164b0cb3f86f94f551de51.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/02b673e5db164b0cb3f86f94f551de51.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3638,11 +3638,11 @@ class ProductModule extends Module
                         "sort" => 1,
                         "images" => [[
                             "id" => 106302,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/15/38ff7925b24e45f396a53055be81e0b0.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/15/38ff7925b24e45f396a53055be81e0b0.jpg"
                         ],
                             [
                                 "id" => 116593,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/32ebc886275f4bd3b1822378c16bb880.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/32ebc886275f4bd3b1822378c16bb880.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3683,11 +3683,11 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 106303,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/15/bf760fd398bf4ae08b1c556550e385e6.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/15/bf760fd398bf4ae08b1c556550e385e6.jpg"
                         ],
                             [
                                 "id" => 116574,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/7263f087592a428a8581d4e8c3f88e75.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/7263f087592a428a8581d4e8c3f88e75.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3728,11 +3728,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 106698,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/16/546e45531ff54693af2fa84cbcab8dff.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/16/546e45531ff54693af2fa84cbcab8dff.jpg"
                         ],
                             [
                                 "id" => 116601,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/aaef384a606640fbaa4c5f35ad3291e1.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/aaef384a606640fbaa4c5f35ad3291e1.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3773,11 +3773,11 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 94130,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/12/06/e1f41f7109294b3b857b8bb170769ff7.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/12/06/e1f41f7109294b3b857b8bb170769ff7.jpg"
                         ],
                             [
                                 "id" => 116589,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/9712450d1eda45ea8a421dfc05e4a824.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/9712450d1eda45ea8a421dfc05e4a824.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3813,7 +3813,7 @@ class ProductModule extends Module
                 "id" => 6,
                 "name" => "纯茶",
                 "sort" => 10,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/43c745f3ead64208830401107c44eef2.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/43c745f3ead64208830401107c44eef2.jpg",
                 "products" => [[
                     "id" => 27,
                     "name" => "纯绿妍",
@@ -3826,11 +3826,11 @@ class ProductModule extends Module
                     "sort" => 2,
                     "images" => [[
                         "id" => 82988,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/10/17/a2544f719c444feb92bffb1e0c806b15.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/10/17/a2544f719c444feb92bffb1e0c806b15.jpg"
                     ],
                         [
                             "id" => 118894,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/07/a9633f04b796445cb7f06a3f35eacc6e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/07/a9633f04b796445cb7f06a3f35eacc6e.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -3871,11 +3871,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 82989,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/10/17/7fc2a04e49c64d4e9bacbd927c0b7831.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/10/17/7fc2a04e49c64d4e9bacbd927c0b7831.jpg"
                         ],
                             [
                                 "id" => 118896,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/07/0c371c50084a43e78378ae651d043cc8.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/07/0c371c50084a43e78378ae651d043cc8.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3916,11 +3916,11 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 82990,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/10/17/ebd9855a95c8409786028992347908ab.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/10/17/ebd9855a95c8409786028992347908ab.jpg"
                         ],
                             [
                                 "id" => 118897,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/07/d0ec2ad62d034109beded6cc0cf7e9f4.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/07/d0ec2ad62d034109beded6cc0cf7e9f4.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -3961,11 +3961,11 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 83919,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2019/10/22/72cffdd3f5e04521bbdefcbd4adb752d.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2019/10/22/72cffdd3f5e04521bbdefcbd4adb752d.jpg"
                         ],
                             [
                                 "id" => 118898,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/07/84d30cb807ac48ccb3621318eb049e8d.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/07/84d30cb807ac48ccb3621318eb049e8d.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -4006,11 +4006,11 @@ class ProductModule extends Module
                         "sort" => 7,
                         "images" => [[
                             "id" => 141380,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/30/87b82a1b87cc4858a8b39d53e29ed690.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/30/87b82a1b87cc4858a8b39d53e29ed690.jpg"
                         ],
                             [
                                 "id" => 141374,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/30/c9c4430e4e55453bbdf318467867ae1d.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/30/c9c4430e4e55453bbdf318467867ae1d.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -4051,11 +4051,11 @@ class ProductModule extends Module
                         "sort" => 1,
                         "images" => [[
                             "id" => 110880,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/11/f8adbf0d089e45ddaddc1e84547bcdf7.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/02/11/f8adbf0d089e45ddaddc1e84547bcdf7.jpg"
                         ],
                             [
                                 "id" => 116987,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/04/9734c2930f964a40a098413e435d0944.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/04/9734c2930f964a40a098413e435d0944.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -4096,11 +4096,11 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 141370,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/30/e0cbafb366934472bb72dca1d9882779.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/30/e0cbafb366934472bb72dca1d9882779.jpg"
                         ],
                             [
                                 "id" => 141375,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/30/273d81568dc045eb8d3e17f9dbad52b5.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/04/30/273d81568dc045eb8d3e17f9dbad52b5.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -4136,7 +4136,7 @@ class ProductModule extends Module
                 "id" => 9,
                 "name" => "加料",
                 "sort" => 11,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/19047118303443b09ba73f82c54e4f03.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/19047118303443b09ba73f82c54e4f03.jpg",
                 "products" => [[
                     "id" => 48,
                     "name" => "芝士",
@@ -4149,7 +4149,7 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 60,
-                        "url" => "https=>//go.cdn.heytea.com/storage/products/2018/03/22/BQiF2x5F5UHpdyrWGuomkha6cHCzajwacbSzJWrU.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/products/2018/03/22/BQiF2x5F5UHpdyrWGuomkha6cHCzajwacbSzJWrU.jpg"
                     ]],
                     "name_image" => "",
                     "show_trademark" => false,
@@ -4177,7 +4177,7 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 133116,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/04/09/c912c1ab408b4003ada51a1e827f549e.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/04/09/c912c1ab408b4003ada51a1e827f549e.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4205,7 +4205,7 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 192,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/07/15/JUCyrE0xWBQJx2h702r36Hroj9iIvk1Sx8I4xqHU.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/07/15/JUCyrE0xWBQJx2h702r36Hroj9iIvk1Sx8I4xqHU.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4233,7 +4233,7 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 78,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/05/03/qOcLwgnk2Ag0yXKrlhgv4DGViu3T6xzEwho753il.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/05/03/qOcLwgnk2Ag0yXKrlhgv4DGViu3T6xzEwho753il.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4261,7 +4261,7 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 163,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/06/12/7STwzMTlbwolNHyOeTZHoEfOWZPp7yyEUUiwLLRx.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/06/12/7STwzMTlbwolNHyOeTZHoEfOWZPp7yyEUUiwLLRx.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4289,7 +4289,7 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 816,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/10/08/zyRESIONRRKD93SzsK82Bd4bbCCMwmmvuLeXbMVj.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/10/08/zyRESIONRRKD93SzsK82Bd4bbCCMwmmvuLeXbMVj.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4312,7 +4312,7 @@ class ProductModule extends Module
                 "id" => 59,
                 "name" => "共同抗疫",
                 "sort" => 12,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/529845ef52584ca1adca3af88ebf1c66.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/529845ef52584ca1adca3af88ebf1c66.jpg",
                 "products" => [[
                     "id" => 868,
                     "name" => "无接触配送",
@@ -4325,7 +4325,7 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 106625,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/16/a70891bef83a4aa2b0f7c5b7d7ca1fd5.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2020/01/16/a70891bef83a4aa2b0f7c5b7d7ca1fd5.jpg"
                     ]],
                     "name_image" => "",
                     "show_trademark" => false,
@@ -4360,7 +4360,7 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 109315,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/29/59c79fe328ce49c98b469e5e3893bc69.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/29/59c79fe328ce49c98b469e5e3893bc69.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4395,7 +4395,7 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 109320,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/29/fce916a50b5b46bdb31e862fe50f59b5.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/29/fce916a50b5b46bdb31e862fe50f59b5.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4430,7 +4430,7 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 109319,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/29/f57d3859f66b4ffe9a43e641d023fc2b.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/29/f57d3859f66b4ffe9a43e641d023fc2b.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4460,7 +4460,7 @@ class ProductModule extends Module
                 "id" => 8,
                 "name" => "灵感提示",
                 "sort" => 13,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/6d5e68f5b2bd4fa2bb50f94e6ac0a512.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/6d5e68f5b2bd4fa2bb50f94e6ac0a512.jpg",
                 "products" => [[
                     "id" => 386,
                     "name" => "好果",
@@ -4473,7 +4473,7 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 43204,
-                        "url" => "https=>//go.cdn.heytea.com/product/2019/05/13/tmp/5ff509ec0bef4d17845fc8f788240945.jpg"
+                        "url" => "https://go.cdn.heytea.com/product/2019/05/13/tmp/5ff509ec0bef4d17845fc8f788240945.jpg"
                     ]],
                     "name_image" => "",
                     "show_trademark" => false,
@@ -4508,7 +4508,7 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 50,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/03/09/ygQajpQgwl61yLFjiPNlKb27irYd9Wrkwf8udrZG.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/03/09/ygQajpQgwl61yLFjiPNlKb27irYd9Wrkwf8udrZG.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4543,7 +4543,7 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 51,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/03/09/ecr5boTxqal4bpRBoK4pqks8SGlBxiBwgvAVWYDG.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/03/09/ecr5boTxqal4bpRBoK4pqks8SGlBxiBwgvAVWYDG.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4578,7 +4578,7 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 52,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/03/09/XxWAOA4cykEeUwAbKZLuIHLEdXS96M4NSBLEOsEp.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/03/09/XxWAOA4cykEeUwAbKZLuIHLEdXS96M4NSBLEOsEp.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4613,7 +4613,7 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 53,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/03/09/qS2cxdfDrzgCmAMATXlclkaXecBXLGWGMPBkl60P.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/03/09/qS2cxdfDrzgCmAMATXlclkaXecBXLGWGMPBkl60P.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4648,7 +4648,7 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 54,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/03/09/17YCgUYwldCLGHEcNDJPjM68TQ9PaEUpp6voCUTk.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/03/09/17YCgUYwldCLGHEcNDJPjM68TQ9PaEUpp6voCUTk.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4683,7 +4683,7 @@ class ProductModule extends Module
                         "sort" => 7,
                         "images" => [[
                             "id" => 289,
-                            "url" => "https=>//go.cdn.heytea.com/storage/products/2018/08/09/sDzZBhV27AdVpth9bwpVSnY1WhreD3EN02MqE0r2.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/products/2018/08/09/sDzZBhV27AdVpth9bwpVSnY1WhreD3EN02MqE0r2.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4718,7 +4718,7 @@ class ProductModule extends Module
                         "sort" => 8,
                         "images" => [[
                             "id" => 54642,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/06/21/tmp/b8d76851e21b469c98978adccec77715.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/06/21/tmp/b8d76851e21b469c98978adccec77715.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4753,7 +4753,7 @@ class ProductModule extends Module
                         "sort" => 9,
                         "images" => [[
                             "id" => 54640,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/06/21/tmp/0e79195904794fb6b23b466d00694eb8.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/06/21/tmp/0e79195904794fb6b23b466d00694eb8.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4788,7 +4788,7 @@ class ProductModule extends Module
                         "sort" => 10,
                         "images" => [[
                             "id" => 54615,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/06/21/tmp/35794eb50dd344f488affedffa62d170.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/06/21/tmp/35794eb50dd344f488affedffa62d170.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4823,7 +4823,7 @@ class ProductModule extends Module
                         "sort" => 11,
                         "images" => [[
                             "id" => 54641,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/06/21/tmp/f2523f450e9b4c4bbce58d88dd83bdf4.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/06/21/tmp/f2523f450e9b4c4bbce58d88dd83bdf4.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4858,7 +4858,7 @@ class ProductModule extends Module
                         "sort" => 12,
                         "images" => [[
                             "id" => 54639,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/06/21/tmp/fad86c295f2840bda47d06600a8c9e02.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/06/21/tmp/fad86c295f2840bda47d06600a8c9e02.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4893,7 +4893,7 @@ class ProductModule extends Module
                         "sort" => 13,
                         "images" => [[
                             "id" => 54638,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/06/21/tmp/81411128480f45bf8dcd56038b5d66cb.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/06/21/tmp/81411128480f45bf8dcd56038b5d66cb.jpg"
                         ]],
                         "name_image" => "",
                         "show_trademark" => false,
@@ -4923,7 +4923,7 @@ class ProductModule extends Module
                 "id" => 11,
                 "name" => "波波家族",
                 "sort" => 7,
-                "category_image_url" => "https=>//go.cdn.heytea.com/storage/category/2020/04/21/0dd0e6e55c4b4f119fadda81b0a7b3f8.jpg",
+                "category_image_url" => "https://go.cdn.heytea.com/storage/category/2020/04/21/0dd0e6e55c4b4f119fadda81b0a7b3f8.jpg",
                 "products" => [[
                     "id" => 706,
                     "name" => "豆豆波波茶",
@@ -4936,11 +4936,11 @@ class ProductModule extends Module
                     "sort" => 1,
                     "images" => [[
                         "id" => 87818,
-                        "url" => "https=>//go.cdn.heytea.com/storage/product/2019/11/09/5f9e812aec954a8b88a184ca6d81e8cc.jpg"
+                        "url" => "https://go.cdn.heytea.com/storage/product/2019/11/09/5f9e812aec954a8b88a184ca6d81e8cc.jpg"
                     ],
                         [
                             "id" => 116603,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/34f79e5ab5e844179bc4c0263a0ad57c.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/34f79e5ab5e844179bc4c0263a0ad57c.jpg"
                         ]
                     ],
                     "name_image" => "",
@@ -4981,11 +4981,11 @@ class ProductModule extends Module
                         "sort" => 2,
                         "images" => [[
                             "id" => 71356,
-                            "url" => "https=>//go.cdn.heytea.com/product/2019/08/31/tmp/1258f79c91c04932bec8b09eb7eebb90.jpg"
+                            "url" => "https://go.cdn.heytea.com/product/2019/08/31/tmp/1258f79c91c04932bec8b09eb7eebb90.jpg"
                         ],
                             [
                                 "id" => 116584,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/1b653ccc95344896bdf1f0b0ddca5be1.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/1b653ccc95344896bdf1f0b0ddca5be1.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -5026,11 +5026,11 @@ class ProductModule extends Module
                         "sort" => 3,
                         "images" => [[
                             "id" => 106697,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/16/9e614ed804284ed888b1913c4459ab93.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/16/9e614ed804284ed888b1913c4459ab93.jpg"
                         ],
                             [
                                 "id" => 116599,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/fe91df89885d42ffa8e8c0c58d34c6e5.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/fe91df89885d42ffa8e8c0c58d34c6e5.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -5071,11 +5071,11 @@ class ProductModule extends Module
                         "sort" => 4,
                         "images" => [[
                             "id" => 106300,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/15/c067c03758e4440ea8463743dd9f6941.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/15/c067c03758e4440ea8463743dd9f6941.jpg"
                         ],
                             [
                                 "id" => 116575,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/ffd1a8461b8141b09d8d0d466cffc82e.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/ffd1a8461b8141b09d8d0d466cffc82e.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -5116,11 +5116,11 @@ class ProductModule extends Module
                         "sort" => 5,
                         "images" => [[
                             "id" => 106299,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/15/1b193e1b37e84fb49e0fd0101b58a6a2.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/15/1b193e1b37e84fb49e0fd0101b58a6a2.jpg"
                         ],
                             [
                                 "id" => 116594,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/852db33dcf4d4d17b13971a6c42dc4e2.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/852db33dcf4d4d17b13971a6c42dc4e2.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -5161,11 +5161,11 @@ class ProductModule extends Module
                         "sort" => 6,
                         "images" => [[
                             "id" => 109837,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/02/02/b42a4e5690d742e8abab89610bd865b2.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/02/02/b42a4e5690d742e8abab89610bd865b2.jpg"
                         ],
                             [
                                 "id" => 117358,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/05/e7691652c4a046bdbd6fbb7862436226.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/05/e7691652c4a046bdbd6fbb7862436226.jpg"
                             ]
                         ],
                         "name_image" => "",
@@ -5206,11 +5206,11 @@ class ProductModule extends Module
                         "sort" => 7,
                         "images" => [[
                             "id" => 106879,
-                            "url" => "https=>//go.cdn.heytea.com/storage/product/2020/01/17/6fb20e4943944d7bb00a0034563c664a.jpg"
+                            "url" => "https://go.cdn.heytea.com/storage/product/2020/01/17/6fb20e4943944d7bb00a0034563c664a.jpg"
                         ],
                             [
                                 "id" => 116596,
-                                "url" => "https=>//go.cdn.heytea.com/storage/product/2020/03/03/6217859b873f47be860b3f37ed5701d4.jpg"
+                                "url" => "https://go.cdn.heytea.com/storage/product/2020/03/03/6217859b873f47be860b3f37ed5701d4.jpg"
                             ]
                         ],
                         "name_image" => "",

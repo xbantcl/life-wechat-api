@@ -3,7 +3,6 @@
 namespace Dolphin\Ting\Http\Service;
 
 use Dolphin\Ting\Http\Modules\ProductModule;
-use Dolphin\Ting\Http\Modules\FileModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
 use Dolphin\Ting\Http\Utils\Help;
 use Psr\Container\ContainerInterface as Container;
@@ -29,7 +28,7 @@ class ProductService extends Service
      * @param Response $response
      * @return ServiceResponse
      */
-    public function categories(Request $request, Response $response)
+    public function getCategories(Request $request, Response $response)
     {
         $data = ProductModule::getInstance($this->container)->getCategories();
         return new ServiceResponse($data);
