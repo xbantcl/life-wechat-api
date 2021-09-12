@@ -213,6 +213,7 @@ CREATE TABLE IF NOT EXISTS `recycle_order`
     `weight`           VARCHAR(32)                                                          DEFAULT '' COMMENT '预估重量',
     `actual_weight`    FLOAT                                                                DEFAULT 0.0 COMMENT '实际重量',
     `status`           TINYINT(1)                                                  NOT NULL DEFAULT 1 COMMENT '回收订单状态：1-预约，2-已经接单，3-完成，4-取消',
+    `mark`             VARCHAR(1024)                                                        DEFAULT '' COMMENT '备注',
     `created_at`       TIMESTAMP                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`       TIMESTAMP                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)

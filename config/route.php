@@ -31,6 +31,9 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 回收相关接口 -----------------------------------
     $group->post('recycle/price/get', 'Dolphin\Ting\Http\Service\RecycleService:getPrice');
+
+    // ------------------ 商品分类相关接口 -----------------------------------
+    $group->post('product/category/list', 'Dolphin\Ting\Http\Service\ProductService:getCategories');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
