@@ -34,6 +34,10 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 商品分类相关接口 -----------------------------------
     $group->post('product/category/list', 'Dolphin\Ting\Http\Service\ProductService:getCategories');
+
+    // ------------------ 订单相关接口 -----------------------------------
+    $group->post('order/list', 'Dolphin\Ting\Http\Service\OrderService:getOrderList');
+    $group->post('order/detail', 'Dolphin\Ting\Http\Service\OrderService:getOrderDetail');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
