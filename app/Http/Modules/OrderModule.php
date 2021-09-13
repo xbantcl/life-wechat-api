@@ -69,8 +69,8 @@ class OrderModule extends Module
                         "quantity" => 2,
                         "total_fee" => "25.00",
                         "price" => "25.00",
-                        "name" => "\u6d41\u5fc3\u5976\u9ec4\u6ce2\u6ce2\u51b0",
-                        "sname" => "\u6d41\u5fc3\u5976\u9ec4\u6ce2\u6ce2\u51b0",
+                        "name" => "流心奶黄波波冰",
+                        "sname" => "流心奶黄波波冰",
                         "activity_name" => "",
                         "discount_price" => 0,
                         "show_trademark" => false,
@@ -81,13 +81,13 @@ class OrderModule extends Module
                         "materials" => [
                             [
                                 "material_id" => 140,
-                                "name" => "\u51b0\u6c99\uff08\u63a8\u8350\uff09",
+                                "name" => "冰沙（推荐）",
                                 "price" => "0.00",
                                 "material_group_id" => 5
                             ],
                             [
                                 "material_id" => 33,
-                                "name" => "\u5c11\u5c11\u51b0",
+                                "name" => "少少冰",
                                 "price" => "0.00",
                                 "material_group_id" => 3
                             ],
@@ -115,14 +115,14 @@ class OrderModule extends Module
                 ],
                 "shop" => [
                     "id" => 308,
-                    "name" => "\u76ca\u7530\u5047\u65e5\u5929\u5730GO\u5e97",
+                    "name" => "益田假日天地GO店",
                     "contact_phone" => "0755-27906072",
                     "contact_name" => "\u559c\u8336",
                     "province" => "\u5e7f\u4e1c\u7701",
                     "city" => "\u6df1\u5733\u5e02",
                     "city_code" => "156440300",
                     "district" => "\u5b9d\u5b89\u533a",
-                    "address" => "\u5e7f\u6df1\u8def\u798f\u6c38\u6bb577\u53f71\u5c42L1-W55\u53f7",
+                    "address" => "广深路福永段77号1层L1-W55号",
                     "latitude" => "22.66992",
                     "longitude" => "113.827609",
                     "min_charge" => 30,
@@ -132,7 +132,7 @@ class OrderModule extends Module
                     "support_sf_takeaway" => 1,
                     "support_td_takeaway" => 0,
                     "support_jd_takeaway" => 0,
-                    "scene_code" => "http=>//go.heytea.com/storage/shop/scene_code/shop_id_308.jpg",
+                    "scene_code" => "http：//go.heytea.com/storage/shop/scene_code/shop_id_308.jpg",
                     "tips" => "15",
                     "limit_cup" => 50,
                     "takeaway_limit_cup" => "5",
@@ -156,8 +156,8 @@ class OrderModule extends Module
                 "no" => "755067201911061936067635",
                 "outer_id" => null,
                 "pickup_no" => "8167",
-                "pickup_code_qrcode" => "http=>//go.heytea.com/orders/755067201911061936067635/puckupNo",
-                "pickup_type" => "\u81ea\u63d0",
+                "pickup_code_qrcode" => "http://go.heytea.com/orders/755067201911061936067635/puckupNo",
+                "pickup_type" => "自提",
                 "total_fee" => "10.00",
                 "box_fee" => "0.00",
                 "delivery_fee" => "0.00",
@@ -184,7 +184,7 @@ class OrderModule extends Module
                 "hidden_invoice" => false,
                 "invoice_successed" => false,
                 "show_remind_button" => 0,
-                "order_detail_qrcode" => "https=>//go.heytea.com/device/755067201911061936067635/order",
+                "order_detail_qrcode" => "https://go.heytea.com/device/755067201911061936067635/order",
                 "making_order_count" => 0,
                 "need_wait_time" => 0,
                 "prior" => 0,
@@ -211,8 +211,8 @@ class OrderModule extends Module
                         "quantity" => 1,
                         "total_fee" => "10.00",
                         "price" => "10.00",
-                        "name" => "\u6d41\u6c99\u725b\u89d2",
-                        "sname" => "\u6d41\u6c99\u725b\u89d2",
+                        "name" => "流沙牛角",
+                        "sname" => "流沙牛角",
                         "activity_name" => "",
                         "discount_price" => 0,
                         "show_trademark" => false,
@@ -223,24 +223,24 @@ class OrderModule extends Module
                         "materials" => [
                             [
                                 "material_id" => 41,
-                                "name" => "\u52a0\u70ed(\u63a8\u8350)",
+                                "name" => "加热(推荐)",
                                 "price" => "0.00",
                                 "material_group_id" => 3
                             ]
                         ],
-                        "image" => "https=>//go.cdn.heytea.com/storage/product/2019/11/12/5ad4996d0fdd4f3a85a25b8fe95a4db8.jpg"
+                        "image" => "https://go.cdn.heytea.com/storage/product/2019/11/12/5ad4996d0fdd4f3a85a25b8fe95a4db8.jpg"
                     ]
                 ],
                 "shop" => [
                     "id" => 308,
-                    "name" => "\u76ca\u7530\u5047\u65e5\u5929\u5730GO\u5e97",
+                    "name" => "益田假日天地GO店",
                     "contact_phone" => "0755-27906072",
                     "contact_name" => "\u559c\u8336",
                     "province" => "\u5e7f\u4e1c\u7701",
                     "city" => "\u6df1\u5733\u5e02",
                     "city_code" => "156440300",
                     "district" => "\u5b9d\u5b89\u533a",
-                    "address" => "\u5e7f\u6df1\u8def\u798f\u6c38\u6bb577\u53f71\u5c42L1-W55\u53f7",
+                    "address" => "广深路福永段77号1层L1-W55号",
                     "latitude" => "22.66992",
                     "longitude" => "113.827609",
                     "min_charge" => 30,
@@ -250,7 +250,7 @@ class OrderModule extends Module
                     "support_sf_takeaway" => 1,
                     "support_td_takeaway" => 0,
                     "support_jd_takeaway" => 0,
-                    "scene_code" => "http=>//go.heytea.com/storage/shop/scene_code/shop_id_308.jpg",
+                    "scene_code" => "http://go.heytea.com/storage/shop/scene_code/shop_id_308.jpg",
                     "tips" => "15",
                     "limit_cup" => 50,
                     "takeaway_limit_cup" => "5",
@@ -302,7 +302,7 @@ class OrderModule extends Module
                 "hidden_invoice" => false,
                 "invoice_successed" => false,
                 "show_remind_button" => 0,
-                "order_detail_qrcode" => "https=://go.heytea.com/device/755067201911061932051221/order",
+                "order_detail_qrcode" => "https://go.heytea.com/device/755067201911061932051221/order",
                 "making_order_count" => 0,
                 "need_wait_time" => 0,
                 "prior" => 0,
@@ -329,8 +329,8 @@ class OrderModule extends Module
                         "quantity" => 1,
                         "total_fee" => "28.00",
                         "price" => "28.00",
-                        "name" => "\u6363\u86cb\u5357\u74dc\u6ce2\u6ce2\u51b0",
-                        "sname" => "\u6363\u86cb\u5357\u74dc\u6ce2\u6ce2\u51b0",
+                        "name" => "捣蛋南瓜波波冰",
+                        "sname" => "捣蛋南瓜波波冰",
                         "activity_name" => "",
                         "discount_price" => 0,
                         "show_trademark" => false,
@@ -341,7 +341,7 @@ class OrderModule extends Module
                         "materials" => [
                             [
                                 "material_id" => 409,
-                                "name" => "\u5e38\u89c4\u5438\u7ba1",
+                                "name" => "常规吸管",
                                 "price" => "0.00",
                                 "material_group_id" => 27
                             ],
@@ -370,12 +370,12 @@ class OrderModule extends Module
                                 "material_group_id" => 3
                             ]
                         ],
-                        "image" => "https=>//go.cdn.heytea.com/storage/product/2019/10/29/bac9cab39825405f9b80dac17027aff2.jpg"
+                        "image" => "https://go.cdn.heytea.com/storage/product/2019/10/29/bac9cab39825405f9b80dac17027aff2.jpg"
                     ]
                 ],
                 "shop" => [
                     "id" => 308,
-                    "name" => "\u76ca\u7530\u5047\u65e5\u5929\u5730GO\u5e97",
+                    "name" => "益田假日天地GO店",
                     "contact_phone" => "0755-27906072",
                     "contact_name" => "\u559c\u8336",
                     "province" => "\u5e7f\u4e1c\u7701",
@@ -471,8 +471,8 @@ class OrderModule extends Module
                         "quantity" => 1,
                         "total_fee" => "28.00",
                         "price" => "28.00",
-                        "name" => "\u6363\u86cb\u5357\u74dc\u6ce2\u6ce2\u51b0",
-                        "sname" => "\u6363\u86cb\u5357\u74dc\u6ce2\u6ce2\u51b0",
+                        "name" => "捣蛋南瓜波波冰",
+                        "sname" => "捣蛋南瓜波波冰",
                         "activity_name" => "",
                         "discount_price" => 0,
                         "show_trademark" => false,
@@ -483,7 +483,7 @@ class OrderModule extends Module
                         "materials" => [
                             [
                                 "material_id" => 409,
-                                "name" => "\u5e38\u89c4\u5438\u7ba1",
+                                "name" => "常规吸管",
                                 "price" => "0.00",
                                 "material_group_id" => 27
                             ],
@@ -512,12 +512,12 @@ class OrderModule extends Module
                                 "material_group_id" => 3
                             ]
                         ],
-                        "image" => "https=>//go.cdn.heytea.com/storage/product/2019/10/29/bac9cab39825405f9b80dac17027aff2.jpg"
+                        "image" => "https://go.cdn.heytea.com/storage/product/2019/10/29/bac9cab39825405f9b80dac17027aff2.jpg"
                     ]
                 ],
                 "shop" => [
                     "id" => 308,
-                    "name" => "\u76ca\u7530\u5047\u65e5\u5929\u5730GO\u5e97",
+                    "name" => "益田假日天地GO店",
                     "contact_phone" => "0755-27906072",
                     "contact_name" => "\u559c\u8336",
                     "province" => "\u5e7f\u4e1c\u7701",
@@ -534,7 +534,7 @@ class OrderModule extends Module
                     "support_sf_takeaway" => 1,
                     "support_td_takeaway" => 0,
                     "support_jd_takeaway" => 0,
-                    "scene_code" => "http=>//go.heytea.com/storage/shop/scene_code/shop_id_308.jpg",
+                    "scene_code" => "http://go.heytea.com/storage/shop/scene_code/shop_id_308.jpg",
                     "tips" => "15",
                     "limit_cup" => 50,
                     "takeaway_limit_cup" => "5",
@@ -558,7 +558,7 @@ class OrderModule extends Module
                 "no" => "755015201910201229255436",
                 "outer_id" => null,
                 "pickup_no" => "8114",
-                "pickup_code_qrcode" => "http=>//go.heytea.com/orders/755015201910201229255436/puckupNo",
+                "pickup_code_qrcode" => "http://go.heytea.com/orders/755015201910201229255436/puckupNo",
                 "pickup_type" => "\u81ea\u63d0",
                 "total_fee" => "33.00",
                 "box_fee" => "0.00",
@@ -586,7 +586,7 @@ class OrderModule extends Module
                 "hidden_invoice" => false,
                 "invoice_successed" => false,
                 "show_remind_button" => 0,
-                "order_detail_qrcode" => "https=>//go.heytea.com/device/755015201910201229255436/order",
+                "order_detail_qrcode" => "https://go.heytea.com/device/755015201910201229255436/order",
                 "making_order_count" => 0,
                 "need_wait_time" => 0,
                 "prior" => 0,
@@ -613,8 +613,8 @@ class OrderModule extends Module
                         "quantity" => 1,
                         "total_fee" => "10.00",
                         "price" => "10.00",
-                        "name" => "\u6d41\u6c99\u725b\u89d2",
-                        "sname" => "\u6d41\u6c99\u725b\u89d2",
+                        "name" => "流沙牛角",
+                        "sname" => "流沙牛角",
                         "activity_name" => "",
                         "discount_price" => 0,
                         "show_trademark" => false,
@@ -630,7 +630,7 @@ class OrderModule extends Module
                                 "material_group_id" => 3
                             ]
                         ],
-                        "image" => "https=>//go.cdn.heytea.com/storage/product/2019/11/12/5ad4996d0fdd4f3a85a25b8fe95a4db8.jpg"
+                        "image" => "https://go.cdn.heytea.com/storage/product/2019/11/12/5ad4996d0fdd4f3a85a25b8fe95a4db8.jpg"
                     ],
                     [
                         "id" => 100194061,
@@ -640,8 +640,8 @@ class OrderModule extends Module
                         "quantity" => 1,
                         "total_fee" => "23.00",
                         "price" => "23.00",
-                        "name" => "\u7206\u828b\u6ce5\u6ce2\u6ce2\u51b0",
-                        "sname" => "\u7206\u828b\u6ce5\u6ce2\u6ce2\u51b0",
+                        "name" => "爆芋泥波波冰",
+                        "sname" => "爆芋泥波波冰",
                         "activity_name" => "",
                         "discount_price" => 0,
                         "show_trademark" => false,
@@ -652,7 +652,7 @@ class OrderModule extends Module
                         "materials" => [
                             [
                                 "material_id" => 409,
-                                "name" => "\u5e38\u89c4\u5438\u7ba1",
+                                "name" => "常规吸管",
                                 "price" => "0.00",
                                 "material_group_id" => 27
                             ],
@@ -687,14 +687,14 @@ class OrderModule extends Module
                                 "material_group_id" => 3
                             ]
                         ],
-                        "image" => "https=>//go.cdn.heytea.com/product/2019/08/02/tmp/a5a9bdd8b9db4b37a6d20df8e1aedf87.jpg"
+                        "image" => "https://go.cdn.heytea.com/product/2019/08/02/tmp/a5a9bdd8b9db4b37a6d20df8e1aedf87.jpg"
                     ]
                 ],
                 "shop" => [
                     "id" => 28,
-                    "name" => "\u4e07\u8c61\u5929\u5730PINK\u5e97",
+                    "name" => "万象天地PINK店",
                     "contact_phone" => "0755-86681153",
-                    "contact_name" => "\u559c\u8336\u541b",
+                    "contact_name" => "喜茶君",
                     "province" => "\u5e7f\u4e1c\u7701",
                     "city" => "\u6df1\u5733\u5e02",
                     "city_code" => "156440300",
