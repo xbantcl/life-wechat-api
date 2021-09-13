@@ -729,6 +729,7 @@ class OrderModule extends Module
                 "delivery" => null
             ]
         ];
+        return $orderList;
     }
 
     public function getOrderDetail()
@@ -933,5 +934,6 @@ class OrderModule extends Module
             "trade_type" => "JSAPI",
             "remarks" => "不打包"
         ];
+        return $detail;
     }
 }
