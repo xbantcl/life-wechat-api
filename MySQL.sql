@@ -219,3 +219,75 @@ CREATE TABLE IF NOT EXISTS `recycle_order`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='回收订单';
+
+CREATE TABLE IF NOT EXISTS `orders`
+(
+    `id`               BIGINT(20) UNSIGNED                                         NOT NULL AUTO_INCREMENT,
+    `uid`              BIGINT(20) UNSIGNED                                         NOT NULL COMMENT '用户id',
+    `address_id`       INT                                                         NOT NULL COMMENT '用户订单地址',
+    `appointment_time` INT(11)                                                     NOT NULL COMMENT '预约时间',
+    `category`         ENUM ('paper', 'plastic', 'metal', 'clothes', 'electronic') NOT NULL COMMENT '废品分类',
+    `weight`           VARCHAR(32)                                                          DEFAULT '' COMMENT '预估重量',
+    `actual_weight`    FLOAT                                                                DEFAULT 0.0 COMMENT '实际重量',
+    `status`           TINYINT(1)                                                  NOT NULL DEFAULT 1 COMMENT '回收订单状态：1-预约，2-已经接单，3-完成，4-取消',
+    `mark`             VARCHAR(1024)                                                        DEFAULT '' COMMENT '备注',
+    `created_at`       TIMESTAMP                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`       TIMESTAMP                                                   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='回收订单';
+
+CREATE TABLE IF NOT EXISTS `categories`
+(
+    `id`                 BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`               VARCHAR(32)         NOT NULL COMMENT '分类名称',
+    `sort`               INT                 NOT NULL COMMENT '排序',
+    `category_image_url` VARCHAR(64)         NOT NULL COMMENT '分类图片',
+    `created_at`         TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`         TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='商品分类';
+
+CREATE TABLE IF NOT EXISTS `products`
+(
+    `id`               BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`             VARCHAR(32)         NOT NULL COMMENT '商品名称',
+    `no`               VARCHAR(32)         NOT NULL COMMENT '商品编号',
+    `description`      VARCHAR(256)        NOT NULL COMMENT '商品描述',
+    `category_id`      INT                 NOT NULL COMMENT '分类id',
+    `material_id`      INT                 NOT NULL COMMENT '商品辅料id',
+    `label_id`         INT                 NOT NULL COMMENT '商品标签id',
+    `support_takeaway` TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '是否能带出：1-可以，2-不可以',
+    `sort`             INT                 NOT NULL COMMENT '排序',
+    `price`            FLOAT               NOT NULL COMMENT '价格',
+    `images`           VARCHAR(128)                 DEFAULT '' COMMENT '图片',
+    `created_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='商品';
+
+CREATE TABLE IF NOT EXISTS `labels`
+(
+    `id`          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category_id` INT                 NOT NULL COMMENT '分类id',
+    `name`        VARCHAR(32)         NOT NULL COMMENT '标签名称',
+    `color`       VARCHAR(8)                   DEFAULT '#BABABA' COMMENT '标签颜色',
+    `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='商品标签';
+
+CREATE TABLE IF NOT EXISTS `materials`
+(
+    `id`          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category_id` INT                 NOT NULL COMMENT '分类id',
+    `name`        VARCHAR(32)         NOT NULL COMMENT '名称',
+    `params`      VARCHAR(512)        NOT NULL COMMENT '辅料要求',
+    `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='商品辅料';

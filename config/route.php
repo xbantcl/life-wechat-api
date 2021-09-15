@@ -33,11 +33,8 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('recycle/price/get', 'Dolphin\Ting\Http\Service\RecycleService:getPrice');
 
     // ------------------ 商品分类相关接口 -----------------------------------
-    $group->post('product/category/list', 'Dolphin\Ting\Http\Service\ProductService:getCategories');
+    $group->post('product/category/lists', 'Dolphin\Ting\Http\Service\ProductService:getCategories');
 
-    // ------------------ 订单相关接口 -----------------------------------
-    $group->post('order/list', 'Dolphin\Ting\Http\Service\OrderService:getOrderList');
-    $group->post('order/detail', 'Dolphin\Ting\Http\Service\OrderService:getOrderDetail');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
@@ -81,4 +78,12 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('recycle/list', 'Dolphin\Ting\Http\Service\RecycleService:getList');
     $group->post('recycle/detail', 'Dolphin\Ting\Http\Service\RecycleService:detail');
     $group->post('recycle/delete', 'Dolphin\Ting\Http\Service\RecycleService:delete');
+
+    // ------------------ 订单相关接口 -----------------------------------
+    $group->post('order/list', 'Dolphin\Ting\Http\Service\OrderService:getOrderList');
+    $group->post('order/detail', 'Dolphin\Ting\Http\Service\OrderService:getOrderDetail');
+
+    // ------------------ 商品相关接口 -----------------------------------
+    $group->post('product/category/list', 'Dolphin\Ting\Http\Service\ProductService:getCategoryList');
+    $group->post('product/category/add', 'Dolphin\Ting\Http\Service\ProductService:addCategory');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

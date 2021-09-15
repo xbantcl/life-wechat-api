@@ -3,7 +3,9 @@
 namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Exception\AddressException;
+use Dolphin\Ting\Http\Exception\ProductException;
 use Dolphin\Ting\Http\Model\Address;
+use Dolphin\Ting\Http\Model\Category;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
 
@@ -5243,9 +5245,45 @@ class ProductModule extends Module
                 "categoryAds" => []
             ]
         ];
-    } catch (\Exception $e) {
-        throw new AddressException('ADD_ADDRESS_DATA_ERROR');
-    }
+        } catch (\Exception $e) {
+            throw new AddressException('ADD_ADDRESS_DATA_ERROR');
+        }
         return $categories;
+    }
+
+    /**
+     * 添加商品分类
+     *
+     * @param $name
+     * @param $image
+     * @param $sort
+     * @throws ProductException
+     */
+    public function addCategory($name, $image, $sort)
+    {
+        try {
+            Category::created([
+                'name' => $name,
+                'image' => $image,
+                'sort' => $sort
+            ]);
+        } catch (\Exception $e) {
+            throw new ProductException('ADD_CATEGORY_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 获取分类列表
+     *
+     * @return mixed
+     * @throws ProductException
+     */
+    public function getCategoryList()
+    {
+        try {
+            return Category::select('name', 'image', 'sort')->get()->toArray();
+        } catch (\Exception $e) {
+            throw new ProductException('GET_CATEGORY_DATA_ERROR');
+        }
     }
 }
