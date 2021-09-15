@@ -85,7 +85,6 @@ class ProductService extends Service
         $validation = $this->validation->validate($request, [
             'id' => v::intVal()->notEmpty(),
             'name' => v::notEmpty(),
-            'image' => v::notEmpty(),
             'sort' => v::intVal()->notEmpty(),
         ]);
 
@@ -95,9 +94,9 @@ class ProductService extends Service
         $params = Help::getParams($request);
         $id = intval($params['id']);
         $name = trim($params['name']);
-        $image = trim($params['image']);
+        $image = !empty(trim($params['image']))? trim($params['image']) : '';
         $sort = intval($params['sort']);
-        $data = ProductModule::getInstance($this->container)->updateCategory($id, $name, $image, $sort);
+        $data = ProductModule::getInstance($this->container)->updateCategory($id, $name, $sort, $image);
         return new ServiceResponse($data);
     }
 

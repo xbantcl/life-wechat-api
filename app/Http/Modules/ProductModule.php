@@ -5301,14 +5301,17 @@ class ProductModule extends Module
      * @param $sort
      * @throws ProductException
      */
-    public function updateCategory($id, $name, $image, $sort)
+    public function updateCategory($id, $name, $sort, $image = '')
     {
+        $data = [
+            'name' => $name,
+            'sort' => $sort
+        ];
+        if ($image) {
+            $data['image'] = $image;
+        }
         try {
-            Category::where('id', $id)->update([
-                'name' => $name,
-                'image' => $image,
-                'sort' => $sort
-            ]);
+            Category::where('id', $id)->update($data);
         } catch (\Exception $e) {
             throw new ProductException('UPDATE_CATEGORY_DATA_ERROR');
         }
