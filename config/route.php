@@ -86,4 +86,6 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 商品相关接口 -----------------------------------
     $group->post('product/category/list', 'Dolphin\Ting\Http\Service\ProductService:getCategoryList');
     $group->post('product/category/add', 'Dolphin\Ting\Http\Service\ProductService:addCategory');
+    $group->post('product/category/update', 'Dolphin\Ting\Http\Service\ProductService:updateCategory');
+    $group->post('product/category/delete', 'Dolphin\Ting\Http\Service\ProductService:deleteCategory');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

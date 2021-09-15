@@ -72,4 +72,54 @@ class ProductService extends Service
         $data = ProductModule::getInstance($this->container)->getCategoryList();
         return new ServiceResponse($data);
     }
+
+    /**
+     * 更新商品分类
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function updateCategory(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()->notEmpty(),
+            'name' => v::notEmpty(),
+            'image' => v::notEmpty(),
+            'sort' => v::intVal()->notEmpty(),
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $name = trim($params['name']);
+        $image = trim($params['image']);
+        $sort = intval($params['sort']);
+        $data = ProductModule::getInstance($this->container)->updateCategory($id, $name, $image, $sort);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 删除商品分类
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function deleteCategory(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $data = ProductModule::getInstance($this->container)->deleteCategory($id);
+        return new ServiceResponse($data);
+    }
 }

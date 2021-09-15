@@ -5292,4 +5292,45 @@ class ProductModule extends Module
             throw new ProductException('GET_CATEGORY_DATA_ERROR');
         }
     }
+
+    /**
+     * 更新商品分类
+     *
+     * @param $name
+     * @param $image
+     * @param $sort
+     * @throws ProductException
+     */
+    public function updateCategory($id, $name, $image, $sort)
+    {
+        try {
+            Category::where('id', $id)->update([
+                'name' => $name,
+                'image' => $image,
+                'sort' => $sort
+            ]);
+        } catch (\Exception $e) {
+            throw new ProductException('UPDATE_CATEGORY_DATA_ERROR');
+        }
+        return true;
+    }
+
+    /**
+     * 删除商品分类
+     *
+     * @param $name
+     * @param $image
+     * @param $sort
+     * @throws ProductException
+     */
+    public function deleteCategory($id)
+    {
+        try {
+            Category::where('id', $id)->delete();
+            // todo 需要查询分类是否有关联数据
+        } catch (\Exception $e) {
+            throw new ProductException('DELETE_CATEGORY_DATA_ERROR');
+        }
+        return true;
+    }
 }
