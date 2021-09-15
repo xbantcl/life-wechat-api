@@ -5283,7 +5283,7 @@ class ProductModule extends Module
     public function getCategoryList()
     {
         try {
-            $data = Category::select('name', 'image', 'sort')->get()->toArray();
+            $data = Category::select('id', 'name', 'image', 'sort')->get()->toArray();
             return array_map(function($item) {
                 $item['image'] = ImageConstant::BASE_IMAGE_URL . $item['image'];
                 return $item;
