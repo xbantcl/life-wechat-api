@@ -239,12 +239,12 @@ CREATE TABLE IF NOT EXISTS `orders`
 
 CREATE TABLE IF NOT EXISTS `categories`
 (
-    `id`                 BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `name`               VARCHAR(32)         NOT NULL COMMENT '分类名称',
-    `sort`               INT                 NOT NULL COMMENT '排序',
-    `category_image_url` VARCHAR(64)         NOT NULL COMMENT '分类图片',
-    `created_at`         TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`         TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `id`         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`       VARCHAR(32)         NOT NULL COMMENT '分类名称',
+    `sort`       INT                 NOT NULL COMMENT '排序',
+    `image`      VARCHAR(64)         NOT NULL COMMENT '分类图片',
+    `created_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='商品分类';

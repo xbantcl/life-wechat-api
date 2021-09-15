@@ -2,6 +2,7 @@
 
 namespace Dolphin\Ting\Http\Modules;
 
+use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\AddressException;
 use Dolphin\Ting\Http\Exception\ProductException;
 use Dolphin\Ting\Http\Model\Address;
@@ -5262,7 +5263,7 @@ class ProductModule extends Module
     public function addCategory($name, $image, $sort)
     {
         try {
-            Category::created([
+            $category = Category::create([
                 'name' => $name,
                 'image' => $image,
                 'sort' => $sort
@@ -5270,6 +5271,7 @@ class ProductModule extends Module
         } catch (\Exception $e) {
             throw new ProductException('ADD_CATEGORY_DATA_ERROR');
         }
+        return $category->id;
     }
 
     /**
@@ -5281,7 +5283,10 @@ class ProductModule extends Module
     public function getCategoryList()
     {
         try {
-            return Category::select('name', 'image', 'sort')->get()->toArray();
+            $data = Category::select('name', 'image', 'sort')->get()->toArray();
+            return array_map(function($item) {
+                $item['image'] = ImageConstant::BASE_IMAGE_URL . $item['image='];
+            }, $data);
         } catch (\Exception $e) {
             throw new ProductException('GET_CATEGORY_DATA_ERROR');
         }
