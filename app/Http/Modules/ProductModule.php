@@ -5286,6 +5286,7 @@ class ProductModule extends Module
             $data = Category::select('name', 'image', 'sort')->get()->toArray();
             return array_map(function($item) {
                 $item['image'] = ImageConstant::BASE_IMAGE_URL . $item['image'];
+                return $item;
             }, $data);
         } catch (\Exception $e) {
             throw new ProductException('GET_CATEGORY_DATA_ERROR');
