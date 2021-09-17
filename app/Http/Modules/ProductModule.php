@@ -5,8 +5,8 @@ namespace Dolphin\Ting\Http\Modules;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\AddressException;
 use Dolphin\Ting\Http\Exception\ProductException;
-use Dolphin\Ting\Http\Model\Address;
 use Dolphin\Ting\Http\Model\Category;
+use Dolphin\Ting\Http\Model\Product;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
 
