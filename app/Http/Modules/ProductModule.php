@@ -5356,6 +5356,7 @@ class ProductModule extends Module
         try {
             $product = Product::create([
                 'name' => $name,
+                'no' => Help::msectime(),
                 'category_id' => $categoryId,
                 'materials' => $materials,
                 'labels' => $labels,

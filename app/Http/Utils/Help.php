@@ -384,5 +384,16 @@ class Help
             return false;
         }
     }
+
+    /**
+     * 获取当前毫秒时间戳
+     * @return float
+     */
+    public static function msectime()
+    {
+        list($msec, $sec) = explode(' ', microtime());
+        $msectime = (float)sprintf('%.0f', (floatval($msec) + floatval($sec)) * 1000);
+        return $msectime;
+    }
 }
 
