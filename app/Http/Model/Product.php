@@ -18,6 +18,6 @@ class Product extends Model
     protected $casts = [
         'id'     => 'int',
         'name' => 'string',
-        'image'  => 'string',
+        'images'  => 'string',
     ];
 }

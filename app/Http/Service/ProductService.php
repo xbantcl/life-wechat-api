@@ -121,4 +121,39 @@ class ProductService extends Service
         $data = ProductModule::getInstance($this->container)->deleteCategory($id);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 添加商品信息
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function addProduct(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'name' => v::notEmpty(),
+            'category_id' => v::intVal()->notEmpty(),
+            'labels' => v::notEmpty(),
+            'price' => v::floatVal()->notEmpty(),
+            'sort' => v::intVal()->notEmpty(),
+            'description' => v::notEmpty(),
+            'images' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $name = trim($params['name']);
+        $categoryId = intval($params['category_id']);
+        $materials = isset($params['materials']) ? trim($params['materials']) : '';
+        $labels = trim($params['labels']);
+        $price = floatval($params['price']);
+        $sort = intval($params['sort']);
+        $description = trim($params['description']);
+        $images = trim($params['images']);
+        $data = ProductModule::getInstance($this->container)->addProduct($name, $categoryId, $materials, $labels, $price, $sort, $description, $images);
+        return new ServiceResponse($data);
+    }
 }

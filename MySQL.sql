@@ -254,14 +254,14 @@ CREATE TABLE IF NOT EXISTS `products`
     `id`               BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`             VARCHAR(32)         NOT NULL COMMENT '商品名称',
     `no`               VARCHAR(32)         NOT NULL COMMENT '商品编号',
-    `description`      VARCHAR(256)        NOT NULL COMMENT '商品描述',
     `category_id`      INT                 NOT NULL COMMENT '分类id',
-    `material_id`      INT                 NOT NULL COMMENT '商品辅料id',
-    `label_id`         INT                 NOT NULL COMMENT '商品标签id',
+    `materials`        VARCHAR(512)        DEFAULT '' COMMENT '商品规格',
+    `labels`           VARCHAR(128)        NOT NULL COMMENT '商品标签',
     `support_takeaway` TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '是否能带出：1-可以，2-不可以',
     `sort`             INT                 NOT NULL COMMENT '排序',
     `price`            FLOAT               NOT NULL COMMENT '价格',
-    `images`           VARCHAR(128)                 DEFAULT '' COMMENT '图片',
+    `images`           VARCHAR(128)        NOT NULL COMMENT '图片',
+    `description`      VARCHAR(512)        NOT NULL COMMENT '商品描述',
     `created_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
@@ -290,4 +290,4 @@ CREATE TABLE IF NOT EXISTS `materials`
     `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='商品辅料';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='商品规格';

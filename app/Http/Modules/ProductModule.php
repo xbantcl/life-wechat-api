@@ -5336,4 +5336,37 @@ class ProductModule extends Module
         }
         return true;
     }
+
+    /**
+     * 添加商品信息
+     *
+     * @param $name
+     * @param $categoryId
+     * @param $materials
+     * @param $labels
+     * @param $price
+     * @param $sort
+     * @param $description
+     * @param $images
+     * @return mixed
+     * @throws ProductException
+     */
+    public function addProduct($name, $categoryId, $materials, $labels, $price, $sort, $description, $images)
+    {
+        try {
+            $product = Product::create([
+                'name' => $name,
+                'category_id' => $categoryId,
+                'materials' => $materials,
+                'labels' => $labels,
+                'price' => $price,
+                'sort' => $sort,
+                'description' => $description,
+                'images' => $images
+            ]);
+            return $product->id;
+        } catch (\Exception $e) {
+            throw new ProductException('ADD_PRODUCT_DATA_ERROR');
+        }
+    }
 }
