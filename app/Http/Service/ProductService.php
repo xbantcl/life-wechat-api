@@ -271,10 +271,11 @@ class ProductService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
+        $id = intval($params['id']);
         $name = trim($params['name']);
         $categoryId = intval($params['category_id']);
         $params = trim($params['params']);
-        $data = ProductModule::getInstance($this->container)->updateMaterial($name, $categoryId, $params);
+        $data = ProductModule::getInstance($this->container)->updateMaterial($id, $name, $categoryId, $params);
         return new ServiceResponse($data);
     }
 
