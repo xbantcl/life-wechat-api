@@ -156,4 +156,142 @@ class ProductService extends Service
         $data = ProductModule::getInstance($this->container)->addProduct($name, $categoryId, $materials, $labels, $price, $sort, $description, $images);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 添加商品标签
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function addLabel(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'name' => v::notEmpty(),
+            'category_id' => v::intVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $name = trim($params['name']);
+        $categoryId = intval($params['category_id']);
+        $data = ProductModule::getInstance($this->container)->addLabel($name, $categoryId);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 获取商品标签列表
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getLabelList(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'category_id' => v::intVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $categoryId = intval($params['category_id']);
+        $data = ProductModule::getInstance($this->container)->getLabelList($categoryId);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 删除商品标签
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function deleteLabel(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $data = ProductModule::getInstance($this->container)->deleteLabel($id);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 添加规格
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function addMaterial(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'name' => v::notEmpty(),
+            'category_id' => v::intVal()->notEmpty(),
+            'params' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $name = trim($params['name']);
+        $categoryId = intval($params['category_id']);
+        $params = trim($params['params']);
+        $data = ProductModule::getInstance($this->container)->addLabel($name, $categoryId, $params);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 获取商品规格列表
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getMaterialList(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'category_id' => v::intVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $categoryId = intval($params['category_id']);
+        $data = ProductModule::getInstance($this->container)->getMaterialList($categoryId);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 删除商品规格
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function deleteMaterial(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $data = ProductModule::getInstance($this->container)->deleteMaterial($id);
+        return new ServiceResponse($data);
+    }
 }

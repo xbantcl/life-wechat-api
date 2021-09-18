@@ -2,10 +2,13 @@
 
 namespace Dolphin\Ting\Http\Modules;
 
+use Couchbase\LookupInBuilder;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\AddressException;
 use Dolphin\Ting\Http\Exception\ProductException;
 use Dolphin\Ting\Http\Model\Category;
+use Dolphin\Ting\Http\Model\Label;
+use Dolphin\Ting\Http\Model\Material;
 use Dolphin\Ting\Http\Model\Product;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
@@ -5368,6 +5371,133 @@ class ProductModule extends Module
             return $product->id;
         } catch (\Exception $e) {
             throw new ProductException('ADD_PRODUCT_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 添加标签
+     *
+     * @param $name
+     * @param $categoryId
+     *
+     * @return mixed
+     * @throws ProductException
+     */
+    public function addLabel($name, $categoryId)
+    {
+        try {
+            $label = Label::create([
+                'name' => $name,
+                'category_id' => $categoryId
+            ]);
+            return $label->id;
+        } catch (\Exception $e) {
+            throw new ProductException('ADD_LABEL_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 获取标签列表
+     *
+     * @param $categoryId
+     * @return array
+     */
+    public function getLabelList($categoryId)
+    {
+        try {
+            $data = Label::where('category_id')->select('id', 'name')->get();
+            if (!empty($data)) {
+                $data = array_map(function ($item) {
+                    $item['selected'] = false;
+                    return $item;
+                }, $data->toArray());
+                return $data;
+            } else {
+                return [];
+            }
+        } catch (\Exception $e) {
+            throw new ProductException('GET_LABELS_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 删除标签
+     *
+     * @param $id
+     * @return mixed
+     * @throws ProductException
+     */
+    public function deleteLabel($id)
+    {
+        try {
+            Label::where('id', $id)->delete();
+            return true;
+        } catch (\Exception $e) {
+            throw new ProductException('DELETE_LABEL_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 添加规格
+     *
+     * @param $name
+     * @param $categoryId
+     * @param $params
+     * @return mixed
+     * @throws ProductException
+     */
+    public function addMaterial($name, $categoryId, $params)
+    {
+        try {
+            $material = Material::create([
+                'name' => $name,
+                'category_id' => $categoryId,
+                'params' => $params
+            ]);
+            return $material->id;
+        } catch (\Exception $e) {
+            throw new ProductException('ADD_MATERIAL_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 获取规格列表
+     *
+     * @param $categoryId
+     * @return array
+     */
+    public function getMaterialList($categoryId)
+    {
+        try {
+            $data = Material::where('category_id')->select('id', 'name', 'params')->get();
+            if (!empty($data)) {
+                $data = array_map(function ($item) {
+                    $item['selected'] = false;
+                    return $item;
+                }, $data->toArray());
+                return $data;
+            } else {
+                return [];
+            }
+        } catch (\Exception $e) {
+            throw new ProductException('GET_MATERIALS_DATA_ERROR');
+        }
+    }
+
+    /**
+     * 删除规格
+     *
+     * @param $id
+     * @return mixed
+     * @throws ProductException
+     */
+    public function deleteMaterial($id)
+    {
+        try {
+            Material::where('id', $id)->delete();
+            return true;
+        } catch (\Exception $e) {
+            throw new ProductException('DELETE_MATERIAL_DATA_ERROR');
         }
     }
 }
