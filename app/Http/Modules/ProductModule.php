@@ -5405,7 +5405,7 @@ class ProductModule extends Module
     public function getLabelList($categoryId)
     {
         try {
-            $data = Label::where('category_id')->select('id', 'name')->get();
+            $data = Label::where('category_id', $categoryId)->select('id', 'name')->get();
             if (!empty($data)) {
                 $data = array_map(function ($item) {
                     $item['selected'] = false;
@@ -5469,7 +5469,7 @@ class ProductModule extends Module
     public function getMaterialList($categoryId)
     {
         try {
-            $data = Material::where('category_id')->select('id', 'name', 'params')->get();
+            $data = Material::where('category_id', $categoryId)->select('id', 'name', 'params')->get();
             if (!empty($data)) {
                 $data = array_map(function ($item) {
                     $item['selected'] = false;
