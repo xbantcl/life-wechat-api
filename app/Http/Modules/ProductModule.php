@@ -5461,6 +5461,29 @@ class ProductModule extends Module
     }
 
     /**
+     * 添加规格
+     *
+     * @param $name
+     * @param $categoryId
+     * @param $params
+     * @return mixed
+     * @throws ProductException
+     */
+    public function updateMaterial($id, $name, $categoryId, $params)
+    {
+        try {
+            $material = Material::where('id', $id)->update([
+                'name' => $name,
+                'category_id' => $categoryId,
+                'params' => $params
+            ]);
+            return $material->id;
+        } catch (\Exception $e) {
+            throw new ProductException('UPDATE_MATERIAL_DATA_ERROR');
+        }
+    }
+
+    /**
      * 获取规格列表
      *
      * @param $categoryId
@@ -5472,7 +5495,7 @@ class ProductModule extends Module
             $data = Material::where('category_id', $categoryId)->select('id', 'name', 'params')->get();
             if (!empty($data)) {
                 $data = array_map(function ($item) {
-                    $item['selected'] = false;
+                    $item['params'] = json_decode($item['params']);
                     return $item;
                 }, $data->toArray());
                 return $data;

@@ -252,6 +252,33 @@ class ProductService extends Service
     }
 
     /**
+     * 更新规格
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function updateMaterial(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()->notEmpty(),
+            'name' => v::notEmpty(),
+            'category_id' => v::intVal()->notEmpty(),
+            'params' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $name = trim($params['name']);
+        $categoryId = intval($params['category_id']);
+        $params = trim($params['params']);
+        $data = ProductModule::getInstance($this->container)->updateMaterial($name, $categoryId, $params);
+        return new ServiceResponse($data);
+    }
+
+    /**
      * 获取商品规格列表
      *
      * @param Request $request
