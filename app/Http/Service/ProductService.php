@@ -247,7 +247,7 @@ class ProductService extends Service
         $name = trim($params['name']);
         $categoryId = intval($params['category_id']);
         $params = trim($params['params']);
-        $data = ProductModule::getInstance($this->container)->addLabel($name, $categoryId, $params);
+        $data = ProductModule::getInstance($this->container)->addMaterial($name, $categoryId, $params);
         return new ServiceResponse($data);
     }
 
