@@ -93,6 +93,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('product/label/list', 'Dolphin\Ting\Http\Service\ProductService:getLabelList');
     $group->post('product/label/delete', 'Dolphin\Ting\Http\Service\ProductService:deleteLabel');
     $group->post('product/material/add', 'Dolphin\Ting\Http\Service\ProductService:addMaterial');
+    $group->post('product/material/update', 'Dolphin\Ting\Http\Service\ProductService:updateMaterial');
     $group->post('product/material/list', 'Dolphin\Ting\Http\Service\ProductService:getMaterialList');
     $group->post('product/material/delete', 'Dolphin\Ting\Http\Service\ProductService:deleteMaterial');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
