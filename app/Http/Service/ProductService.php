@@ -322,4 +322,17 @@ class ProductService extends Service
         $data = ProductModule::getInstance($this->container)->deleteMaterial($id);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 获取商品列表
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getProductList(Request $request, Response $response)
+    {
+        $data = ProductModule::getInstance($this->container)->getProductList();
+        return new ServiceResponse($data);
+    }
 }

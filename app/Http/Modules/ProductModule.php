@@ -5374,6 +5374,72 @@ class ProductModule extends Module
         }
     }
 
+    public function getProductList()
+    {
+        try {
+            $data = Category::leftjoin('product as p', 'p.category_id', '=', 'category.id')
+                ->select('category.id', 'category.name', 'category.image as category_image',
+                    'p.id as pid', 'p.name as pname', 'p.materials', 'p.labels', 'p.price', 'p.images',
+                    'p.description', 'p.psort')
+                ->orderBy('category.sort')
+                ->get()->toArray();
+            $materialIds = [];
+            foreach ($data as &$item) {
+                $item['materials'] = explode('|', $item['materials']);
+                $materialIds = array_merge($materialIds, $item['materials']);
+                $item['labels'] = explode('|', $item['labels']);
+            }
+            unset($item);
+            $materialIds = array_unique($materialIds);
+            $materialList = [];
+            $materials = Material::select('id', 'name', 'params')->whereIn('id', $materialIds)->get()->toArray();
+            foreach ($materials as $item) {
+                $item['params'] = json_decode($item['params']);
+                $materialList[$item['id']] = $item;
+            }
+            $products = [];
+            foreach ($data as $item) {
+                if (!empty($item['materials'])) {
+                    $item['materials'] = explode('|', $item['materials']);
+                    $materialIds = array_merge($materialIds, $item['materials']);
+                }
+                $item['labels'] = explode('|', $item['labels']);
+                if (!isset($products[$item['id']])) {
+                    $products[$item['id']]['name'] = $item['name'];
+                    $products[$item['id']]['image'] = $item['category_image'];
+                }
+                $mts = [];
+                if ($item['materials']) {
+                    foreach ($item['materials'] as $mtsId) {
+                        if (isset($materialList[$mtsId])) {
+                            $mts[] = [
+                                'group_name' => $materialList[$mtsId]['name'],
+                                'values' => $materialList[$mtsId]['params'],
+                            ];
+                        }
+                    }
+                }
+                $productImages = array_map(function ($m) {
+                    return ['url' => ImageConstant::BASE_IMAGE_URL . $m];
+                }, explode('|', $item['images']));
+
+                $products[$item['id']]['products'][] = [
+                    'id' => $item['pid'],
+                    'name' => $item['pname'],
+                    'labels' => $item['labels'],
+                    'description' => $item['discription'],
+                    'category_id' => $item['id'],
+                    'sort' => $item['psort'],
+                    'images' => $productImages,
+                    'materials' => $mts
+                ];
+            }
+            return array_values($products);
+        } catch (\Exception $e) {
+            throw new ProductException('GET_PRODUCT_DATA_ERROR');
+        }
+    }
+
     /**
      * 添加标签
      *
@@ -5477,7 +5543,7 @@ class ProductModule extends Module
                 'category_id' => $categoryId,
                 'params' => $params
             ]);
-            return $material->id;
+            return true;
         } catch (\Exception $e) {
             throw new ProductException('UPDATE_MATERIAL_DATA_ERROR');
         }

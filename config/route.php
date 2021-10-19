@@ -96,4 +96,5 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('product/material/update', 'Dolphin\Ting\Http\Service\ProductService:updateMaterial');
     $group->post('product/material/list', 'Dolphin\Ting\Http\Service\ProductService:getMaterialList');
     $group->post('product/material/delete', 'Dolphin\Ting\Http\Service\ProductService:deleteMaterial');
+    $group->post('product/index/list', 'Dolphin\Ting\Http\Service\ProductService:getProductList');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

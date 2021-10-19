@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `products`
     `name`             VARCHAR(32)         NOT NULL COMMENT '商品名称',
     `no`               VARCHAR(32)         NOT NULL COMMENT '商品编号',
     `category_id`      INT                 NOT NULL COMMENT '分类id',
-    `materials`        VARCHAR(512)        DEFAULT '' COMMENT '商品规格',
+    `materials`         VARCHAR(512)                 DEFAULT '' COMMENT '商品规格',
     `labels`           VARCHAR(128)        NOT NULL COMMENT '商品标签',
     `support_takeaway` TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '是否能带出：1-可以，2-不可以',
     `sort`             INT                 NOT NULL COMMENT '排序',
