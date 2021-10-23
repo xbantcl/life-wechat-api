@@ -149,7 +149,10 @@ class AddressModule extends Module
     public function getDefaultAddress($uid)
     {
         try {
-            return Address::where('uid', $uid)->where('is_default', 2)->first();
+            return Address::where('uid', $uid)
+                ->select('id', 'name', 'mobile', 'address', 'lat', 'lng')
+                ->where('is_default', 2)
+                ->first();
         } catch (\Exception $e) {
             throw new AddressException('GET_ADDRESS_ERROR');
         }
