@@ -34,6 +34,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 商品分类相关接口 -----------------------------------
     $group->post('product/category/lists', 'Dolphin\Ting\Http\Service\ProductService:getCategories');
+    $group->post('product/index/list', 'Dolphin\Ting\Http\Service\ProductService:getProductList');
 
 });
 
@@ -70,6 +71,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('address/update', 'Dolphin\Ting\Http\Service\AddressService:update');
     $group->post('address/list', 'Dolphin\Ting\Http\Service\AddressService:getList');
     $group->post('address/delete', 'Dolphin\Ting\Http\Service\AddressService:delete');
+    $group->post('address/default', 'Dolphin\Ting\Http\Service\AddressService:getDefaultAddress');
 
     // ------------------ 回收相关接口 -----------------------------------
     $group->post('recycle/add', 'Dolphin\Ting\Http\Service\RecycleService:add');
@@ -96,5 +98,4 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('product/material/update', 'Dolphin\Ting\Http\Service\ProductService:updateMaterial');
     $group->post('product/material/list', 'Dolphin\Ting\Http\Service\ProductService:getMaterialList');
     $group->post('product/material/delete', 'Dolphin\Ting\Http\Service\ProductService:deleteMaterial');
-    $group->post('product/index/list', 'Dolphin\Ting\Http\Service\ProductService:getProductList');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

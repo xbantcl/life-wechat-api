@@ -5377,11 +5377,11 @@ class ProductModule extends Module
     public function getProductList()
     {
         try {
-            $data = Category::leftjoin('product as p', 'p.category_id', '=', 'category.id')
-                ->select('category.id', 'category.name', 'category.image as category_image',
+            $data = Category::leftjoin('products as p', 'p.category_id', '=', 'categories.id')
+                ->select('categories.id', 'categories.name', 'categories.image as category_image',
                     'p.id as pid', 'p.name as pname', 'p.materials', 'p.labels', 'p.price', 'p.images',
                     'p.description', 'p.psort')
-                ->orderBy('category.sort')
+                ->orderBy('categories.sort')
                 ->get()->toArray();
             $materialIds = [];
             foreach ($data as &$item) {
@@ -5399,15 +5399,12 @@ class ProductModule extends Module
             }
             $products = [];
             foreach ($data as $item) {
-                if (!empty($item['materials'])) {
-                    $item['materials'] = explode('|', $item['materials']);
-                    $materialIds = array_merge($materialIds, $item['materials']);
+                if (empty($item['pname'])) {
+                    continue;
                 }
-                $item['labels'] = explode('|', $item['labels']);
-                if (!isset($products[$item['id']])) {
-                    $products[$item['id']]['name'] = $item['name'];
-                    $products[$item['id']]['image'] = $item['category_image'];
-                }
+                $products[$item['id']]['id'] = $item['id'];
+                $products[$item['id']]['name'] = $item['name'];
+                $products[$item['id']]['image'] = ImageConstant::BASE_IMAGE_URL . $item['category_image'];
                 $mts = [];
                 if ($item['materials']) {
                     foreach ($item['materials'] as $mtsId) {
@@ -5427,10 +5424,12 @@ class ProductModule extends Module
                     'id' => $item['pid'],
                     'name' => $item['pname'],
                     'labels' => $item['labels'],
-                    'description' => $item['discription'],
+                    'description' => $item['description'],
                     'category_id' => $item['id'],
-                    'sort' => $item['psort'],
+                    'sort' => $item['sort'],
                     'images' => $productImages,
+                    'price' => $item['price'],
+                    'is_single' => empty($mts) ? true : false,
                     'materials' => $mts
                 ];
             }
