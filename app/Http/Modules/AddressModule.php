@@ -150,7 +150,7 @@ class AddressModule extends Module
     {
         try {
             return Address::where('uid', $uid)
-                ->select('id', 'name', 'mobile', 'address', 'lat', 'lng')
+                ->select('id', 'name', 'mobile', 'gps_address', 'address', 'lat', 'lng')
                 ->where('is_default', 2)
                 ->first();
         } catch (\Exception $e) {
