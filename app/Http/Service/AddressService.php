@@ -168,7 +168,7 @@ class AddressService extends Service
      */
     public function getDefaultAddress(Request $request, Response $response)
     {
-        $data = AddressModule::getInstance($this->container)->getDefaultAddress();
+        $data = AddressModule::getInstance($this->container)->getDefaultAddress($this->uid);
         return new ServiceResponse($data);
     }
 }
