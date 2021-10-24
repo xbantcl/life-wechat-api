@@ -28,6 +28,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('pinche/detail', 'Dolphin\Ting\Http\Service\PincheService:detail');
     // ------------------ 租借相关接口 -----------------------------------
     $group->post('rent/list', 'Dolphin\Ting\Http\Service\RentService:getList');
+    $group->post('rent/detail', 'Dolphin\Ting\Http\Service\RentService:detail');
 
     // ------------------ 回收相关接口 -----------------------------------
     $group->post('recycle/price/get', 'Dolphin\Ting\Http\Service\RecycleService:getPrice');

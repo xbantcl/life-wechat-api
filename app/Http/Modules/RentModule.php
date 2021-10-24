@@ -3,6 +3,7 @@
 namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
+use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\RentException;
 use Dolphin\Ting\Http\Model\Rent;
@@ -114,7 +115,7 @@ class RentModule extends Module
             }, $data);
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
-            throw new CarPlaceException('GET_CAR_PLACE_LIST_ERROR');
+            throw new RentException('GET_CAR_PLACE_LIST_ERROR');
         }
     }
 
@@ -149,37 +150,22 @@ class RentModule extends Module
     }
 
     /**
-     * 获取车位详情
+     * 获取租借详情
      *
      * @param $id
      * @return mixed
-     * @throws CarPlaceException
+     * @throws RentException
      */
     public function detail($id)
     {
         try {
-            $data = CarPlace::select('id', 'type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
-                'subdistrict', 'images', 'building_number', 'updated_at', 'describe', 'weixin')
-                ->where('post_status', '=', CarPlaceConstant::ON_SHELVES)
-                ->where('id', '=', $id)
-                ->first()->toArray();
-            if (!empty($data)) {
-                if ($data['is_standard'] == CarPlaceConstant::STANDARD) {
-                    $data['is_standard'] = '标准车位';
-                } else {
-                    $data['is_standard'] = '非标准车位';
-                }
-                $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
-                if ($data['type'] == '出售') {
-                    $data['price'] = $data['price'] . '万';
-                } else {
-                    $data['price'] = $data['price'] . '元/月';
-                }
-                $data['images'] = explode('|', $data['images']);
-            }
+            $data = Rent::select('id', 'type', 'title', 'mobile', 'images', 'price', 'desc', 'address')
+                ->where('status', '=', CommonConstant::ON_SHELVES)
+                ->where('id', $id)
+                ->first();
             return $data;
         } catch (\Exception $e) {
-            throw new CarPlaceException('GET_CAR_PLACE_DETAIL_ERROR');
+            throw new RentException('GET_RENT_DETAIL_ERROR');
         }
     }
 
@@ -193,7 +179,7 @@ class RentModule extends Module
      *
      * @return mixed
      *
-     * @throws CarPlaceException
+     * @throws RentException
      */
     public function comment($uid, $replyUid, $carPlaceId, $content)
     {
@@ -205,7 +191,7 @@ class RentModule extends Module
                 'content' => $content
             ]);
         } catch (\Exception $e) {
-            throw new CarPlaceException('ADD_CAR_PLACE_COMMENT_ERROR');
+            throw new RentException('ADD_CAR_PLACE_COMMENT_ERROR');
         }
         return $carPlaceComment->id;
     }
@@ -215,7 +201,7 @@ class RentModule extends Module
      *
      * @param int $carPlaceId 车位id
      * @return mixed
-     * @throws CarPlaceException
+     * @throws RentException
      */
     public function commentList($carPlaceId)
     {
@@ -234,7 +220,7 @@ class RentModule extends Module
             }
             return $comments;
         } catch (\Exception $e) {
-            throw new CarPlaceException('GET_COMMENTS_ERROR');
+            throw new RentException('GET_COMMENTS_ERROR');
         }
     }
 

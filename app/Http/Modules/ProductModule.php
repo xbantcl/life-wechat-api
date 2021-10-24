@@ -5380,7 +5380,7 @@ class ProductModule extends Module
             $data = Category::leftjoin('products as p', 'p.category_id', '=', 'categories.id')
                 ->select('categories.id', 'categories.name', 'categories.image as category_image',
                     'p.id as pid', 'p.name as pname', 'p.materials', 'p.labels', 'p.price', 'p.images',
-                    'p.description', 'p.psort')
+                    'p.description', 'p.sort')
                 ->orderBy('categories.sort')
                 ->get()->toArray();
             $materialIds = [];

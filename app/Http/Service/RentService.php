@@ -63,7 +63,7 @@ class RentService extends Service
     }
 
     /**
-     * 获取车位列表
+     * 获取租借列表
      *
      * @param Request $request
      * @param Response $response
@@ -94,7 +94,7 @@ class RentService extends Service
     }
 
     /**
-     * 获取车位详情
+     * 获取租借详情
      *
      * @param Request $request
      * @param Response $response
@@ -111,7 +111,7 @@ class RentService extends Service
         }
         $params = Help::getParams($request);
         $id = isset($params['id']) ? intval($params['id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->detail($id);
+        $data = RentModule::getInstance($this->container)->detail($id);
         return new ServiceResponse($data);
     }
 
