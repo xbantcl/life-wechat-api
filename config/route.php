@@ -18,6 +18,10 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/detail', 'Dolphin\Ting\Http\Service\CarPlaceService:detail');
     $group->post('carplace/comment/list', 'Dolphin\Ting\Http\Service\CarPlaceService:commentList');
 
+    // ------------------ 房屋相关接口 -------------------------------
+    $group->post('house/list', 'Dolphin\Ting\Http\Service\HouseService:getList');
+    $group->post('house/detail', 'Dolphin\Ting\Http\Service\HouseService:detail');
+
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/detail', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:detail');
     $group->post('secondhand/list', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:getList');
@@ -56,6 +60,9 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/add', 'Dolphin\Ting\Http\Service\CarPlaceService:add');
     $group->post('carplace/comment', 'Dolphin\Ting\Http\Service\CarPlaceService:comment');
     $group->post('carplace/comment/delete', 'Dolphin\Ting\Http\Service\CarPlaceService:deleteComment');
+
+    // ------------------ 房屋相关接口 -------------------------------
+    $group->post('house/add', 'Dolphin\Ting\Http\Service\HouseService:add');
 
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:add');

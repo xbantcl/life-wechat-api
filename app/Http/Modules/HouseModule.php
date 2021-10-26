@@ -4,80 +4,79 @@ namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\CommonConstant;
-use Dolphin\Ting\Http\Constant\ImageConstant;
-use Dolphin\Ting\Http\Exception\RentException;
-use Dolphin\Ting\Http\Model\Rent;
+use Dolphin\Ting\Http\Exception\HouseException;
+use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
-use Dolphin\Ting\Http\Utils\Geohash;
+use Dolphin\Ting\Http\Model\House;
 use Dolphin\Ting\Http\Utils\Help;
 
-class RentModule extends Module
+class HouseModule extends Module
 {
     /**
-     * 发布租用信息
+     * 发布车位信息
      *
      * @param $uid
      * @param $type
      * @param $price
-     * @param $mobile
-     * @param $title
-     * @param $category
-     * @param $address
-     * @param $lat
-     * @param $lng
-     * @param $desc
+     * @param $isStandard
+     * @param $floorage
+     * @param $floor
+     * @param $subdistrict
+     * @param $buildingNum
+     * @param $describe
+     * @param $phoneNum
+     * @param $weixin
      * @param $images
      *
      * @return mixed
-     *
-     * @throws RentException
+     * @throws HouseException
      */
-    public function add($uid, $type, $price, $mobile, $title, $category, $address, $lat, $lng, $desc, $images)
+    public function add($uid, $type, $price, $elevator, $floorage, $floor,
+                        $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $weixin, $images)
     {
         try {
-            $rent = Rent::create([
+            $house = CarPlace::create([
                 'uid' => $uid,
+                'subdistrict_id' => 1,
                 'type' => $type,
-                'status' => 2,
                 'price' => $price,
+                'elevator' => $elevator,
+                'floorage' => $floorage,
+                'floor' => $floor,
+                'subdistrict' => $subdistrict,
+                'direction' => $direction,
+                'house_layout' => $houseLayout,
+                'house_type' => $houseType,
+                'decorate' => $decorate,
+                'describe' => $describe,
                 'mobile' => $mobile,
-                'title' => $title,
-                'category' => $category,
-                'address' => $address,
-                'lat' => $lat,
-                'lng' => $lng,
-                'desc' => $desc,
+                'weixin' => $weixin,
                 'images' => $images
             ]);
         } catch (\Exception $e) {
-            throw new RentException('ADD_RENT_DATA_ERROR');
+            throw new HouseException('ADD_HOUSE_ERROR');
         }
-        return $rent->id;
+        return $house->id;
     }
 
     /**
-     * 获取租借列表
+     * 获取房子列表
      *
      * @param $start
      * @param $type
-     * @param title
      * @param bool $isPullDown
      * @param int $limit
      * @return array
-     *
-     * @throws RentException
+     * @throws HouseException
      */
-    public function getList($start, $type, $title = '', $isPullDown = false, $limit = 5, $lat = '', $lng = '')
+    public function getList($start, $type, $isPullDown = false, $limit = 5)
     {
         try {
-            $query = Rent::where('status', 2)
-                ->select('id', 'type', 'title', 'address', 'price', 'images', 'desc', 'lat', 'lng', 'updated_at')
+            $query = House::where('post_status', '=', CommonConstant::ON_SHELVES)
+                ->select('id', 'type', 'floor', 'price', 'subdistrict', 'images', 'updated_at')
                 ->orderBy('id', 'desc');
             if (strtolower($type) != 'all') {
                 $query = $query->where('type', $type);
-            }
-            if (!empty($title)) {
-                $query = $query->where('title', 'like', '%' . $title . '%');
             }
             if ($start > 0) {
                 if ($isPullDown) {
@@ -100,34 +99,24 @@ class RentModule extends Module
             } else {
                 $start = end($data)['id'];
             }
-            $geohash = new Geohash();
-            $data = array_map(function ($item) use ($data, $lat, $lng, $geohash) {
-                if (!empty($item['images'])) {
-                    $item['thumb'] = ImageConstant::BASE_IMAGE_URL . current(explode('|', $item['images']));
-                }
+            $data = array_map(function ($item) use ($data) {
+                $item['thumb'] = current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
-                if ($lat) {
-                    $item['distance'] = $geohash->getDistance($lat, $lng, $item['lat'], $item['lng']);
-                    unset($item['lat'], $item['lng']);
-                }
                 unset($item['images']);
                 return $item;
             }, $data);
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
-            throw new RentException('GET_CAR_PLACE_LIST_ERROR');
+            throw new HouseException('GET_HOUSE_LIST_ERROR');
         }
     }
 
-    public function getListByUid($uid, $start, $limit, $isAdmin = false)
+    public function getListByUid($uid, $start, $limit)
     {
-        if ($uid === 1) {
-            $isAdmin = true;
-        }
-        $query = CarPlace::select('id', 'content', 'images', 'created_at')
+        $query = House::select('id', 'type', 'floor', 'price', 'subdistrict', 'images', 'created_at')
             ->orderBy('id', 'DESC');
-        if (!$isAdmin) {
-            $query->where('uid', '=', $uid);
+        if ($uid !== 1) {
+            $query->where('uid', $uid);
         }
         if ($start > 0) {
             $query->where('id', '<', $start);
@@ -150,28 +139,32 @@ class RentModule extends Module
     }
 
     /**
-     * 获取租借详情
+     * 获取房屋详情
      *
      * @param $id
      * @return mixed
-     * @throws RentException
+     * @throws HouseException
      */
     public function detail($id)
     {
         try {
-            $data = Rent::select('id', 'type', 'title', 'mobile', 'images', 'price', 'desc', 'address', 'created_at')
-                ->where('status', '=', CommonConstant::ON_SHELVES)
+            $data = House::select('id', 'type', 'elevator', 'floor', 'uid', 'floorage', 'price', 'subdistrict',
+                'images', 'direction', 'mobile', 'decorate', 'house_type', 'house_layout', 'updated_at', 'describe', 'weixin')
+                ->where('post_status', '=', CommonConstant::ON_SHELVES)
                 ->where('id', $id)
-                ->first();
-            if ($data) {
-                $data->images = array_map(function ($image) {
-                    return ImageConstant::BASE_IMAGE_URL . $image;
-                }, explode('|', $data->images));
-                $data->created_time = date('Y-m-d', strtotime($data->created_at));
+                ->first()->toArray();
+            if (!empty($data)) {
+                $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
+                if ($data['type'] == '出售') {
+                    $data['price'] = $data['price'] . '万';
+                } else {
+                    $data['price'] = $data['price'] . '元/月';
+                }
+                $data['images'] = explode('|', $data['images']);
             }
             return $data;
         } catch (\Exception $e) {
-            throw new RentException('GET_RENT_DETAIL_ERROR');
+            throw new HouseException('GET_HOUSE_DETAIL_ERROR');
         }
     }
 
@@ -185,7 +178,7 @@ class RentModule extends Module
      *
      * @return mixed
      *
-     * @throws RentException
+     * @throws HouseException
      */
     public function comment($uid, $replyUid, $carPlaceId, $content)
     {
@@ -197,7 +190,7 @@ class RentModule extends Module
                 'content' => $content
             ]);
         } catch (\Exception $e) {
-            throw new RentException('ADD_CAR_PLACE_COMMENT_ERROR');
+            throw new HouseException('ADD_CAR_PLACE_COMMENT_ERROR');
         }
         return $carPlaceComment->id;
     }
@@ -207,7 +200,7 @@ class RentModule extends Module
      *
      * @param int $carPlaceId 车位id
      * @return mixed
-     * @throws RentException
+     * @throws HouseException
      */
     public function commentList($carPlaceId)
     {
@@ -226,7 +219,7 @@ class RentModule extends Module
             }
             return $comments;
         } catch (\Exception $e) {
-            throw new RentException('GET_COMMENTS_ERROR');
+            throw new HouseException('GET_COMMENTS_ERROR');
         }
     }
 
@@ -236,7 +229,7 @@ class RentModule extends Module
      * @param $uid
      * @param $id
      * @return bool
-     * @throws CarPlaceException
+     * @throws HouseException
      */
     public function deleteComment($uid, $id)
     {
@@ -244,7 +237,7 @@ class RentModule extends Module
             CarPlaceComment::where('id', $id)->where('uid', $uid)->delete();
             return true;
         } catch (\Exception $e) {
-            throw new CarPlaceException('DELETE_COMMENT_ERROR');
+            throw new HouseException('DELETE_COMMENT_ERROR');
         }
     }
 
