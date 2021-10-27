@@ -4,6 +4,7 @@ namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\CommonConstant;
+use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\HouseException;
 use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
@@ -72,7 +73,7 @@ class HouseModule extends Module
     {
         try {
             $query = House::where('post_status', '=', CommonConstant::ON_SHELVES)
-                ->select('id', 'type', 'floor', 'price', 'subdistrict', 'images', 'updated_at')
+                ->select('id', 'type', 'house_layout', 'floor', 'price', 'subdistrict', 'images', 'updated_at')
                 ->orderBy('id', 'desc');
             if (strtolower($type) != 'all') {
                 $query = $query->where('type', $type);
@@ -99,7 +100,7 @@ class HouseModule extends Module
                 $start = end($data)['id'];
             }
             $data = array_map(function ($item) use ($data) {
-                $item['thumb'] = current(explode('|', $item['images']));
+                $item['thumb'] = ImageConstant::BASE_IMAGE_URL + current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
                 unset($item['images']);
                 return $item;
@@ -131,7 +132,9 @@ class HouseModule extends Module
         }
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
-            $item['images'] = explode('|', $item['images']);
+            $data['images'] = array_map(function ($image) {
+                return ImageConstant::BASE_IMAGE_URL + $image;
+            }, explode('|', $data['images']));
             $item['created_at'] = date('Y-m-d', strtotime($item['created_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
@@ -159,7 +162,9 @@ class HouseModule extends Module
                 } else {
                     $data['price'] = $data['price'] . '元/月';
                 }
-                $data['images'] = explode('|', $data['images']);
+                $data['images'] = array_map(function ($image) {
+                    return ImageConstant::BASE_IMAGE_URL + $image;
+                }, explode('|', $data['images']));
             }
             return $data;
         } catch (\Exception $e) {

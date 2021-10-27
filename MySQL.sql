@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `circle_posts`
 (
     `id`         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `uid`        BIGINT(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户id',
-    `content`    VARCHAR(600)                 DEFAULT '' COMMENT '动态类容',
+    `content`    VARCHAR(2048)                DEFAULT '' COMMENT '动态类容',
     `images`     VARCHAR(512)                 DEFAULT '' COMMENT '动态图片',
     `created_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `houses`
     `subdistrict_id`  INT                 NOT NULL COMMENT '小区id',
     `type`            VARCHAR(8)          DEFAULT '出租' COMMENT '房屋状态',
     `price`           FLOAT               NOT NULL DEFAULT 0 COMMENT '房屋租售价格',
-    `post_status`     TINYINT(2) UNSIGNED          DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布',
+    `post_status`     TINYINT(2) UNSIGNED          DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布, 3-管理员下架',
     `floorage`        FLOAT               NOT NULL DEFAULT 0 COMMENT '建筑面积',
     `floor`           VARCHAR(16)         NOT NULL DEFAULT '-1楼' COMMENT '楼层',
     `subdistrict`     VARCHAR(64)         NOT NULL COMMENT '小区名称',

@@ -113,7 +113,7 @@ class CarPlaceModule extends Module
 
     public function getListByUid($uid, $start, $limit)
     {
-        $query = CarPlace::select('id', 'type', 'is_standard', 'floor', 'price', 'subdistrict', 'images', 'building_number', 'updated_at')
+        $query = CarPlace::select('id', 'type', 'post_status', 'is_standard', 'floor', 'price', 'subdistrict', 'images', 'building_number', 'updated_at')
             ->orderBy('id', 'DESC');
         if ($uid !== 1) {
             $query->where('uid', $uid);
