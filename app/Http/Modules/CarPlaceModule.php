@@ -96,7 +96,7 @@ class CarPlaceModule extends Module
                 $start = end($data)['id'];
             }
             $data = array_map(function ($item) use ($data) {
-                $item['thumb'] = ImageConstant::BASE_IMAGE_URL + current(explode('|', $item['images']));
+                $item['thumb'] = ImageConstant::BASE_IMAGE_URL . current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
                 if ($item['is_standard'] === CarPlaceConstant::STANDARD) {
                     $item['is_standard'] = '标准车位';
@@ -134,7 +134,7 @@ class CarPlaceModule extends Module
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
             $data['images'] = array_map(function ($image) {
-                return ImageConstant::BASE_IMAGE_URL + $image;
+                return ImageConstant::BASE_IMAGE_URL . $image;
             }, explode('|', $data['images']));
             $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
         }
@@ -169,7 +169,7 @@ class CarPlaceModule extends Module
                     $data['price'] = $data['price'] . '元/月';
                 }
                 $data['images'] = array_map(function ($image) {
-                    return ImageConstant::BASE_IMAGE_URL + $image;
+                    return ImageConstant::BASE_IMAGE_URL . $image;
                 }, explode('|', $data['images']));
             }
             return $data;
