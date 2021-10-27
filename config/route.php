@@ -60,9 +60,11 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/add', 'Dolphin\Ting\Http\Service\CarPlaceService:add');
     $group->post('carplace/comment', 'Dolphin\Ting\Http\Service\CarPlaceService:comment');
     $group->post('carplace/comment/delete', 'Dolphin\Ting\Http\Service\CarPlaceService:deleteComment');
+    $group->post('carplace/user/list', 'Dolphin\Ting\Http\Service\CarPlaceService:getListByUid');
 
     // ------------------ 房屋相关接口 -------------------------------
     $group->post('house/add', 'Dolphin\Ting\Http\Service\HouseService:add');
+    $group->post('house/user/list', 'Dolphin\Ting\Http\Service\HouseService:getListByUid');
 
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:add');
