@@ -61,6 +61,8 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('carplace/comment', 'Dolphin\Ting\Http\Service\CarPlaceService:comment');
     $group->post('carplace/comment/delete', 'Dolphin\Ting\Http\Service\CarPlaceService:deleteComment');
     $group->post('carplace/user/list', 'Dolphin\Ting\Http\Service\CarPlaceService:getListByUid');
+    $group->post('carplace/status/change', 'Dolphin\Ting\Http\Service\CarPlaceService:changeStatus');
+    $group->post('carplace/delete', 'Dolphin\Ting\Http\Service\CarPlaceService:delete');
 
     // ------------------ 房屋相关接口 -------------------------------
     $group->post('house/add', 'Dolphin\Ting\Http\Service\HouseService:add');

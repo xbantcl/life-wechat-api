@@ -211,4 +211,52 @@ class CarPlaceService extends Service
         $data = CarPlaceModule::getInstance($this->container)->deleteComment($this->uid, $id);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 删除车位
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function delete(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id'  => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = isset($params['id']) ? intval($params['id']) : 0;
+        $data = CarPlaceModule::getInstance($this->container)->delete($this->uid, $id);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 更改车位状态
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function changeStatus(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id'  => v::intVal(),
+            'status' => v::in([1,2])->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $status = intval($params['status']);
+        $data = CarPlaceModule::getInstance($this->container)->changeStatus($this->uid, $id, $status);
+        return new ServiceResponse($data);
+    }
 }

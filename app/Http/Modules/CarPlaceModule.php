@@ -3,6 +3,7 @@
 namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
+use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Exception\CarPlaceException;
 use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
@@ -245,4 +246,53 @@ class CarPlaceModule extends Module
         }
     }
 
+    /**
+     * 更改数据状态
+     * @param $uid
+     * @param $id
+     * @param $status
+     * @return mixed
+     * @throws CarPlaceException
+     */
+    public function changeStatus($uid, $id, $status)
+    {
+        try {
+            if ($uid != 1) {
+                CarPlace::where('id', $id)->where('uid', $uid)->update([
+                    'post_status' => $status
+                ]);
+            } else {
+                if ($status == 1) {
+                    $status = CommonConstant::ADMIN_OFF_SHELVES;
+                }
+                CarPlace::where('id', $id)->update([
+                    'post_status' => $status
+                ]);
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw new CarPlaceException('CHANGE_DATA_STATUS_ERROR');
+        }
+    }
+
+    /**
+     * 更改数据状态
+     * @param $uid
+     * @param $id
+     * @return mixed
+     * @throws CarPlaceException
+     */
+    public function delete($uid, $id)
+    {
+        try {
+            if ($uid != 1) {
+                CarPlace::where('id', $id)->where('uid', $uid)->delete();
+            } else {
+                CarPlace::where('id', $id)->delete();
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw new CarPlaceException('DELETE_DATA_ERROR');
+        }
+    }
 }
