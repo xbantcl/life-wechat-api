@@ -24,14 +24,15 @@ class CarPlaceModule extends Module
      * @param $subdistrict
      * @param $buildingNum
      * @param $describe
-     * @param $phoneNum
+     * @param $mobile
      * @param $weixin
      * @param $images
      *
      * @return mixed
      * @throws CarPlaceException
      */
-    public function add($uid, $type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images)
+    public function add($uid, $type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe,
+                        $mobile, $weixin, $images)
     {
         try {
             $carPlace = CarPlace::create([
@@ -45,7 +46,7 @@ class CarPlaceModule extends Module
                 'subdistrict' => $subdistrict,
                 'building_number' => $buildingNum,
                 'describe' => $describe,
-                'phone_number' => $phoneNum,
+                'mobile' => $mobile,
                 'weixin' => $weixin,
                 'images' => $images
             ]);
@@ -152,9 +153,9 @@ class CarPlaceModule extends Module
     {
         try {
             $data = CarPlace::select('id', 'type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
-                'subdistrict', 'images', 'building_number', 'updated_at', 'describe', 'weixin')
+                'subdistrict', 'images', 'building_number', 'mobile', 'updated_at', 'describe', 'weixin')
                 ->where('post_status', '=', CarPlaceConstant::ON_SHELVES)
-                ->where('id', '=', $id)
+                ->where('id', $id)
                 ->first()->toArray();
             if (!empty($data)) {
                 if ($data['is_standard'] == CarPlaceConstant::STANDARD) {

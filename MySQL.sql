@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `car_places`
     `subdistrict`     VARCHAR(64)         NOT NULL COMMENT '小区名称',
     `building_number` INT                 NOT NULL DEFAULT 1 COMMENT '楼号',
     `describe`        VARCHAR(512)                 DEFAULT '' COMMENT '车位描述',
-    `phone_number`    VARCHAR(11)                  DEFAULT '' COMMENT '手机号码',
+    `mobile`          VARCHAR(11)                  DEFAULT '' COMMENT '手机号码',
     `weixin`          VARCHAR(20)                  DEFAULT '' COMMENT '微信号',
     `images`          VARCHAR(128)                 DEFAULT '' COMMENT '图片',
     `created_at`      TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,

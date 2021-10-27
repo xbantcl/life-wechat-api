@@ -40,7 +40,7 @@ class CarPlaceService extends Service
             'floor' => v::in(['负一楼', '负二楼', '地面'])->notEmpty(),
             'subdistrict' => v::notEmpty(),
             'building_num' => v::numericVal(),
-            'phone_num' => v::numericVal(),
+            'mobile' => v::numericVal(),
             'describe' => v::notEmpty(),
             'weixin' => v::notEmpty(),
             'images' => v::notEmpty()
@@ -57,11 +57,12 @@ class CarPlaceService extends Service
         $floor = isset($params['floor']) ? trim($params['floor']) : '负一楼';
         $subdistrict = isset($params['subdistrict']) ? trim($params['subdistrict']) : '南湖世纪';
         $buildingNum = isset($params['building_num']) ? trim($params['building_num']) : 1;
-        $phoneNum = isset($params['phone_num']) ? trim($params['phone_num']) : '';
+        $mobile = isset($params['mobile']) ? trim($params['mobile']) : '';
         $describe = isset($params['describe']) ? trim($params['describe']) : '';
         $weixin = isset($params['weixin']) ? trim($params['weixin']) : '';
         $images = isset($params['images']) ? trim($params['images']) : '';
-        $data = CarPlaceModule::getInstance($this->container)->add($this->uid, $type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe, $phoneNum, $weixin, $images);
+        $data = CarPlaceModule::getInstance($this->container)->add($this->uid, $type, $price, $isStandard, $floorage,
+            $floor, $subdistrict, $buildingNum, $describe, $mobile, $weixin, $images);
         return new ServiceResponse($data);
     }
 
