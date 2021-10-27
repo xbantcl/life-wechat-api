@@ -119,7 +119,7 @@ class UserModule extends Module
             $res = json_decode(Curl::get($authWxUrl), true);
             if (isset($res['openid'])) {
                 $user = User::select('id', 'avatar', 'username', 'openid')
-                    ->where('openid', '=', $res['openid'])
+                    ->where('openid', $res['openid'])
                     ->first();
                 if (empty($user)) {
                     $user = User::create([

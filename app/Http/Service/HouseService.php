@@ -54,7 +54,7 @@ class HouseService extends Service
         $params = Help::getParams($request);
         $type = trim($params['type']);
         $price = floatval($params['price']);
-        $elevator = intval($params['is_standard']);
+        $elevator = trim($params['elevator']);
         $floorage = floatval($params['floorage']);
         $floor = trim($params['floor']);
         $subdistrict = trim($params['subdistrict']);

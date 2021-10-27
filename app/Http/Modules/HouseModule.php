@@ -35,7 +35,7 @@ class HouseModule extends Module
                         $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $images)
     {
         try {
-            $house = CarPlace::create([
+            $house = House::create([
                 'uid' => $uid,
                 'subdistrict_id' => 1,
                 'type' => $type,

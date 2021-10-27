@@ -178,13 +178,10 @@ class CircleModule extends Module
      */
     public function getListByUid($uid, $start, $limit, $isAdmin = false)
     {
-        if ($uid === 1) {
-            $isAdmin = true;
-        }
         $query = CirclePost::select('id', 'content', 'images', 'created_at')
             ->orderBy('id', 'DESC');
-        if (!$isAdmin) {
-            $query->where('uid', '=', $uid);
+        if ($uid !== 1) {
+            $query->where('uid', $uid);
         }
         if ($start > 0) {
             $query->where('id', '<', $start);

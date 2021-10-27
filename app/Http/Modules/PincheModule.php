@@ -165,15 +165,12 @@ class PincheModule extends Module
      */
     public function getListByUid($uid, $start, $limit, $isAdmin = false) {
         try {
-            if ($uid === 1) {
-                $isAdmin = true;
-            }
             $query = Pinche::select('id', 'type', 'departure_address', 'destination_address', 'departure_lat',
                 'departure_lng', 'destination_lat', 'destination_lng', 'price', 'username', 'status',
                 'images', 'seat_num', 'start_time')
                 ->orderBy('id', 'DESC');
-            if (!$isAdmin) {
-                $query->where('uid', '=', $uid);
+            if ($uid != 1) {
+                $query->where('uid', $uid);
             }
             if ($start > 0) {
                 $query->where('id', '<', $start);
