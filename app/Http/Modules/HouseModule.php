@@ -100,7 +100,7 @@ class HouseModule extends Module
                 $start = end($data)['id'];
             }
             $data = array_map(function ($item) use ($data) {
-                $item['thumb'] = ImageConstant::BASE_IMAGE_URL + current(explode('|', $item['images']));
+                $item['thumb'] = ImageConstant::BASE_IMAGE_URL . current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
                 unset($item['images']);
                 return $item;
@@ -133,7 +133,7 @@ class HouseModule extends Module
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
             $data['images'] = array_map(function ($image) {
-                return ImageConstant::BASE_IMAGE_URL + $image;
+                return ImageConstant::BASE_IMAGE_URL . $image;
             }, explode('|', $data['images']));
             $item['created_at'] = date('Y-m-d', strtotime($item['created_at']));
         }
@@ -163,7 +163,7 @@ class HouseModule extends Module
                     $data['price'] = $data['price'] . '元/月';
                 }
                 $data['images'] = array_map(function ($image) {
-                    return ImageConstant::BASE_IMAGE_URL + $image;
+                    return ImageConstant::BASE_IMAGE_URL . $image;
                 }, explode('|', $data['images']));
             }
             return $data;
@@ -245,4 +245,53 @@ class HouseModule extends Module
         }
     }
 
+    /**
+     * 更改数据状态
+     * @param $uid
+     * @param $id
+     * @param $status
+     * @return mixed
+     * @throws HouseException
+     */
+    public function changeStatus($uid, $id, $status)
+    {
+        try {
+            if ($uid != 1) {
+                House::where('id', $id)->where('uid', $uid)->update([
+                    'post_status' => $status
+                ]);
+            } else {
+                if ($status == 1) {
+                    $status = CommonConstant::ADMIN_OFF_SHELVES;
+                }
+                House::where('id', $id)->update([
+                    'post_status' => $status
+                ]);
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw new HouseException('CHANGE_DATA_STATUS_ERROR');
+        }
+    }
+
+    /**
+     * 更改数据状态
+     * @param $uid
+     * @param $id
+     * @return mixed
+     * @throws HouseException
+     */
+    public function delete($uid, $id)
+    {
+        try {
+            if ($uid != 1) {
+                House::where('id', $id)->where('uid', $uid)->delete();
+            } else {
+                House::where('id', $id)->delete();
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw new HouseException('DELETE_DATA_ERROR');
+        }
+    }
 }

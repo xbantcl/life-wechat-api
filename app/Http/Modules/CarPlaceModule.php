@@ -4,6 +4,7 @@ namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\CommonConstant;
+use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\CarPlaceException;
 use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
@@ -95,7 +96,7 @@ class CarPlaceModule extends Module
                 $start = end($data)['id'];
             }
             $data = array_map(function ($item) use ($data) {
-                $item['thumb'] = current(explode('|', $item['images']));
+                $item['thumb'] = ImageConstant::BASE_IMAGE_URL + current(explode('|', $item['images']));
                 $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
                 if ($item['is_standard'] === CarPlaceConstant::STANDARD) {
                     $item['is_standard'] = '标准车位';
@@ -132,7 +133,9 @@ class CarPlaceModule extends Module
         }
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
-            $item['images'] = explode('|', $item['images']);
+            $data['images'] = array_map(function ($image) {
+                return ImageConstant::BASE_IMAGE_URL + $image;
+            }, explode('|', $data['images']));
             $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
@@ -165,7 +168,9 @@ class CarPlaceModule extends Module
                 } else {
                     $data['price'] = $data['price'] . '元/月';
                 }
-                $data['images'] = explode('|', $data['images']);
+                $data['images'] = array_map(function ($image) {
+                    return ImageConstant::BASE_IMAGE_URL + $image;
+                }, explode('|', $data['images']));
             }
             return $data;
         } catch (\Exception $e) {
