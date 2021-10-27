@@ -112,7 +112,7 @@ class CarPlaceModule extends Module
 
     public function getListByUid($uid, $start, $limit)
     {
-        $query = CarPlace::select('id', 'content', 'images', 'created_at')
+        $query = CarPlace::select('id', 'type', 'is_standard', 'floor', 'price', 'subdistrict', 'images', 'building_number', 'updated_at')
             ->orderBy('id', 'DESC');
         if ($uid !== 1) {
             $query->where('uid', $uid);
@@ -132,7 +132,7 @@ class CarPlaceModule extends Module
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
             $item['images'] = explode('|', $item['images']);
-            $item['created_at'] = date('Y-m-d', strtotime($item['created_at']));
+            $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
     }

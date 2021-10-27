@@ -117,7 +117,7 @@ class CarPlaceService extends Service
         $data = CarPlaceModule::getInstance($this->container)->getListByUid($this->uid, $start, $limit);
         return new ServiceResponse($data);
     }
-    
+
     /**
      * 获取车位详情
      *
