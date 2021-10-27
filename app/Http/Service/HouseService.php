@@ -37,7 +37,7 @@ class HouseService extends Service
             'price' => v::floatVal(),
             'elevator' => v::in(['有', '无'])->notEmpty(),
             'floorage' => v::floatVal(),
-            'floor' => notEmpty(),
+            'floor' => v::notEmpty(),
             'subdistrict' => v::notEmpty(),
             'direction' => v::notEmpty(),
             'decorate' => v::notEmpty(),
@@ -45,7 +45,6 @@ class HouseService extends Service
             'house_layout' => v::notEmpty(),
             'mobile' => v::numericVal(),
             'describe' => v::notEmpty(),
-            'weixin' => v::notEmpty(),
             'images' => v::notEmpty()
         ]);
 
@@ -65,10 +64,9 @@ class HouseService extends Service
         $houseLayout = trim($params['house_layout']);
         $describe = trim($params['describe']);
         $decorate = trim($params['decorate']);
-        $weixin = trim($params['weixin']);
         $images = trim($params['images']);
         $data = HouseModule::getInstance($this->container)->add($this->uid, $type, $price, $elevator,
-            $floorage, $floor, $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $weixin, $images);
+            $floorage, $floor, $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $images);
         return new ServiceResponse($data);
     }
 

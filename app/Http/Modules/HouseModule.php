@@ -32,7 +32,7 @@ class HouseModule extends Module
      * @throws HouseException
      */
     public function add($uid, $type, $price, $elevator, $floorage, $floor,
-                        $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $weixin, $images)
+                        $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $images)
     {
         try {
             $house = CarPlace::create([
@@ -50,7 +50,6 @@ class HouseModule extends Module
                 'decorate' => $decorate,
                 'describe' => $describe,
                 'mobile' => $mobile,
-                'weixin' => $weixin,
                 'images' => $images
             ]);
         } catch (\Exception $e) {
