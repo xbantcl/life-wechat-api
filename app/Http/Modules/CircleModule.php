@@ -2,6 +2,7 @@
 
 namespace Dolphin\Ting\Http\Modules;
 
+use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\CircleException;
 
 use Dolphin\Ting\Http\Model\CircleComment;
@@ -81,7 +82,8 @@ class CircleModule extends Module
     public function getList($uid, $start, $isPullDown = false, $limit = 10): array
     {
         $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle_posts.uid')
-            ->select('u.id', 'u.username', 'u.avatar', 'circle_posts.id as post_id', 'circle_posts.content', 'circle_posts.images', 'circle_posts.created_at')
+            ->select('u.id', 'u.username', 'u.avatar', 'circle_posts.id as post_id', 'circle_posts.content',
+                'circle_posts.post_status', 'circle_posts.images', 'circle_posts.created_at')
             ->orderBy('circle_posts.id', 'DESC');
         if ($start > 0) {
             if ($isPullDown) {
@@ -134,7 +136,9 @@ class CircleModule extends Module
             if (empty($item['images'])) {
                 $images = [];
             } else {
-                $images = explode('|', $item['images']);
+                $images = array_map(function ($image) {
+                    return ImageConstant::BASE_IMAGE_URL . $image;
+                }, explode('|', $item['images']));
             }
             $item['content'] = [
                 'text' => $item['content'],
@@ -160,7 +164,7 @@ class CircleModule extends Module
             } else {
                 $item['comments'] = [];
             }
-            $item['timestamp'] = '1小时前';
+            $item['timestamp'] = Help::timeAgo(strtotime($item['created_at']));
             unset($item['images']);
             return $item;
         }, $data);
