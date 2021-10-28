@@ -110,7 +110,7 @@ class CircleModule extends Module
         }, $data);
         $comments = CircleComment::leftjoin('user as u', 'u.id', '=', 'circle_comments.uid')
             ->leftjoin('user as u1', 'u1.id', '=', 'circle_comments.reply_uid')
-            ->select('circle_comments.uid', 'u.username', 'u1.username as reply_username', 'circle_comments.content', 'circle_comments.post_id')
+            ->select('circle_comments.id', 'circle_comments.uid', 'u.username', 'u1.username as reply_username', 'circle_comments.content', 'circle_comments.post_id')
             ->whereIn('circle_comments.post_id', $postIds)
             ->get()->toArray();
         $tmpComments = [];
@@ -241,7 +241,7 @@ class CircleModule extends Module
     public function deleteComment($uid, $commentId)
     {
         try {
-            CircleComment::where('uid', '=', $uid)->where('id', '=', $commentId)->delete();
+            CircleComment::where('uid', $uid)->where('id', $commentId)->delete();
         } catch (\Exception $e) {
             throw new CircleException('DELETE_CIRCLE_COMMENT_ERROR');
         }
