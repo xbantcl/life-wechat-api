@@ -273,4 +273,20 @@ class CircleModule extends Module
         $this->redis->HDEL('circle#' . $postId, $uid);
         return true;
     }
+
+    /**
+     * @param $postId
+     * @param $status
+     * @return bool
+     * @throws CircleException
+     */
+    public function changeCircleStatus($postId, $status)
+    {
+        try {
+            CirclePost::where('id', $postId)->update(['post_status' => $status]);
+        } catch (\Exception $e) {
+            throw new CircleException('UPDATE_CIRCLE_POST_ERROR');
+        }
+        return true;
+    }
 }

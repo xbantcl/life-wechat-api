@@ -28,12 +28,13 @@ CREATE TABLE `user_sign_in`
 
 CREATE TABLE IF NOT EXISTS `circle_posts`
 (
-    `id`         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `uid`        BIGINT(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户id',
-    `content`    VARCHAR(2048)                DEFAULT '' COMMENT '动态类容',
-    `images`     VARCHAR(512)                 DEFAULT '' COMMENT '动态图片',
-    `created_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `id`          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid`         BIGINT(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户id',
+    `post_status` TINYINT(2) UNSIGNED          DEFAULT 2 COMMENT '内容状态: 1-审核状态，2-发布, 3-审核不通过',
+    `content`     VARCHAR(2048)                DEFAULT '' COMMENT '动态类容',
+    `images`      VARCHAR(512)                 DEFAULT '' COMMENT '动态图片',
+    `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='圈子动态';

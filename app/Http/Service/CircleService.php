@@ -219,4 +219,29 @@ class CircleService extends Service
         $data = CircleModule::getInstance($this->container)->unlike($this->uid, $postId);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 更改动态状态
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function changeCircleStatus(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'post_id'  => v::intVal(),
+            'status' => v::in([1, 2, 3])
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $postId = intval($params['post_id']);
+        $status = intval($params['status']);
+        $data = CircleModule::getInstance($this->container)->changeCircleStatus($postId, $status);
+        return new ServiceResponse($data);
+    }
 }
