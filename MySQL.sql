@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `secondhand_goods`
 (
     `id`             BIGINT(20) UNSIGNED                           NOT NULL AUTO_INCREMENT,
     `uid`            BIGINT(20) UNSIGNED                           NOT NULL COMMENT '评论用户id',
+    `post_status`    TINYINT(2) UNSIGNED                                    DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布, 3-管理员下架',
     `title`          VARCHAR(128)                                           DEFAULT '' COMMENT '商品标题',
     `images`         VARCHAR(128)                                           DEFAULT '' COMMENT '图片',
     `price`          FLOAT                                         NOT NULL DEFAULT 0 COMMENT '商品价格',
@@ -125,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `secondhand_goods`
     `describe`       VARCHAR(600)                                           DEFAULT '' COMMENT '描述类容',
     `delivery`       ENUM ('自取', '包邮')                                      DEFAULT '自取' COMMENT '配送方式',
     `address`        VARCHAR(256)                                  NOT NULL DEFAULT '' COMMENT '商品地址',
+    `mobile`         VARCHAR(11)                                            DEFAULT '' COMMENT '手机号码',
     `category`       ENUM ('数码产品', '家用电器', '儿童玩具', '家居用品', '其他物品') NOT NULL COMMENT '商品分类',
     `status`         TINYINT(2) UNSIGNED                                    DEFAULT 2 COMMENT '商品状态: 1-下架，2-发布',
     `created_at`     TIMESTAMP                                     NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -3,6 +3,8 @@
 namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Constant\CarPlaceConstant;
+use Dolphin\Ting\Http\Constant\CommonConstant;
+use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Constant\SecondhandGoodsConstant;
 use Dolphin\Ting\Http\Exception\CarPlaceException;
 use Dolphin\Ting\Http\Exception\SecondhandGoodsException;
@@ -65,6 +67,7 @@ class SecondhandGoodsModule extends Module
             $query = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
                 ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                     'secondhand_goods.images', 'secondhand_goods.updated_at', 'u.username', 'u.avatar')
+                ->where('secondhand_goods.post_status', CommonConstant::ON_SHELVES)
                 ->orderBy('secondhand_goods.id', 'desc');
             if (strtolower($category) !== 'all') {
                 $query = $query->where('secondhand_goods.category', '=', $category);
@@ -92,7 +95,7 @@ class SecondhandGoodsModule extends Module
             }
             $data = array_map(function ($item) use ($data) {
                 $item['thumb'] = current(explode('|', $item['images']));
-                $item['updated_at'] = Help::timeAgo(strtotime($item['updated_at']));
+                $item['updated_at'] = Help::formatTime($item['updated_at']);
                 unset($item['images']);
                 return $item;
             }, $data);
@@ -116,11 +119,11 @@ class SecondhandGoodsModule extends Module
             $isAdmin = true;
         }
         $query = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
-            ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
+            ->select('secondhand_goods.id', 'secondhand_goods.post_status', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                 'secondhand_goods.images', 'secondhand_goods.updated_at', 'u.username', 'u.avatar')
             ->orderBy('secondhand_goods.id', 'desc');
-        if (!$isAdmin) {
-            $query->where('secondhand_goods.uid', '=', $uid);
+        if ($uid !== 1) {
+            $query->where('secondhand_goods.uid', $uid);
         }
         if ($start > 0) {
             $query->where('secondhand_goods.id', '<', $start);
@@ -136,7 +139,9 @@ class SecondhandGoodsModule extends Module
         }
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
-            $item['images'] = explode('|', $item['images']);
+            $item['images'] = array_map(function ($image) {
+                return ImageConstant::BASE_IMAGE_URL . $image;
+            }, explode('|', $item['images']));
             $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
@@ -155,9 +160,9 @@ class SecondhandGoodsModule extends Module
             $data = SecondhandGoods::leftjoin('user as u', 'u.id', '=', 'secondhand_goods.uid')
                 ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                 'secondhand_goods.address', 'secondhand_goods.images', 'secondhand_goods.updated_at', 'secondhand_goods.describe',
-                'u.username', 'u.avatar', 'secondhand_goods.delivery', 'secondhand_goods.uid')
-                ->where('secondhand_goods.status', '=', SecondhandGoodsConstant::ON_SHELVES)
-                ->where('secondhand_goods.id', '=', $id)
+                'u.username', 'u.avatar', 'secondhand_goods.mobile', 'secondhand_goods.delivery', 'secondhand_goods.uid')
+                ->where('secondhand_goods.status', SecondhandGoodsConstant::ON_SHELVES)
+                ->where('secondhand_goods.id', $id)
                 ->first();
             if (!empty($data)) {
                 $data = $data->toArray();
@@ -167,6 +172,53 @@ class SecondhandGoodsModule extends Module
             return $data;
         } catch (\Exception $e) {
             throw new SecondhandGoodsException('GET_SECONDHAND_GOODS_DETAIL_ERROR');
+        }
+    }
+
+    /**
+     * 删除闲置商品
+     *
+     * @param $uid
+     * @param $id
+     * @return bool
+     * @throws SecondhandGoodsException
+     */
+    public function delete($uid, $id)
+    {
+        try {
+            if ($uid == 1) {
+                SecondhandGoods::where('id', $id)->delete();
+            } else {
+                SecondhandGoods::where('id', $id)->where('uid', $uid)->delete();
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw new SecondhandGoodsException('DELETE_GOODS_ERROR');
+        }
+    }
+
+    /**
+     * 更改闲置商品状态
+     *
+     * @param $uid
+     * @param $id
+     * @return bool
+     * @throws SecondhandGoodsException
+     */
+    public function changeStatus($uid, $id, $status)
+    {
+        try {
+            if ($uid !== 1) {
+                SecondhandGoods::where('id', $id)->where('uid', $uid)->update(['post_status' => $status]);
+            } else {
+                if ($status == 1) {
+                    $status = CommonConstant::ADMIN_OFF_SHELVES;
+                }
+                SecondhandGoods::where('id', $id)->update(['post_status' => $status]);
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw new SecondhandGoodsException('UPDATE_GOODS_ERROR');
         }
     }
 }

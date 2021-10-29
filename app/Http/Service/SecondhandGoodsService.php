@@ -140,4 +140,50 @@ class SecondhandGoodsService extends Service
         $data = SecondhandGoodsModule::getInstance($this->container)->detail($id);
         return new ServiceResponse($data);
     }
+
+    /**
+     * 删除商品
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function delete (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = isset($params['id']) ? intval($params['id']) : 0;
+        $data = SecondhandGoodsModule::getInstance($this->container)->delete($this->uid, $id);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 更改商品状态
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function changeStatus (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::intVal(),
+            'status' => v::in([1,2,3])
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $status = intval($params['status']);
+        $data = SecondhandGoodsModule::getInstance($this->container)->changeStatus($this->uid, $id, $status);
+        return new ServiceResponse($data);
+    }
 }

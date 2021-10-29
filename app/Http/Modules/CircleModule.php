@@ -166,7 +166,7 @@ class CircleModule extends Module
             } else {
                 $item['comments'] = [];
             }
-            $item['timestamp'] = Help::timeAgo(strtotime($item['created_at']));
+            $item['timestamp'] = Help::timeAgo($item['created_at']);
             unset($item['images']);
             return $item;
         }, $data);
