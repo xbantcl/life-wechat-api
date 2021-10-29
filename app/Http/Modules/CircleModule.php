@@ -2,6 +2,7 @@
 
 namespace Dolphin\Ting\Http\Modules;
 
+use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\CircleException;
 
@@ -84,6 +85,7 @@ class CircleModule extends Module
         $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle_posts.uid')
             ->select('u.id', 'u.username', 'u.avatar', 'circle_posts.id as post_id', 'circle_posts.content',
                 'circle_posts.post_status', 'circle_posts.images', 'circle_posts.created_at')
+            ->where('circle_posts.post_status', CommonConstant::ON_SHELVES)
             ->orderBy('circle_posts.id', 'DESC');
         if ($start > 0) {
             if ($isPullDown) {
