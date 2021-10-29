@@ -201,7 +201,9 @@ class CircleModule extends Module
         }
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
-            $item['images'] = explode('|', $item['images']);
+            $item['images'] = array_map(function ($image) {
+                return ImageConstant::BASE_IMAGE_URL . $image;
+            }, explode('|', $item['images']));
             $item['created_at'] = date('Y-m-d', strtotime($item['created_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
