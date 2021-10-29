@@ -41,6 +41,7 @@ class SecondhandGoodsService extends Service
             'address' => v::notEmpty(),
             'delivery' => v::in(['自取', '包邮'])->notEmpty(),
             'describe' => v::notEmpty(),
+            'mobile' => v::numericVal(),
             'images' => v::notEmpty()
         ]);
 
@@ -56,7 +57,8 @@ class SecondhandGoodsService extends Service
         $delivery = isset($params['delivery']) ? trim($params['delivery']) : '自取';
         $describe = isset($params['describe']) ? trim($params['describe']) : '';
         $images = isset($params['images']) ? trim($params['images']) : '';
-        $data = SecondhandGoodsModule::getInstance($this->container)->add($this->uid, $title, $price, $originalPrice, $address, $describe, $delivery, $images, $category);
+        $mobile = trim($params['mobile']);
+        $data = SecondhandGoodsModule::getInstance($this->container)->add($this->uid, $title, $price, $originalPrice, $address, $describe, $delivery, $images, $category, $mobile);
         return new ServiceResponse($data);
     }
 

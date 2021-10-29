@@ -29,7 +29,7 @@ class SecondhandGoodsModule extends Module
      * @return mixed
      * @throws SecondhandGoodsException
      */
-    public function add($uid, $title, $price, $originalPrice, $address, $describe, $delivery, $images, $category)
+    public function add($uid, $title, $price, $originalPrice, $address, $describe, $delivery, $images, $category, $mobile)
     {
         try {
             $secondhandGood = SecondhandGoods::create([
@@ -42,7 +42,8 @@ class SecondhandGoodsModule extends Module
                 'describe' => $describe,
                 'delivery' => $delivery,
                 'category' => $category,
-                'images' => $images
+                'images' => $images,
+                'mobile' => $mobile
             ]);
         } catch (\Exception $e) {
             throw new SecondhandGoodsException('ADD_SECONDHAND_GOODS_ERROR');
