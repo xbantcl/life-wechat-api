@@ -5,7 +5,6 @@ namespace Dolphin\Ting\Http\Modules;
 use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Exception\DeliveryOrderException;
 use Dolphin\Ting\Http\Model\DeliveryOrder;
-use Dolphin\Ting\Http\Utils\Help;
 
 class DeliveryOrderModule extends Module
 {
@@ -55,6 +54,11 @@ class DeliveryOrderModule extends Module
     public function getList($uid, $start, $status, $isPullDown = false, $limit = 5)
     {
         try {
+            if ($status == 2) {
+                $status = [1, 2];
+            } else {
+                $status = [$status];
+            }
             $query = DeliveryOrder::whereIn('status', $status)
                 ->select('id', 'package_qua', 'weight', 'price', 'status', 'updated_at')
                 ->orderBy('id', 'desc');

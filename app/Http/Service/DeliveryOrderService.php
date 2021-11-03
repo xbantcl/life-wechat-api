@@ -2,7 +2,6 @@
 
 namespace Dolphin\Ting\Http\Service;
 
-use Dolphin\Ting\Http\Modules\CarPlaceModule;
 use Dolphin\Ting\Http\Modules\DeliveryOrderModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
 use Dolphin\Ting\Http\Utils\Help;
