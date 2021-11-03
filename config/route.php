@@ -112,4 +112,10 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('product/material/update', 'Dolphin\Ting\Http\Service\ProductService:updateMaterial');
     $group->post('product/material/list', 'Dolphin\Ting\Http\Service\ProductService:getMaterialList');
     $group->post('product/material/delete', 'Dolphin\Ting\Http\Service\ProductService:deleteMaterial');
+
+    // ------------------ 快递订单相关接口 -----------------------------------
+    $group->post('delivery/order/add', 'Dolphin\Ting\Http\Service\DeliveryOrderService:add');
+    $group->post('delivery/order/list', 'Dolphin\Ting\Http\Service\DeliveryOrderService:getList');
+    $group->post('delivery/order/detail', 'Dolphin\Ting\Http\Service\DeliveryOrderService:detail');
+    $group->post('delivery/order/status/change', 'Dolphin\Ting\Http\Service\DeliveryOrderService:changeStatus');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

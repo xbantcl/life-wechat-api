@@ -143,6 +143,7 @@ class SecondhandGoodsModule extends Module
             $item['images'] = array_map(function ($image) {
                 return ImageConstant::BASE_IMAGE_URL . $image;
             }, explode('|', $item['images']));
+            $item['thumb'] = $item['images'][0];
             $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];

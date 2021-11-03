@@ -320,3 +320,20 @@ CREATE TABLE IF NOT EXISTS `materials`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='商品规格';
+
+CREATE TABLE IF NOT EXISTS `delivery_orders`
+(
+    `id`          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid`         BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
+    `address_id`  INT                 NOT NULL COMMENT '用户订单地址',
+    `package_qua` INT                 NOT NULL COMMENT '包裹数量',
+    `package_num` VARCHAR(64)                  DEFAULT '' COMMENT '包裹编号',
+    `weight`      VARCHAR(32)                  DEFAULT '' COMMENT '预估重量',
+    `price`       FLOAT               NOT NULL COMMENT '价格',
+    `status`      TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '快递订单状态：1-已取，2-已经支付，3-完成',
+    `remarks`     VARCHAR(1024)                DEFAULT '' COMMENT '备注',
+    `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='取快递订单';
