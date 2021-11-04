@@ -86,6 +86,9 @@ class DeliveryOrderModule extends Module
             } else {
                 $start = end($data)['id'];
             }
+            foreach ($data as &$item) {
+                $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
+            }
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
             throw new DeliveryOrderException('GET_DELIVERY_ORDER_LIST_ERROR');
@@ -104,7 +107,8 @@ class DeliveryOrderModule extends Module
         try {
             $data = DeliveryOrder::leftjoin('address as adr', 'adr.id', '=', 'delivery_orders.address_id')
                 ->select('delivery_orders.id', 'delivery_orders.package_qua', 'delivery_orders.weight', 'delivery_orders.price',
-                    'delivery_orders.status', 'delivery_orders.updated_at', 'adr.name', 'adr.address', 'adr.mobile')
+                    'delivery_orders.status', 'delivery_orders.updated_at', 'delivery_orders.package_num', 'delivery_orders.remarks',
+                    'adr.name', 'adr.address', 'adr.mobile')
                 ->where('delivery_orders.id', $id)
                 ->first()->toArray();
             if (!empty($data)) {
