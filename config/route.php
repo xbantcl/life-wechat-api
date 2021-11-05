@@ -12,6 +12,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('file/delete', 'Dolphin\Ting\Http\Service\FileService:delete');
 
     // ------------------ 圈子动态接口 -------------------------------
+    $group->post('circle/list', 'Dolphin\Ting\Http\Service\CircleService:getList');
 
     // ------------------ 车位相关接口 -------------------------------
     $group->post('carplace/list', 'Dolphin\Ting\Http\Service\CarPlaceService:getList');
@@ -40,6 +41,10 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('product/category/lists', 'Dolphin\Ting\Http\Service\ProductService:getCategories');
     $group->post('product/index/list', 'Dolphin\Ting\Http\Service\ProductService:getProductList');
 
+    // ------------------ 买菜相关接口 -----------------------------------
+    $group->post('vegetable/detail', 'Dolphin\Ting\Http\Service\VegetableService:detail');
+    $group->post('vegetable/list', 'Dolphin\Ting\Http\Service\VegetableService:getList');
+    $group->post('vegetable/category/list', 'Dolphin\Ting\Http\Service\VegetableService:getCategoryList');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
@@ -47,7 +52,6 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 圈子动态接口 -------------------------------
     $group->post('circle/add', 'Dolphin\Ting\Http\Service\CircleService:add');
-    $group->post('circle/list', 'Dolphin\Ting\Http\Service\CircleService:getList');
     $group->post('circle/comment', 'Dolphin\Ting\Http\Service\CircleService:comment');
     $group->post('circle/user/list', 'Dolphin\Ting\Http\Service\CircleService:getListByUid');
     $group->post('circle/delete', 'Dolphin\Ting\Http\Service\CircleService:delete');
@@ -118,4 +122,10 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('delivery/order/list', 'Dolphin\Ting\Http\Service\DeliveryOrderService:getList');
     $group->post('delivery/order/detail', 'Dolphin\Ting\Http\Service\DeliveryOrderService:detail');
     $group->post('delivery/order/status/change', 'Dolphin\Ting\Http\Service\DeliveryOrderService:changeStatus');
+
+    // ------------------ 买菜相关接口 -----------------------------------
+    $group->post('vegetable/add', 'Dolphin\Ting\Http\Service\VegetableService:add');
+    $group->post('vegetable/update', 'Dolphin\Ting\Http\Service\VegetableService:update');
+    $group->post('vegetable/delete', 'Dolphin\Ting\Http\Service\VegetableService:delete');
+    $group->post('vegetable/category/add', 'Dolphin\Ting\Http\Service\VegetableService:addCategory');
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

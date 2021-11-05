@@ -331,9 +331,52 @@ CREATE TABLE IF NOT EXISTS `delivery_orders`
     `weight`      VARCHAR(32)                  DEFAULT '' COMMENT '预估重量',
     `price`       FLOAT               NOT NULL COMMENT '价格',
     `status`      TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '快递订单状态：1-已取，2-已经支付，3-完成',
-    `remarks`     VARCHAR(1024)                DEFAULT '' COMMENT '备注',
+    `remarks`     VARCHAR(512)                DEFAULT '' COMMENT '备注',
     `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='取快递订单';
+
+CREATE TABLE IF NOT EXISTS `vegetables`
+(
+    `id`         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`       VARCHAR(64)         NOT NULL COMMENT '菜名称',
+    `price`      FLOAT               NOT NULL COMMENT '价格',
+    `sort`       INT                          DEFAULT 0 COMMENT '包裹数量',
+    `desc`       VARCHAR(1024)                DEFAULT '' COMMENT '菜描述',
+    `images`     VARCHAR(128)                 DEFAULT '' COMMENT '图片',
+    `created_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='菜';
+
+CREATE TABLE IF NOT EXISTS `vegetable_categories`
+(
+    `id`            BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name`          VARCHAR(64)         NOT NULL COMMENT '分类名称',
+    `vegetable_ids` VARCHAR(32)         NOT NULL COMMENT '菜id',
+    `created_at`    TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`    TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='菜分类';
+
+CREATE TABLE IF NOT EXISTS `vegetable_orders`
+(
+    `id`               BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid`              BIGINT(20) UNSIGNED NOT NULL COMMENT '用户id',
+    `address_id`       INT                 NOT NULL COMMENT '用户订单地址',
+    `product_num`      INT                 NOT NULL COMMENT '产品数量',
+    `products`         VARCHAR(512)        NOT NULL COMMENT '产品详情',
+    `weight`           FLOAT               NOT NULL COMMENT '预估重量',
+    `amount`           FLOAT               NOT NULL COMMENT '金额',
+    `status`           TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '快递订单状态：1-已取，2-已经支付，3-完成',
+    `appointment_time` INT(11)             NOT NULL COMMENT '预约时间',
+    `remarks`          VARCHAR(512)                 DEFAULT '' COMMENT '备注',
+    `created_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='买菜订单';
