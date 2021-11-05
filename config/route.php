@@ -44,6 +44,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 买菜相关接口 -----------------------------------
     $group->post('vegetable/detail', 'Dolphin\Ting\Http\Service\VegetableService:detail');
     $group->post('vegetable/list', 'Dolphin\Ting\Http\Service\VegetableService:getList');
+    $group->post('vegetable/tag/list', 'Dolphin\Ting\Http\Service\VegetableService:getTagList');
     $group->post('vegetable/category/list', 'Dolphin\Ting\Http\Service\VegetableService:getCategoryList');
 });
 

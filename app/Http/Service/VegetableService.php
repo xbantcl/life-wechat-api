@@ -98,7 +98,31 @@ class VegetableService extends Service
             return $validation->outputError($response);
         }
         $categoryId = isset($params['category_id']) ? intval($params['category_id']) : null;
-        $start = isset($params['start']) ? trim($params['start']) : null;
+        $start = isset($params['start']) ? trim($params['start']) : 0;
+        $limit = isset($params['limit']) ? trim($params['limit']) : 10;
+        $data = VegetableModule::getInstance($this->container)->getList($categoryId, $start, $limit);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 获取菜品列表
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return ServiceResponse
+     */
+    public function getTagList (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'start' => v::optional(v::numericVal()),
+            'limit' => v::optional(v::numericVal())
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $categoryId = isset($params['category_id']) ? intval($params['category_id']) : null;
+        $start = isset($params['start']) ? trim($params['start']) : 0;
         $limit = isset($params['limit']) ? trim($params['limit']) : 10;
         $data = VegetableModule::getInstance($this->container)->getList($categoryId, $start, $limit);
         return new ServiceResponse($data);

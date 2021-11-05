@@ -104,6 +104,40 @@ class VegetableModule extends Module
     }
 
     /**
+     * 获取菜单名称列表
+     *
+     * @param int $start
+     * @param int $limit
+     * @return array
+     * @throws VegetableException
+     */
+    public function getTagList($start = 0, $limit = 20)
+    {
+        try {
+            $query = Vegetables::select('id', 'name');
+            if ($start > 0) {
+                $query->where('id', '>', $start);
+            }
+            $data = $query->take($limit + 1)->get()->toArray();
+            $more = 0;
+            if (empty($data)) {
+                return ['start' => $start, 'more' => $more, 'list' => (object)[]];
+            }
+            if (count($data) > $limit) {
+                $more = 1;
+                array_pop($data);
+            }
+            $start = end($data)['id'];
+            foreach ($data as &$item) {
+                $item['isPlan'] = false;
+            }
+            return ['start' => $start, 'more' => $more, 'list' => $data];
+        } catch (\Exception $e) {
+            throw new VegetableException('GET_VEGETABLES_LIST_ERROR');
+        }
+    }
+
+    /**
      * 获取菜品信息
      *
      * @param $id
