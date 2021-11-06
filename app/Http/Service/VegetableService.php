@@ -97,9 +97,10 @@ class VegetableService extends Service
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
+        $params = Help::getParams($request);
         $categoryId = isset($params['category_id']) ? intval($params['category_id']) : null;
-        $start = isset($params['start']) ? trim($params['start']) : 0;
-        $limit = isset($params['limit']) ? trim($params['limit']) : 10;
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 10;
         $data = VegetableModule::getInstance($this->container)->getList($categoryId, $start, $limit);
         return new ServiceResponse($data);
     }
@@ -121,8 +122,9 @@ class VegetableService extends Service
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
-        $start = isset($params['start']) ? trim($params['start']) : 0;
-        $limit = isset($params['limit']) ? trim($params['limit']) : 10;
+        $params = Help::getParams($request);
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 10;
         $data = VegetableModule::getInstance($this->container)->getTagList($start, $limit);
         return new ServiceResponse($data);
     }
