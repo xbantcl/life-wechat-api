@@ -128,9 +128,6 @@ class VegetableModule extends Module
                 array_pop($data);
             }
             $start = end($data)['id'];
-            foreach ($data as &$item) {
-                $item['isPlan'] = false;
-            }
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
             throw new VegetableException('GET_VEGETABLES_LIST_ERROR');

@@ -192,7 +192,7 @@ class VegetableService extends Service
         $params = Help::getParams($request);
         $name = trim($params['name']);
         $vegetableIds = trim($params['vegetable_ids']);
-        $data = VegetableModule::getInstance($this->container)->add($name, $vegetableIds);
+        $data = VegetableModule::getInstance($this->container)->addCategory($name, $vegetableIds);
         return new ServiceResponse($data);
     }
 
