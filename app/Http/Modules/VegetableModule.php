@@ -22,6 +22,10 @@ class VegetableModule extends Module
     public function add($name, $price, $desc, $images)
     {
         try {
+            $vegetable = Vegetables::select('id')->where('name', $name)->first();
+            if ($vegetable instanceof Vegetables) {
+                throw new VegetableException('VEGETABLE_DATA_ALREADY_EXIST');
+            }
             $vegetable = Vegetables::create([
                 'name' => $name,
                 'price' => $price,
@@ -184,6 +188,10 @@ class VegetableModule extends Module
     public function addCategory($name, $vegetableIds)
     {
         try {
+            $vegetable = VegetableCategory::where('name', $name)->first();
+            if ($vegetable instanceof VegetableCategory) {
+                throw new VegetableException('VEGETABLE_CATEGORY_DATA_ALREADY_EXIST');
+            }
             $vegetable = VegetableCategory::create([
                 'name' => $name,
                 'vegetable_ids' => $vegetableIds
@@ -203,7 +211,7 @@ class VegetableModule extends Module
     public function getCategoryList()
     {
         try {
-            $data = VegetableCategory::select('id', 'name', 'vegetable_ids')->get()->toArray();
+            $data = VegetableCategory::select('id', 'name')->get()->toArray();
         } catch (\Exception $e) {
             throw new VegetableException('ADD_VEGETABLE_CATEGORY_DATA_ERROR');
         }
