@@ -32,6 +32,8 @@ class VegetableModule extends Module
                 'desc' => $desc,
                 'images' => $images,
             ]);
+        } catch (VegetableException $e) {
+            throw new VegetableException('VEGETABLE_DATA_ALREADY_EXIST');
         } catch (\Exception $e) {
             throw new VegetableException('ADD_VEGETABLE_DATA_ERROR');
         }
@@ -196,6 +198,8 @@ class VegetableModule extends Module
                 'name' => $name,
                 'vegetable_ids' => $vegetableIds
             ]);
+        } catch (VegetableException $e) {
+            throw new VegetableException('VEGETABLE_CATEGORY_DATA_ALREADY_EXIST');
         } catch (\Exception $e) {
             throw new VegetableException('ADD_VEGETABLE_CATEGORY_DATA_ERROR');
         }
