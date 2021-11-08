@@ -24,7 +24,13 @@ class VegetableModule extends Module
         try {
             $vegetable = Vegetables::select('id')->where('name', $name)->first();
             if ($vegetable instanceof Vegetables) {
-                throw new VegetableException('VEGETABLE_DATA_ALREADY_EXIST');
+                Vegetables::where('id', $vegetable->id)->update([
+                    'name' => $name,
+                    'price' => $price,
+                    'desc' => $desc,
+                    'images' => $images,
+                ]);
+                return $vegetable->id;
             }
             $vegetable = Vegetables::create([
                 'name' => $name,
@@ -192,7 +198,8 @@ class VegetableModule extends Module
         try {
             $vegetable = VegetableCategory::where('name', $name)->first();
             if ($vegetable instanceof VegetableCategory) {
-                throw new VegetableException('VEGETABLE_CATEGORY_DATA_ALREADY_EXIST');
+                VegetableCategory::where('id', $vegetable->id)->update(['vegetable_ids' => $vegetableIds]);
+                return $vegetable->id;
             }
             $vegetable = VegetableCategory::create([
                 'name' => $name,
