@@ -17,12 +17,14 @@ class CircleModule extends Module
     protected $redis;
     private $appid;
     private $secret;
+    private $openid;
 
     public function __construct(Container $container)
     {
         $this->redis = $container->get('Cache');
         $this->appid = $container->get('Config')['weixin']['program']['appid'];
         $this->secret = $container->get('Config')['weixin']['program']['secret'];
+        $this->openid = $container->get('Config')['weixin']['program']['openid'];
     }
 
     /**
@@ -234,7 +236,7 @@ class CircleModule extends Module
             if (!$accessToken) {
                 throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
             }
-            $result = Help::secCheckContent($accessToken, 'oPWMF5Ky8Jm6p10BTn77hAugl2ew', 2, $content);
+            $result = Help::secCheckContent($accessToken, $this->openid, 2, $content);
             if ($result !== 'pass') {
                 throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
             }
@@ -245,7 +247,7 @@ class CircleModule extends Module
                 'content' => $content
             ]);
 
-        } catch (\CircleException $e) {
+        } catch (CircleException $e) {
             throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
