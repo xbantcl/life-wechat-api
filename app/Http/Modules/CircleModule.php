@@ -236,7 +236,7 @@ class CircleModule extends Module
             }
             $result = Help::secCheckContent($accessToken, 'oPWMF5Ky8Jm6p10BTn77hAugl2ew', 2, $content);
             if ($result !== 'pass') {
-                throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
+                throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
             }
             $circleComment = CircleComment::create([
                 'uid' => $uid,

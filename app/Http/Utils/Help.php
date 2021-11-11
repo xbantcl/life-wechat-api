@@ -448,8 +448,8 @@ class Help
         $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential' .
             '&appid=' . $appid .
             '&secret=' . $appsecret;
-        $res = json_decode(Curl::get($url));
-        if ($res['errcode'] == 0) {
+        $res = json_decode(Curl::get($url), true);
+        if (isset($res['access_token'])) {
             return $res['access_token'];
         } else {
             return false;
@@ -472,7 +472,7 @@ class Help
             'scene' => $scene,
             'content' => $content
         ];
-        $res = json_decode(Curl::post($url, $params));
+        $res = Curl::post($url, json_encode($params, JSON_UNESCAPED_UNICODE));
         if ($res['errcode'] == 0) {
             return $res['result']['suggest'];
         } else {
