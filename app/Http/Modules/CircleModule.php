@@ -15,10 +15,14 @@ use Psr\Container\ContainerInterface as Container;
 class CircleModule extends Module
 {
     protected $redis;
+    private $appid;
+    private $secret;
 
     public function __construct(Container $container)
     {
         $this->redis = $container->get('Cache');
+        $this->appid = $container->get('Config')['weixin']['program']['appid'];
+        $this->secret = $container->get('Config')['weixin']['program']['secret'];
     }
 
     /**
@@ -226,12 +230,23 @@ class CircleModule extends Module
     public function comment($uid, $replyUid, $postId, $content)
     {
         try {
+            $accessToken = Help::getAccessToken($this->appid, $this->secret);
+            if (!$accessToken) {
+                throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
+            }
+            $result = Help::secCheckContent($accessToken, 'oPWMF5Ky8Jm6p10BTn77hAugl2ew', 2, $content);
+            if ($result !== 'pass') {
+                throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
+            }
             $circleComment = CircleComment::create([
                 'uid' => $uid,
                 'reply_uid' => $replyUid,
                 'post_id' => $postId,
                 'content' => $content
             ]);
+
+        } catch (\CircleException $e) {
+            throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
         }

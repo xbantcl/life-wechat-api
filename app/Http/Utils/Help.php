@@ -436,5 +436,48 @@ class Help
             }
         }
     }
+
+    /**
+     * 获取微信凭证
+     *
+     * @param $appid
+     * @param $appsecret
+     * @return bool|mixed
+     */
+    public static function getAccessToken($appid, $appsecret) {
+        $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential' .
+            '&appid=' . $appid .
+            '&secret=' . $appsecret;
+        $res = json_decode(Curl::get($url));
+        if ($res['errcode'] == 0) {
+            return $res['access_token'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 内容安全检查
+     * @param $accessToken
+     * @param $openid
+     * @param $scene
+     * @param $content
+     * @return bool|mixed
+     */
+    public static function secCheckContent($accessToken, $openid, $scene, $content) {
+        $url = 'https://api.weixin.qq.com/wxa/msg_sec_check?access_token=' . $accessToken;
+        $params =  [
+            'version' => 2,
+            'openid' => $openid,
+            'scene' => $scene,
+            'content' => $content
+        ];
+        $res = json_decode(Curl::post($url, $params));
+        if ($res['errcode'] == 0) {
+            return $res['result']['suggest'];
+        } else {
+            return false;
+        }
+    }
 }
 

@@ -346,6 +346,7 @@ CREATE TABLE IF NOT EXISTS `vegetables`
     `sort`       INT                          DEFAULT 0 COMMENT '包裹数量',
     `desc`       VARCHAR(1024)                DEFAULT '' COMMENT '菜描述',
     `images`     VARCHAR(128)                 DEFAULT '' COMMENT '图片',
+    `specs`      VARCHAR(128)        NOT NULL COMMENT '规格',
     `created_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
@@ -356,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `vegetable_categories`
 (
     `id`            BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`          VARCHAR(64)         NOT NULL COMMENT '分类名称',
-    `vegetable_ids` VARCHAR(32)         NOT NULL COMMENT '菜id',
+    `vegetable_ids` VARCHAR(1024)         NOT NULL COMMENT '菜id',
     `created_at`    TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`    TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
