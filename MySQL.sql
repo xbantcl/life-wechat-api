@@ -221,8 +221,8 @@ CREATE TABLE IF NOT EXISTS `address`
     `name`        VARCHAR(32)         NOT NULL COMMENT '用户名称',
     `mobile`      VARCHAR(11)         NOT NULL COMMENT '手机号码',
     `mark`        VARCHAR(1024)                DEFAULT '' COMMENT '备注',
-    `address`     VARCHAR(64)                  DEFAULT '' COMMENT '地址',
-    `gps_address` VARCHAR(64)                  DEFAULT '' COMMENT '定位地址',
+    `address`     VARCHAR(128)                  DEFAULT '' COMMENT '地址',
+    `gps_address` VARCHAR(128)                  DEFAULT '' COMMENT '定位地址',
     `lat`         DECIMAL(10, 6)      NOT NULL COMMENT '纬度',
     `lng`         DECIMAL(10, 6)      NOT NULL COMMENT '经度',
     `is_default`  TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '是否是默认地址：1-不是，2-是默认地址',
@@ -343,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `vegetables`
     `id`         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`       VARCHAR(64)         NOT NULL COMMENT '菜名称',
     `price`      FLOAT               NOT NULL COMMENT '价格',
-    `sort`       INT                          DEFAULT 0 COMMENT '包裹数量',
+    `sort`       INT                          DEFAULT 0 COMMENT '菜品排序',
     `desc`       VARCHAR(1024)                DEFAULT '' COMMENT '菜描述',
     `images`     VARCHAR(128)                 DEFAULT '' COMMENT '图片',
     `specs`      VARCHAR(128)        NOT NULL COMMENT '规格',
@@ -381,3 +381,24 @@ CREATE TABLE IF NOT EXISTS `vegetable_orders`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='买菜订单';
+
+CREATE TABLE IF NOT EXISTS `informations`
+(
+    `id`             BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `uid`            BIGINT(20) UNSIGNED NOT NULL COMMENT '评论用户id',
+    `title`          VARCHAR(128)                 DEFAULT '' COMMENT '内容标题',
+    `subdistrict_id` INT                 NOT NULL DEFAULT 0 COMMENT '小区id',
+    `subdistrict`    VARCHAR(64)                  DEFAULT '' COMMENT '小区名称',
+    `sort`           INT                          DEFAULT 0 COMMENT '消息排序',
+    `content`        VARCHAR(600)                 DEFAULT '' COMMENT '发布类容',
+    `status`         TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '状态：1-审核，2-发布，3-审核不通过',
+    `address`        VARCHAR(128)                 DEFAULT '' COMMENT '地址',
+    `gps_address`    VARCHAR(128)                 DEFAULT '' COMMENT '定位地址',
+    `lat`            DECIMAL(10, 6)      NOT NULL DEFAULT '' COMMENT '纬度',
+    `lng`            DECIMAL(10, 6)      NOT NULL DEFAULT '' COMMENT '经度',
+    `images`         VARCHAR(128)                 DEFAULT '' COMMENT '图片',
+    `created_at`     TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`     TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='消息';
