@@ -21,6 +21,7 @@ class CircleModule extends Module
 
     public function __construct(Container $container)
     {
+        parent::__construct($container);
         $this->redis = $container->get('Cache');
         $this->appid = $container->get('Config')['weixin']['program']['appid'];
         $this->secret = $container->get('Config')['weixin']['program']['secret'];
