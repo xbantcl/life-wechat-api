@@ -45,6 +45,13 @@ class CircleModule extends Module
     public function add($uid, $content, $images = ''): bool
     {
         try {
+            if ($images) {
+                $imgs = explode('|', $images);
+                foreach ($imgs as $img) {
+                    $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+                    $res = Help::imgSecCheck($img, $accessToken);
+                }
+            }
             CirclePost::create([
                 'uid' => $uid,
                 'content' => $content,

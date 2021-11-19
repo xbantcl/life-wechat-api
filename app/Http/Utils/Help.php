@@ -2,6 +2,8 @@
 
 use Ahc\Jwt\JWT;
 use Ahc\Jwt\JWTException;
+use Dolphin\Ting\Http\Constant\CommonConstant;
+use Dolphin\Ting\Http\Constant\ImageConstant;
 use function GuzzleHttp\Psr7\str;
 
 class Help
@@ -478,6 +480,26 @@ class Help
         } else {
             return false;
         }
+    }
+
+    /**
+     * 图片审查
+     *
+     * @param $imgUrl
+     * @return mixed
+     */
+    public static function imgSecCheck($img, $accessToken)
+    {
+        $imgUrl = ImageConstant::BASE_IMAGE_URL . $img;
+        $img = file_get_contents($imgUrl);
+        $filePath = '/dev/shm/tmp1.png';
+        file_put_contents($filePath, $img);
+        $obj = new CURLFile(realpath($filePath));
+        $obj->setMimeType("image/jpeg");
+        $file['media'] = $obj;
+        $url = "https://api.weixin.qq.com/wxa/img_sec_check?access_token=$accessToken";
+        $res = Curl::post($url, $file);
+        return json_decode($res,true);
     }
 }
 

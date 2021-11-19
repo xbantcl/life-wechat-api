@@ -7,10 +7,12 @@ $container = (require __DIR__ . '/../app/Bootstrap/app.php')['container'];
 
 use Symfony\Component\Console\Application;
 use Dolphin\Ting\Http\Command\GenerateRandomUserCommand;
+use Dolphin\Ting\Http\Command\SendMessageCommand;
 
 $application = new Application();
 // 注册命令
 $application->add(new GenerateRandomUserCommand($container));
+$application->add(new SendMessageCommand($container));
 
 try {
     $application->run();
