@@ -232,7 +232,7 @@ class CircleModule extends Module
     public function comment($uid, $replyUid, $postId, $content)
     {
         try {
-            $accessToken = Help::getAccessToken($this->appid, $this->secret);
+            $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
             if (!$accessToken) {
                 throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
             }
@@ -246,7 +246,6 @@ class CircleModule extends Module
                 'post_id' => $postId,
                 'content' => $content
             ]);
-
         } catch (CircleException $e) {
             throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
         } catch (\Exception $e) {

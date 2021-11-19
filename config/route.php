@@ -134,5 +134,5 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('information/add', 'Dolphin\Ting\Http\Service\InformationService:add');
     $group->post('information/list', 'Dolphin\Ting\Http\Service\InformationService:getList');
     $group->post('information/status/change', 'Dolphin\Ting\Http\Service\InformationService:changeStatus');
-    
+
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));
