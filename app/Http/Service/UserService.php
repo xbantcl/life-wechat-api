@@ -2,6 +2,7 @@
 
 namespace Dolphin\Ting\Http\Service;
 
+use Dolphin\Ting\Http\Modules\CacheModule;
 use Dolphin\Ting\Http\Modules\UserModule;
 use Dolphin\Ting\Http\Response\ServiceResponse;
 use Dolphin\Ting\Http\Utils\Help;
@@ -89,6 +90,23 @@ class UserService extends Service
         }
         $params = Help::getParams($request);
         $data = UserModule::getInstance($this->container)->register(trim($params['phone']), trim($params['password']));
+        return new ServiceResponse($data);
+    }
+
+    public function getAccessToken(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'key' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        if ($params['key'] != 'milaoshuzhijia') {
+            return new ServiceResponse([], -1, 'key 不正确');
+        }
+        $data = CacheModule::getInstance($this->container)->getAccessToken();
         return new ServiceResponse($data);
     }
 }

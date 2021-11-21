@@ -35,7 +35,7 @@ class CacheModule extends Module
             if ($accessToken) {
                 return $accessToken;
             }
-            $accessToken = Help::getAccessToken($this->openid, $this->secret);
+            $accessToken = Help::getAccessToken($this->appid, $this->secret);
             if ($accessToken) {
                 $this->redis->set('access_token', $accessToken, 7000);
                 return $accessToken;
