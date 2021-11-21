@@ -6,6 +6,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('user/login', 'Dolphin\Ting\Http\Service\UserService:login');
     $group->post('user/register', 'Dolphin\Ting\Http\Service\UserService:register');
     $group->post('user/wx/login', 'Dolphin\Ting\Http\Service\UserService:wxLogin');
+    $group->post('user/wx/access_token', 'Dolphin\Ting\Http\Service\UserService:getAccessToken');
 
     // ------------------ 文件接口 ----------------------------------
     $group->get('file/uploadtoken', 'Dolphin\Ting\Http\Service\FileService:getUploadToken');
