@@ -42,7 +42,7 @@ class InformationModule extends Module
      * @throws InformationException
      */
     public function add($uid, $title, $content, $images, $subdistrictId,
-            $subdistrict, $address, $gpsAddress, $lat, $lng): int 
+            $subdistrict, $address, $gpsAddress, $lat, $lng): int
     {
         try {
             $information = Information::create([
@@ -100,7 +100,7 @@ class InformationModule extends Module
         $query = Information::leftjoin('user as u', 'u.id', '=', 'informations.uid')
             ->select('u.id', 'u.username', 'u.avatar', 'informations.id as post_id', 'informations.content',
                 'informations.title', 'informations.images', 'informations.created_at', 'informations.address',
-                'informations.lat', 'informations.lng')
+                'informations.lat', 'informations.lng', 'informations.subdistrict')
             ->where('informations.status', CommonConstant::ON_SHELVES)
             ->orderBy('informations.sort', 'DESC');
         if ($start > 0) {

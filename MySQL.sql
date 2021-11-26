@@ -386,6 +386,7 @@ CREATE TABLE IF NOT EXISTS `informations`
 (
     `id`             BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `uid`            BIGINT(20) UNSIGNED NOT NULL COMMENT '评论用户id',
+    `category`       VARCHAR(16)         NOT NULL COMMENT '消息分类',
     `title`          VARCHAR(128)                 DEFAULT '' COMMENT '内容标题',
     `subdistrict_id` INT                 NOT NULL DEFAULT 0 COMMENT '小区id',
     `subdistrict`    VARCHAR(64)                  DEFAULT '' COMMENT '小区名称',
