@@ -42,7 +42,7 @@ class InformationModule extends Module
      * @throws InformationException
      */
     public function add($uid, $title, $content, $images, $subdistrictId,
-            $subdistrict, $address, $gpsAddress, $lat, $lng): bool
+            $subdistrict, $address, $gpsAddress, $lat, $lng): int 
     {
         try {
             $information = Information::create([
