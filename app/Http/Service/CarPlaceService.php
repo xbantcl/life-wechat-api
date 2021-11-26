@@ -246,7 +246,7 @@ class CarPlaceService extends Service
     {
         $validation = $this->validation->validate($request, [
             'id'  => v::intVal(),
-            'status' => v::in([1,2])->notEmpty()
+            'status' => v::in([1, 2, 3, 4])->notEmpty()
         ]);
 
         if ($validation->failed()) {
