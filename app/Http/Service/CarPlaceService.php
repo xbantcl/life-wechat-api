@@ -42,7 +42,6 @@ class CarPlaceService extends Service
             'building_num' => v::numericVal(),
             'mobile' => v::numericVal(),
             'describe' => v::notEmpty(),
-            'weixin' => v::notEmpty(),
             'images' => v::notEmpty()
         ]);
 
@@ -59,10 +58,9 @@ class CarPlaceService extends Service
         $buildingNum = isset($params['building_num']) ? trim($params['building_num']) : 1;
         $mobile = isset($params['mobile']) ? trim($params['mobile']) : '';
         $describe = isset($params['describe']) ? trim($params['describe']) : '';
-        $weixin = isset($params['weixin']) ? trim($params['weixin']) : '';
         $images = isset($params['images']) ? trim($params['images']) : '';
         $data = CarPlaceModule::getInstance($this->container)->add($this->uid, $type, $price, $isStandard, $floorage,
-            $floor, $subdistrict, $buildingNum, $describe, $mobile, $weixin, $images);
+            $floor, $subdistrict, $buildingNum, $describe, $mobile, $images);
         return new ServiceResponse($data);
     }
 
@@ -258,6 +256,33 @@ class CarPlaceService extends Service
         $id = intval($params['id']);
         $status = intval($params['status']);
         $data = CarPlaceModule::getInstance($this->container)->changeStatus($this->uid, $id, $status);
+        return new ServiceResponse($data);
+    }
+
+    /**
+     * 更新图片
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function updateImage(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id'  => v::intVal(),
+            'type' => v::in(['add', 'delete']),
+            'image' => v::numericVal()->notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $type = $params['type'];
+        $image = trim($params['image']);
+        $data = CarPlaceModule::getInstance($this->container)->updateImage($this->uid, $id, $image, $type);
         return new ServiceResponse($data);
     }
 }

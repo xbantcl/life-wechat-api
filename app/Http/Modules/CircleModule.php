@@ -15,16 +15,12 @@ use Psr\Container\ContainerInterface as Container;
 class CircleModule extends Module
 {
     protected $redis;
-    private $appid;
-    private $secret;
     private $openid;
 
     public function __construct(Container $container)
     {
         parent::__construct($container);
         $this->redis = $container->get('Cache');
-        $this->appid = $container->get('Config')['weixin']['program']['appid'];
-        $this->secret = $container->get('Config')['weixin']['program']['secret'];
         $this->openid = $container->get('Config')['weixin']['program']['openid'];
     }
 

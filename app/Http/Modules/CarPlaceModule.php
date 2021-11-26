@@ -6,12 +6,21 @@ use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\CarPlaceException;
+use Dolphin\Ting\Http\Exception\RiskyException;
 use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
 use Dolphin\Ting\Http\Utils\Help;
+use Psr\Container\ContainerInterface as Container;
 
 class CarPlaceModule extends Module
 {
+    private $openid;
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+        $this->openid = $container->get('Config')['weixin']['program']['openid'];
+    }
+
     /**
      * 发布车位信息
      *
@@ -25,21 +34,29 @@ class CarPlaceModule extends Module
      * @param $buildingNum
      * @param $describe
      * @param $mobile
-     * @param $weixin
      * @param $images
      *
      * @return mixed
      * @throws CarPlaceException
      */
     public function add($uid, $type, $price, $isStandard, $floorage, $floor, $subdistrict, $buildingNum, $describe,
-                        $mobile, $weixin, $images)
+                        $mobile, $images)
     {
         try {
+            if ($describe) {
+                $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+                $res = Help::secCheckContent($accessToken, $this->openid, 2, $describe);
+                if ($res !== 'pass') {
+                    throw new RiskyException('COMMENT_NOT_PASS');
+                }
+            }
+
             $carPlace = CarPlace::create([
                 'uid' => $uid,
                 'subdistrict_id' => 1,
                 'type' => $type,
                 'price' => $price,
+                'post_status' => CommonConstant::ON_SHELVES,
                 'is_standard' => $isStandard,
                 'floorage' => $floorage,
                 'floor' => $floor,
@@ -47,13 +64,50 @@ class CarPlaceModule extends Module
                 'building_number' => $buildingNum,
                 'describe' => $describe,
                 'mobile' => $mobile,
-                'weixin' => $weixin,
                 'images' => $images
             ]);
+        } catch (RiskyException $e) {
+            throw new RiskyException('COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new CarPlaceException('ADD_CAR_PLACE_ERROR');
         }
         return $carPlace->id;
+    }
+
+    /**
+     * 更新图片数据
+     *
+     * @param $uid
+     * @param $id
+     * @param $image
+     * @param string $type
+     * @throws CarPlaceException
+     */
+    public function updateImage($uid, $id, $image, $type = 'add')
+    {
+        try {
+            $obj = CarPlace::select('images')->where('id', $id)->where('uid', $uid)->first();
+            $images = '';
+            if ($type == 'delete') {
+                $temp = explode('|', $obj->images);
+                $key = array_search($image, $temp);
+                if ($key !== false) {
+                    array_splice($temp, $key, 1);
+                    $images = implode('|', $temp);
+                }
+            } elseif ($type == 'add') {
+                $images = $obj->images . '|' . $image;
+            } else {
+                $images = false;
+            }
+            if ($images !== false) {
+                CarPlace::where('id', $id)->where('uid', $uid)->update([
+                    'images' => $images
+                ]);
+            }
+        } catch (\Exception $e) {
+            throw new CarPlaceException('UPDATE_ERROR');
+        }
     }
 
     /**
@@ -69,7 +123,7 @@ class CarPlaceModule extends Module
     public function getList($start, $type, $isPullDown = false, $limit = 5)
     {
         try {
-            $query = CarPlace::where('post_status', '=', CarPlaceConstant::ON_SHELVES)
+            $query = CarPlace::where('post_status', CarPlaceConstant::ON_SHELVES)
                 ->select('id', 'type', 'is_standard', 'floor', 'price', 'subdistrict', 'images', 'building_number', 'updated_at')
                 ->orderBy('id', 'desc');
             if (strtolower($type) != 'all') {

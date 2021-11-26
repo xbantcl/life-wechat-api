@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `car_places`
     `subdistrict_id`  INT                 NOT NULL COMMENT '小区id',
     `type`            ENUM ('出租', '出售')            DEFAULT '出租' COMMENT '车位状态',
     `price`           FLOAT               NOT NULL DEFAULT 0 COMMENT '车位租售价格',
-    `post_status`     TINYINT(2) UNSIGNED          DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布, 3-管理员下架',
+    `post_status`     TINYINT(2) UNSIGNED          DEFAULT 2 COMMENT '内容状态: 1-下架，2-发布, 3-管理员下架, 4-审核',
     `is_standard`     TINYINT(2) UNSIGNED          DEFAULT 1 COMMENT '是否是标准车位: 1-不是，2-是',
     `floorage`        FLOAT               NOT NULL DEFAULT 0 COMMENT '建筑面积',
     `floor`           VARCHAR(16)         NOT NULL DEFAULT '负一楼' COMMENT '楼层',
