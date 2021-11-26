@@ -5,6 +5,7 @@ namespace Dolphin\Ting\Http\Modules;
 use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\InformationException;
+use Dolphin\Ting\Http\Exception\RiskyException;
 use Dolphin\Ting\Http\Model\Information;
 use Dolphin\Ting\Http\Utils\Help;
 use Exception;
@@ -12,16 +13,12 @@ use Psr\Container\ContainerInterface as Container;
 
 class InformationModule extends Module
 {
-    protected $redis;
-    private $appid;
-    private $secret;
     private $openid;
 
     public function __construct(Container $container)
     {
-        $this->redis = $container->get('Cache');
-        $this->appid = $container->get('Config')['weixin']['program']['appid'];
-        $this->secret = $container->get('Config')['weixin']['program']['secret'];
+        parent::__construct($container);
+
         $this->openid = $container->get('Config')['weixin']['program']['openid'];
     }
 
@@ -47,12 +44,24 @@ class InformationModule extends Module
             $subdistrict, $address, $gpsAddress, $lat, $lng, $category): int
     {
         try {
+            $obj = Information::select('id')->where('uid', $uid)->where('created_at', '>', strtotime(date('Y-m-t')))->first();
+            if ($obj instanceof Information) {
+                throw new InformationException('ADD_ASTRICT');
+            }
+            $status = CommonConstant::AUDIT;
+            $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+            $res = Help::secCheckContent($accessToken, $this->openid, 2, $title.$content);
+            if ($res == 'review') {
+                $status = CommonConstant::ADMIN_OFF_SHELVES;
+            } elseif ($res == 'risky') {
+                throw new RiskyException('COMMENT_NOT_PASS');
+            }
             $information = Information::create([
                 'uid' => $uid,
                 'category' => $category,
                 'title' => $title,
                 'content' => $content,
-                'status' => CommonConstant::AUDIT,
+                'status' => $status,
                 'images' => $images,
                 'subdistrict_id' => $subdistrictId,
                 'subdistrict' => $subdistrict,
@@ -61,7 +70,11 @@ class InformationModule extends Module
                 'lat' => $lat,
                 'lng' => $lng
             ]);
-        } catch (Exception $e) {
+        } catch (RiskyException $e) {
+            throw new RiskyException('COMMENT_NOT_PASS');
+        } catch (InformationException $e) {
+            throw new InformationException('ADD_ASTRICT');
+        } catch (\Exception $e) {
             throw new InformationException('ADD_INFORMATION_DATA_ERROR');
         }
         return $information->id;

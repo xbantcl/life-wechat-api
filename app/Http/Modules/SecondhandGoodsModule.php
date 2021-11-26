@@ -2,17 +2,26 @@
 
 namespace Dolphin\Ting\Http\Modules;
 
-use Dolphin\Ting\Http\Constant\CarPlaceConstant;
+
 use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Constant\SecondhandGoodsConstant;
-use Dolphin\Ting\Http\Exception\CarPlaceException;
+
+use Dolphin\Ting\Http\Exception\RiskyException;
 use Dolphin\Ting\Http\Exception\SecondhandGoodsException;
 use Dolphin\Ting\Http\Model\SecondhandGoods;
 use Dolphin\Ting\Http\Utils\Help;
+use Psr\Container\ContainerInterface as Container;
 
 class SecondhandGoodsModule extends Module
 {
+    private $openid;
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+        $this->openid = $container->get('Config')['weixin']['program']['openid'];
+    }
+
     /**
      * 发布商品信息
      *
@@ -32,9 +41,17 @@ class SecondhandGoodsModule extends Module
     public function add($uid, $title, $price, $originalPrice, $address, $describe, $delivery, $images, $category, $mobile)
     {
         try {
+            $status = CommonConstant::AUDIT;
+            $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+            $res = Help::secCheckContent($accessToken, $this->openid, 2, $title.$describe);
+            if ($res == 'review') {
+                $status = CommonConstant::ADMIN_OFF_SHELVES;
+            } elseif ($res == 'risky') {
+                throw new RiskyException('COMMENT_NOT_PASS');
+            }
             $secondhandGood = SecondhandGoods::create([
                 'uid' => $uid,
-                'status' => SecondhandGoodsConstant::ON_SHELVES, // 目前是自动上架
+                'status' => $status, // 目前是自动上架
                 'price' => $price,
                 'title' => $title,
                 'original_price' => $originalPrice,
@@ -45,6 +62,8 @@ class SecondhandGoodsModule extends Module
                 'images' => $images,
                 'mobile' => $mobile
             ]);
+        } catch (RiskyException $e) {
+            throw new RiskyException('COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new SecondhandGoodsException('ADD_SECONDHAND_GOODS_ERROR');
         }
