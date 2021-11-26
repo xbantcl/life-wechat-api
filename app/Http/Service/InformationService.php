@@ -37,7 +37,8 @@ class InformationService extends Service
             'subdistrict_id' => v::optional(v::numericVal()),
             'title' => v::notEmpty(),
             'content' => v::notEmpty(),
-            'images'  => v::notEmpty()
+            'images'  => v::notEmpty(),
+            'category' => v::notEmpty()
         ]);
 
         if ($validation->failed()) {
@@ -53,8 +54,9 @@ class InformationService extends Service
         $gpsAddress = isset($params['gps_address']) ? trim($params['gps_address']) : '';
         $lat = isset($params['lat']) ? trim($params['lat']) : 0;
         $lng = isset($params['lng']) ? trim($params['lng']) : 0;
+        $category = trim($params['category']);
         $data = InformationModule::getInstance($this->container)->add($this->uid, $title, $content, $images, $subdistrictId,
-            $subdistrict, $address, $gpsAddress, $lat, $lng);
+            $subdistrict, $address, $gpsAddress, $lat, $lng, $category);
         return new ServiceResponse($data);
     }
 

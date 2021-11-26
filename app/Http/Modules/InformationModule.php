@@ -38,15 +38,18 @@ class InformationModule extends Module
      * @param $gpsAddress
      * @param $lat
      * @param $lng
+     * @param $category
+     *
      * @return bool
      * @throws InformationException
      */
     public function add($uid, $title, $content, $images, $subdistrictId,
-            $subdistrict, $address, $gpsAddress, $lat, $lng): int
+            $subdistrict, $address, $gpsAddress, $lat, $lng, $category): int
     {
         try {
             $information = Information::create([
                 'uid' => $uid,
+                'category' => $category,
                 'title' => $title,
                 'content' => $content,
                 'status' => CommonConstant::AUDIT,
