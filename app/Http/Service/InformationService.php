@@ -51,8 +51,8 @@ class InformationService extends Service
         $subdistrict = isset($params['subdistrict']) ? trim($params['subdistrict']) : '';
         $address = isset($params['address']) ? trim($params['address']) : '';
         $gpsAddress = isset($params['gps_address']) ? trim($params['gps_address']) : '';
-        $lat = isset($params['lat']) ? trim($params['lat']) : '';
-        $lng = isset($params['lng']) ? trim($params['lng']) : '';
+        $lat = isset($params['lat']) ? trim($params['lat']) : 0;
+        $lng = isset($params['lng']) ? trim($params['lng']) : 0;
         $data = InformationModule::getInstance($this->container)->add($this->uid, $title, $content, $images, $subdistrictId,
             $subdistrict, $address, $gpsAddress, $lat, $lng);
         return new ServiceResponse($data);

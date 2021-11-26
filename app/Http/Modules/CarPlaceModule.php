@@ -56,7 +56,7 @@ class CarPlaceModule extends Module
                 'subdistrict_id' => 1,
                 'type' => $type,
                 'price' => $price,
-                'post_status' => CommonConstant::ON_SHELVES,
+                'post_status' => CommonConstant::AUDIT,
                 'is_standard' => $isStandard,
                 'floorage' => $floorage,
                 'floor' => $floor,

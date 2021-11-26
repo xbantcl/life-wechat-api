@@ -45,11 +45,11 @@ class InformationModule extends Module
             $subdistrict, $address, $gpsAddress, $lat, $lng): bool
     {
         try {
-            Information::create([
+            $information = Information::create([
                 'uid' => $uid,
                 'title' => $title,
                 'content' => $content,
-                'status' => CommonConstant::OFF_SHELVES,
+                'status' => CommonConstant::AUDIT,
                 'images' => $images,
                 'subdistrict_id' => $subdistrictId,
                 'subdistrict' => $subdistrict,
@@ -61,7 +61,7 @@ class InformationModule extends Module
         } catch (Exception $e) {
             throw new InformationException('ADD_INFORMATION_DATA_ERROR');
         }
-        return true;
+        return $information->id;
     }
 
     /**
