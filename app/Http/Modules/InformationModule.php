@@ -122,7 +122,7 @@ class InformationModule extends Module
         $query = Information::leftjoin('user as u', 'u.id', '=', 'informations.uid')
             ->select('u.id', 'u.username', 'u.avatar', 'informations.id as post_id', 'informations.content',
                 'informations.title', 'informations.images', 'informations.created_at', 'informations.address',
-                'informations.lat', 'informations.lng', 'informations.subdistrict', 'informations.status')
+                'informations.lat', 'informations.lng', 'informations.subdistrict', 'informations.status as post_status')
             ->orderBy('informations.sort', 'DESC');
         if ($isSelf == 'byself') {
             if ($uid !== 1) {
