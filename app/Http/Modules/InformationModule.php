@@ -119,9 +119,11 @@ class InformationModule extends Module
                 'informations.title', 'informations.images', 'informations.created_at', 'informations.address',
                 'informations.lat', 'informations.lng', 'informations.subdistrict', 'informations.status')
             ->orderBy('informations.sort', 'DESC');
-        if ($isSelf == 'byself' && $uid !== 1) {
-            $query->where('informations.uid', $uid);
-        } elseif ($uid !== 1) {
+        if ($isSelf == 'byself') {
+            if ($uid !== 1) {
+                $query->where('informations.uid', $uid);
+            }
+        } else {
             $query->where('informations.status', CommonConstant::ON_SHELVES);
         }
         if ($start > 0) {
