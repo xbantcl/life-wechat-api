@@ -132,9 +132,10 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('vegetable/delete', 'Dolphin\Ting\Http\Service\VegetableService:delete');
     $group->post('vegetable/category/add', 'Dolphin\Ting\Http\Service\VegetableService:addCategory');
 
-    // ------------------ 买菜相关接口 -----------------------------------
+    // ------------------ 动态信息相关接口 -----------------------------------
     $group->post('information/add', 'Dolphin\Ting\Http\Service\InformationService:add');
     $group->post('information/list', 'Dolphin\Ting\Http\Service\InformationService:getList');
+    $group->post('information/delete', 'Dolphin\Ting\Http\Service\InformationService:delete');
     $group->post('information/status/change', 'Dolphin\Ting\Http\Service\InformationService:changeStatus');
 
 })->addMiddleware(new \Dolphin\Ting\Bootstrap\Middleware\AuthMiddleware($container));

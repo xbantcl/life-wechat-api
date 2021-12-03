@@ -124,15 +124,15 @@ class InformationService extends Service
     public function delete(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'post_id' => v::intVal()
+            'id' => v::intVal()
         ]);
 
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $postId = isset($params['post_id']) ? intval($params['post_id']) : 0;
-        $data = InformationModule::getInstance($this->container)->delete($this->uid, $postId);
+        $id = intval($params['id']);
+        $data = InformationModule::getInstance($this->container)->delete($this->uid, $id);
         return new ServiceResponse($data);
     }
 

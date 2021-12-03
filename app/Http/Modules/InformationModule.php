@@ -89,10 +89,15 @@ class InformationModule extends Module
      * @return bool
      * @throws InformationException
      */
-    public function delete($uid, $d)
+    public function delete($uid, $id)
     {
         try {
-            Information::where('id', $d)->where('uid', $uid)->delete();
+            if ($uid == 1) {
+                Information::where('id', $id)->delete();
+            } else {
+                Information::where('id', $id)->where('uid', $uid)->delete();
+            }
+
         } catch (\Exception $e) {
             throw new InformationException('DELETE_INFORMATION_ERROR');
         }
