@@ -73,7 +73,7 @@ class InformationService extends Service
         $validation = $this->validation->validate($request, [
             'is_pull_down' => v::in([0,1]),
             'start' => v::optional(v::intVal()),
-            'limit'  => v::optional(v::intVal())
+            'limit'  => v::optional(v::intVal()),
         ]);
 
         if ($validation->failed()) {
@@ -82,8 +82,9 @@ class InformationService extends Service
         $params = Help::getParams($request);
         $start = isset($params['start']) ? intval($params['start']) : 0;
         $limit = isset($params['limit']) ? intval($params['limit']) : 10;
-        $isPullDown = isset($params['is_pull_down']) ? boolval($params['is_pull_down']) : false;
-        $data = InformationModule::getInstance($this->container)->getList($this->uid, $start, $isPullDown, $limit);
+        $isPullDown = boolval($params['is_pull_down']);
+        $isSelf = isset($params['is_self']) ? trim($params['is_self']) : false;
+        $data = InformationModule::getInstance($this->container)->getList($this->uid, $isSelf, $start, $isPullDown, $limit);
         return new ServiceResponse($data);
     }
 

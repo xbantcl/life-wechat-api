@@ -10,6 +10,7 @@ use Dolphin\Ting\Http\Model\Information;
 use Dolphin\Ting\Http\Utils\Help;
 use Exception;
 use Psr\Container\ContainerInterface as Container;
+use function Composer\Autoload\includeFile;
 
 class InformationModule extends Module
 {
@@ -111,14 +112,18 @@ class InformationModule extends Module
      * @author xbantcl
      * @date   2021/3/2 15:32
      */
-    public function getList($uid, $start, $isPullDown = false, $limit = 10): array
+    public function getList($uid, $isSelf, $start, $isPullDown = false, $limit = 10): array
     {
         $query = Information::leftjoin('user as u', 'u.id', '=', 'informations.uid')
             ->select('u.id', 'u.username', 'u.avatar', 'informations.id as post_id', 'informations.content',
                 'informations.title', 'informations.images', 'informations.created_at', 'informations.address',
-                'informations.lat', 'informations.lng', 'informations.subdistrict')
-            ->where('informations.status', CommonConstant::ON_SHELVES)
+                'informations.lat', 'informations.lng', 'informations.subdistrict', 'informations.status')
             ->orderBy('informations.sort', 'DESC');
+        if ($isSelf == 'byself' && $uid !== 1) {
+            $query->where('informations.uid', $uid);
+        } elseif ($uid !== 1) {
+            $query->where('informations.status', CommonConstant::ON_SHELVES);
+        }
         if ($start > 0) {
             if ($isPullDown) {
                 $query->where('informations.id', '>', $start);
