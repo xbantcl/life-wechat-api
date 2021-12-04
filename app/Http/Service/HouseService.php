@@ -99,6 +99,31 @@ class HouseService extends Service
     }
 
     /**
+     * 获取用户房屋数据列表
+     *
+     * @param Request $request
+     * @param Response $response
+     *
+     * @return ServiceResponse
+     */
+    public function getListByUid(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'start' => v::optional(v::intVal()),
+            'limit'  => v::optional(v::intVal())
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $start = isset($params['start']) ? intval($params['start']) : 0;
+        $limit = isset($params['limit']) ? intval($params['limit']) : 10;
+        $data = HouseModule::getInstance($this->container)->getListByUid($this->uid, $start, $limit);
+        return new ServiceResponse($data);
+    }
+    
+    /**
      * 获取房子详情
      *
      * @param Request $request
