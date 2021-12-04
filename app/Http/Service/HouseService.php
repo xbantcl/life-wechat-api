@@ -146,63 +146,14 @@ class HouseService extends Service
     }
 
     /**
-     * 发布车位评论
+     * 删除房屋信息
      *
      * @param Request $request
      * @param Response $response
      *
      * @return ServiceResponse
      */
-    public function comment(Request $request, Response $response)
-    {
-        $validation = $this->validation->validate($request, [
-            'reply_uid' => v::optional(v::intVal()),
-            'car_place_id'  => v::intVal(),
-            'content'  => v::notEmpty()
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $params = Help::getParams($request);
-        $replyUid = isset($params['reply_uid']) ? intval($params['reply_uid']) : 0;
-        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->comment($this->uid, $replyUid, $carPlaceId, $params['content']);
-        return new ServiceResponse($data);
-    }
-
-    /**
-     * 获取车位评论列表
-     *
-     * @param Request $request
-     * @param Response $response
-     *
-     * @return ServiceResponse
-     */
-    public function commentList(Request $request, Response $response)
-    {
-        $validation = $this->validation->validate($request, [
-            'car_place_id'  => v::intVal()
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $params = Help::getParams($request);
-        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->commentList($carPlaceId);
-        return new ServiceResponse($data);
-    }
-
-    /**
-     * 删除车位评论
-     *
-     * @param Request $request
-     * @param Response $response
-     *
-     * @return ServiceResponse
-     */
-    public function deleteComment(Request $request, Response $response)
+    public function delete(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
             'id'  => v::intVal()
@@ -212,8 +163,8 @@ class HouseService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $id = isset($params['id']) ? intval($params['id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->deleteComment($this->uid, $id);
+        $id = intval($params['id']);
+        $data = HouseModule::getInstance($this->container)->delete($this->uid, $id);
         return new ServiceResponse($data);
     }
 

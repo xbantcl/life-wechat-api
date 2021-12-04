@@ -191,75 +191,24 @@ class HouseModule extends Module
     }
 
     /**
-     * 发布车位评论
-     *
-     * @param int    $uid        评论作者id
-     * @param int    $replyUid   被回复的用户id
-     * @param int    $carPlaceId 车位id
-     * @param string $content    评论类容
-     *
-     * @return mixed
-     *
-     * @throws HouseException
-     */
-    public function comment($uid, $replyUid, $carPlaceId, $content)
-    {
-        try {
-            $carPlaceComment = CarPlaceComment::create([
-                'uid' => $uid,
-                'reply_uid' => $replyUid,
-                'car_place_id' => $carPlaceId,
-                'content' => $content
-            ]);
-        } catch (\Exception $e) {
-            throw new HouseException('ADD_CAR_PLACE_COMMENT_ERROR');
-        }
-        return $carPlaceComment->id;
-    }
-
-    /**
-     * 获取车位评论列表
-     *
-     * @param int $carPlaceId 车位id
-     * @return mixed
-     * @throws HouseException
-     */
-    public function commentList($carPlaceId)
-    {
-        try {
-            $comments = CarPlaceComment::leftjoin('user as u', 'u.id', '=', 'car_place_comments.uid')
-                ->leftjoin('user as u1', 'u1.id', '=', 'car_place_comments.reply_uid')
-                ->select('car_place_comments.id', 'car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
-                    'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id', 'car_place_comments.created_at')
-                ->where('car_place_comments.car_place_id', $carPlaceId)
-                ->orderBy('car_place_comments.created_at', 'desc')
-                ->get()->toArray();
-            if (!empty($comments)) {
-                foreach ($comments as &$item) {
-                    $item['created_at'] = strtotime($item['created_at']);
-                }
-            }
-            return $comments;
-        } catch (\Exception $e) {
-            throw new HouseException('GET_COMMENTS_ERROR');
-        }
-    }
-
-    /**
-     * 删除评论
+     * 删除房屋信息
      *
      * @param $uid
      * @param $id
      * @return bool
      * @throws HouseException
      */
-    public function deleteComment($uid, $id)
+    public function delete($uid, $id)
     {
         try {
-            CarPlaceComment::where('id', $id)->where('uid', $uid)->delete();
+            if ($uid !== 1) {
+                House::where('id', $id)->where('uid', $uid)->delete();
+            } else {
+                House::where('id', $id)->delete();
+            }
             return true;
         } catch (\Exception $e) {
-            throw new HouseException('DELETE_COMMENT_ERROR');
+            throw new HouseException('DELETE_DATA_ERROR');
         }
     }
 
@@ -289,27 +238,6 @@ class HouseModule extends Module
             return true;
         } catch (\Exception $e) {
             throw new HouseException('CHANGE_DATA_STATUS_ERROR');
-        }
-    }
-
-    /**
-     * 更改数据状态
-     * @param $uid
-     * @param $id
-     * @return mixed
-     * @throws HouseException
-     */
-    public function delete($uid, $id)
-    {
-        try {
-            if ($uid != 1) {
-                House::where('id', $id)->where('uid', $uid)->delete();
-            } else {
-                House::where('id', $id)->delete();
-            }
-            return true;
-        } catch (\Exception $e) {
-            throw new HouseException('DELETE_DATA_ERROR');
         }
     }
 }
