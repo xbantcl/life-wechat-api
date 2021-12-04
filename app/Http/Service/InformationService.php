@@ -71,7 +71,7 @@ class InformationService extends Service
     public function getList(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'is_pull_down' => v::in([0,1])->notEmpty(),
+            'is_pull_down' => v::in([0,1]),
             'start' => v::optional(v::intVal()),
             'limit'  => v::optional(v::intVal()),
         ]);
