@@ -150,10 +150,10 @@ class HouseModule extends Module
         }
         $start = end($data)['id'];
         foreach ($data as $index => &$item) {
-            $data['images'] = array_map(function ($image) {
+            $item['images'] = array_map(function ($image) {
                 return ImageConstant::BASE_IMAGE_URL . $image;
-            }, explode('|', $data['images']));
-            $item['updated_at'] = date('Y-m-d', strtotime($item['created_at']));
+            }, explode('|', $item['images']));
+            $item['updated_at'] = date('Y-m-d', strtotime($item['updated_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
     }

@@ -122,7 +122,7 @@ class HouseService extends Service
         $data = HouseModule::getInstance($this->container)->getListByUid($this->uid, $start, $limit);
         return new ServiceResponse($data);
     }
-    
+
     /**
      * 获取房子详情
      *
