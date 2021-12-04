@@ -15,9 +15,11 @@ use Psr\Container\ContainerInterface as Container;
 
 class HouseModule extends Module
 {
+    private $openid;
     public function __construct(Container $container)
     {
         parent::__construct($container);
+        $this->openid = $container->get('Config')['weixin']['program']['openid'];
     }
 
     /**

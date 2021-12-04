@@ -73,6 +73,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 房屋相关接口 -------------------------------
     $group->post('house/add', 'Dolphin\Ting\Http\Service\HouseService:add');
     $group->post('house/user/list', 'Dolphin\Ting\Http\Service\HouseService:getListByUid');
+    $group->post('house/status/change', 'Dolphin\Ting\Http\Service\HouseService:changeStatus');
 
     // ------------------ 二手商品相关接口 -------------------------------
     $group->post('secondhand/add', 'Dolphin\Ting\Http\Service\SecondhandGoodsService:add');
