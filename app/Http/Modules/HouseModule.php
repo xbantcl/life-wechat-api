@@ -131,7 +131,7 @@ class HouseModule extends Module
 
     public function getListByUid($uid, $start, $limit)
     {
-        $query = House::select('id', 'type', 'floor', 'price', 'subdistrict', 'images', 'created_at')
+        $query = House::select('id', 'type', 'house_layout', 'floor', 'price', 'subdistrict', 'images', 'updated_at')
             ->orderBy('id', 'DESC');
         if ($uid !== 1) {
             $query->where('uid', $uid);
@@ -153,7 +153,7 @@ class HouseModule extends Module
             $data['images'] = array_map(function ($image) {
                 return ImageConstant::BASE_IMAGE_URL . $image;
             }, explode('|', $data['images']));
-            $item['created_at'] = date('Y-m-d', strtotime($item['created_at']));
+            $item['updated_at'] = date('Y-m-d', strtotime($item['created_at']));
         }
         return ['start' => $start, 'more' => $more, 'list' => $data];
     }
