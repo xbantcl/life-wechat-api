@@ -131,7 +131,7 @@ class HouseModule extends Module
 
     public function getListByUid($uid, $start, $limit)
     {
-        $query = House::select('id', 'type', 'house_layout', 'floor', 'price', 'subdistrict', 'images', 'updated_at')
+        $query = House::select('id', 'type', 'house_layout', 'post_status', 'floor', 'price', 'subdistrict', 'images', 'updated_at')
             ->orderBy('id', 'DESC');
         if ($uid !== 1) {
             $query->where('uid', $uid);
