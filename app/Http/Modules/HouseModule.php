@@ -170,7 +170,6 @@ class HouseModule extends Module
         try {
             $data = House::select('id', 'type', 'elevator', 'floor', 'uid', 'floorage', 'price', 'subdistrict',
                 'images', 'direction', 'mobile', 'decorate', 'house_type', 'house_layout', 'updated_at', 'describe', 'weixin')
-                ->where('post_status', '=', CommonConstant::ON_SHELVES)
                 ->where('id', $id)
                 ->first()->toArray();
             if (!empty($data)) {
