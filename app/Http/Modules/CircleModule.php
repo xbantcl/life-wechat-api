@@ -38,25 +38,29 @@ class CircleModule extends Module
      * @author xbantcl
      * @date   2021/3/1 9:32
      */
-    public function add($uid, $content, $images = ''): bool
+    public function add($uid, $content, $images = ''): int
     {
         try {
-            if ($images) {
-                $imgs = explode('|', $images);
-                foreach ($imgs as $img) {
-                    $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
-                    $res = Help::imgSecCheck($img, $accessToken);
-                }
+            $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+            if (!$accessToken) {
+                throw new CircleException('ADD_CIRCLE_COMMENT_ERROR');
             }
-            CirclePost::create([
+            $result = Help::secCheckContent($accessToken, $this->openid, 2, $content);
+            if ($result !== 'pass') {
+                throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
+            }
+            $obj = CirclePost::create([
                 'uid' => $uid,
                 'content' => $content,
-                'images' => $images
+                'images' => $images,
+                'post_status' => CommonConstant::AUDIT
             ]);
+        } catch (CircleException $e) {
+            throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
         } catch (Exception $e) {
             throw new CircleException('ADD_CIRCLE_DATA_ERROR');
         }
-        return true;
+        return $obj->id;
     }
 
     /**

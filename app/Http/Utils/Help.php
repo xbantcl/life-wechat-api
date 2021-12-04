@@ -494,7 +494,7 @@ class Help
         $img = file_get_contents($imgUrl);
         $filePath = '/dev/shm/tmp1.png';
         file_put_contents($filePath, $img);
-        $obj = new CURLFile(realpath($filePath));
+        $obj = new \CURLFile(realpath($filePath));
         $obj->setMimeType("image/jpeg");
         $file['media'] = $obj;
         $url = "https://api.weixin.qq.com/wxa/img_sec_check?access_token=$accessToken";

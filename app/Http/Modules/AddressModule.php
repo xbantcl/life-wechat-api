@@ -3,12 +3,21 @@
 namespace Dolphin\Ting\Http\Modules;
 
 use Dolphin\Ting\Http\Exception\AddressException;
+use Dolphin\Ting\Http\Exception\RiskyException;
 use Dolphin\Ting\Http\Model\Address;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
+use Psr\Container\ContainerInterface as Container;
 
 class AddressModule extends Module
 {
+    private $openid;
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+        $this->openid = $container->get('Config')['weixin']['program']['openid'];
+    }
+
     /**
      *  添加地址信息
      *
@@ -27,6 +36,11 @@ class AddressModule extends Module
     public function add($uid, $name, $mobile, $gpsAddress, $address, $lat, $lng, $isDefault)
     {
         try {
+            $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+            $res = Help::secCheckContent($accessToken, $this->openid, 2, $address);
+            if ($res !== 'pass') {
+                throw new RiskyException('COMMENT_NOT_PASS');
+            }
             $addressObj = Address::create([
                 'uid' => $uid,
                 'name' => $name,
@@ -37,6 +51,8 @@ class AddressModule extends Module
                 'lng' => $lng,
                 'is_default' => $isDefault
             ]);
+        } catch (RiskyException $e) {
+            throw new RiskyException('COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new AddressException('ADD_ADDRESS_DATA_ERROR');
         }

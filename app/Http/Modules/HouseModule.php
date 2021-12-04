@@ -6,13 +6,20 @@ use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\HouseException;
+use Dolphin\Ting\Http\Exception\RiskyException;
 use Dolphin\Ting\Http\Model\CarPlace;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
 use Dolphin\Ting\Http\Model\House;
 use Dolphin\Ting\Http\Utils\Help;
+use Psr\Container\ContainerInterface as Container;
 
 class HouseModule extends Module
 {
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+    }
+
     /**
      * 发布车位信息
      *
@@ -36,6 +43,13 @@ class HouseModule extends Module
                         $subdistrict, $houseLayout, $houseType, $direction, $decorate, $describe, $mobile, $images)
     {
         try {
+            if ($describe) {
+                $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+                $res = Help::secCheckContent($accessToken, $this->openid, 2, $describe);
+                if ($res !== 'pass') {
+                    throw new RiskyException('COMMENT_NOT_PASS');
+                }
+            }
             $house = House::create([
                 'uid' => $uid,
                 'subdistrict_id' => 1,
@@ -53,6 +67,8 @@ class HouseModule extends Module
                 'mobile' => $mobile,
                 'images' => $images
             ]);
+        } catch (RiskyException $e) {
+            throw new RiskyException('COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new HouseException('ADD_HOUSE_ERROR');
         }
