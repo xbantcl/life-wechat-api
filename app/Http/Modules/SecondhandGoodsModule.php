@@ -47,7 +47,7 @@ class SecondhandGoodsModule extends Module
             if ($res == 'review') {
                 $status = CommonConstant::ADMIN_OFF_SHELVES;
             } elseif ($res == 'risky') {
-                throw new RiskyException('COMMENT_NOT_PASS');
+                throw new RiskyException('CONTENT_NOT_PASS');
             }
             $secondhandGood = SecondhandGoods::create([
                 'uid' => $uid,
@@ -60,10 +60,11 @@ class SecondhandGoodsModule extends Module
                 'delivery' => $delivery,
                 'category' => $category,
                 'images' => $images,
-                'mobile' => $mobile
+                'mobile' => $mobile,
+                'post_status' => $status
             ]);
         } catch (RiskyException $e) {
-            throw new RiskyException('COMMENT_NOT_PASS');
+            throw new RiskyException('CONTENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new SecondhandGoodsException('ADD_SECONDHAND_GOODS_ERROR');
         }
@@ -182,7 +183,6 @@ class SecondhandGoodsModule extends Module
                 ->select('secondhand_goods.id', 'secondhand_goods.title', 'secondhand_goods.original_price', 'secondhand_goods.price',
                 'secondhand_goods.address', 'secondhand_goods.images', 'secondhand_goods.updated_at', 'secondhand_goods.describe',
                 'u.username', 'u.avatar', 'secondhand_goods.mobile', 'secondhand_goods.delivery', 'secondhand_goods.uid')
-                ->where('secondhand_goods.status', SecondhandGoodsConstant::ON_SHELVES)
                 ->where('secondhand_goods.id', $id)
                 ->first();
             if (!empty($data)) {
@@ -230,7 +230,10 @@ class SecondhandGoodsModule extends Module
     {
         try {
             if ($uid !== 1) {
-                SecondhandGoods::where('id', $id)->where('uid', $uid)->update(['post_status' => $status]);
+                $data = SecondhandGoods::select('id', 'post_status')->where('id', $id)->first();
+                if ($data instanceof SecondhandGoods && $data->post_status !== CommonConstant::ADMIN_OFF_SHELVES) {
+                    SecondhandGoods::where('id', $id)->where('uid', $uid)->update(['post_status' => $status]);
+                }
             } else {
                 if ($status == 1) {
                     $status = CommonConstant::ADMIN_OFF_SHELVES;

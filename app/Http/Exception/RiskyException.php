@@ -6,6 +6,6 @@ class RiskyException extends CommonException
 {
     protected $exceptionCode = 300;
     protected $exception     = [
-        'COMMENT_NOT_PASS' => [305, '请注意合法文明用语！'],
+        'CONTENT_NOT_PASS' => [305, '请注意合法文明用语！'],
     ];
 }
