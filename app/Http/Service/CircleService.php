@@ -44,7 +44,11 @@ class CircleService extends Service
         $params = Help::getParams($request);
         $content = isset($params['content']) ? $params['content'] : '';
         $images = isset($params['images']) ? $params['images'] : '';
-        $data = CircleModule::getInstance($this->container)->add($this->uid, $content, $images);
+        $address = isset($params['address']) ? trim($params['address']) : '';
+        $gpsAddress = isset($params['gps_address']) ? trim($params['gps_address']) : '';
+        $lat = isset($params['lat']) ? trim($params['lat']) : 0;
+        $lng = isset($params['lng']) ? trim($params['lng']) : 0;
+        $data = CircleModule::getInstance($this->container)->add($this->uid, $content, $images, $address, $gpsAddress, $lat, $lng);
         return new ServiceResponse($data);
     }
 

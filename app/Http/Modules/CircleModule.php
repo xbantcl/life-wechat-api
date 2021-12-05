@@ -38,7 +38,7 @@ class CircleModule extends Module
      * @author xbantcl
      * @date   2021/3/1 9:32
      */
-    public function add($uid, $content, $images = ''): int
+    public function add($uid, $content, $images = '', $address, $gpsAddress, $lat, $lng): int
     {
         try {
             $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
@@ -49,11 +49,20 @@ class CircleModule extends Module
             if ($result !== 'pass') {
                 throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
             }
+            if (empty($images)) {
+                $status = CommonConstant::ON_SHELVES;
+            } else {
+                $status = CommonConstant::AUDIT;
+            }
             $obj = CirclePost::create([
                 'uid' => $uid,
                 'content' => $content,
                 'images' => $images,
-                'post_status' => CommonConstant::AUDIT
+                'post_status' => $status,
+                'address' => $address,
+                'gps_address' => $gpsAddress,
+                'lat' => $lat,
+                'lng' => $lng
             ]);
         } catch (CircleException $e) {
             throw new CircleException('CIRCLE_COMMENT_NOT_PASS');
@@ -98,7 +107,8 @@ class CircleModule extends Module
     {
         $query = CirclePost::leftjoin('user as u', 'u.id', '=', 'circle_posts.uid')
             ->select('u.id', 'u.username', 'u.avatar', 'circle_posts.id as post_id', 'circle_posts.content',
-                'circle_posts.post_status', 'circle_posts.images', 'circle_posts.created_at')
+                'circle_posts.post_status', 'circle_posts.images', 'circle_posts.address', 'circle_posts.lat',
+                'circle_posts.lng', 'circle_posts.created_at')
             ->where('circle_posts.post_status', CommonConstant::ON_SHELVES)
             ->orderBy('circle_posts.id', 'DESC');
         if ($start > 0) {

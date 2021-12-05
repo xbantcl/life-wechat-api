@@ -33,6 +33,10 @@ CREATE TABLE IF NOT EXISTS `circle_posts`
     `post_status` TINYINT(2) UNSIGNED          DEFAULT 2 COMMENT '内容状态: 1-审核状态，2-发布, 3-审核不通过',
     `content`     VARCHAR(2048)                DEFAULT '' COMMENT '动态类容',
     `images`      VARCHAR(512)                 DEFAULT '' COMMENT '动态图片',
+    `address`     VARCHAR(128)                 DEFAULT '' COMMENT '地址',
+    `gps_address` VARCHAR(128)                 DEFAULT '' COMMENT '定位地址',
+    `lat`         DECIMAL(10, 6)      DEFAULT 0 COMMENT '纬度',
+    `lng`         DECIMAL(10, 6)      DEFAULT 0 COMMENT '经度',
     `created_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
