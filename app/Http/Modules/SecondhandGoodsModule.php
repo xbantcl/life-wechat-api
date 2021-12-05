@@ -184,11 +184,14 @@ class SecondhandGoodsModule extends Module
                 'secondhand_goods.address', 'secondhand_goods.images', 'secondhand_goods.updated_at', 'secondhand_goods.describe',
                 'u.username', 'u.avatar', 'secondhand_goods.mobile', 'secondhand_goods.delivery', 'secondhand_goods.uid')
                 ->where('secondhand_goods.id', $id)
+                ->where('post_status', CommonConstant::ON_SHELVES)
                 ->first();
             if (!empty($data)) {
                 $data = $data->toArray();
                 $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
                 $data['images'] = explode('|', $data['images']);
+            } else {
+                $data = [];
             }
             return $data;
         } catch (\Exception $e) {

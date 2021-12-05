@@ -160,14 +160,16 @@ class RentModule extends Module
     {
         try {
             $data = Rent::select('id', 'type', 'title', 'mobile', 'images', 'price', 'desc', 'address', 'created_at')
-                ->where('status', '=', CommonConstant::ON_SHELVES)
                 ->where('id', $id)
+                ->where('status', CommonConstant::ON_SHELVES)
                 ->first();
-            if ($data) {
+            if ($data instanceof Rent) {
                 $data->images = array_map(function ($image) {
                     return ImageConstant::BASE_IMAGE_URL . $image;
                 }, explode('|', $data->images));
                 $data->created_time = date('Y-m-d', strtotime($data->created_at));
+            } else {
+                $data = [];
             }
             return $data;
         } catch (\Exception $e) {

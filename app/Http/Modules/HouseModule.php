@@ -171,8 +171,10 @@ class HouseModule extends Module
             $data = House::select('id', 'type', 'elevator', 'floor', 'uid', 'floorage', 'price', 'subdistrict',
                 'images', 'direction', 'mobile', 'decorate', 'house_type', 'house_layout', 'updated_at', 'describe', 'weixin')
                 ->where('id', $id)
-                ->first()->toArray();
-            if (!empty($data)) {
+                ->where('post_status', CommonConstant::ON_SHELVES)
+                ->first();
+            if ($data instanceof House) {
+                $data = $data->toArray();
                 $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
                 if ($data['type'] == '出售') {
                     $data['price'] = $data['price'] . '万';
@@ -182,6 +184,8 @@ class HouseModule extends Module
                 $data['images'] = array_map(function ($image) {
                     return ImageConstant::BASE_IMAGE_URL . $image;
                 }, explode('|', $data['images']));
+            } else {
+                $data = [];
             }
             return $data;
         } catch (\Exception $e) {

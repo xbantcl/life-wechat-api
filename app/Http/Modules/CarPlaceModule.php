@@ -208,10 +208,11 @@ class CarPlaceModule extends Module
         try {
             $data = CarPlace::select('id', 'type', 'is_standard', 'floor', 'uid', 'floorage', 'price',
                 'subdistrict', 'images', 'building_number', 'mobile', 'updated_at', 'describe', 'weixin')
-                ->where('post_status', '=', CarPlaceConstant::ON_SHELVES)
                 ->where('id', $id)
-                ->first()->toArray();
-            if (!empty($data)) {
+                ->where('post_status', CommonConstant::ON_SHELVES)
+                ->first();
+            if ($data instanceof CarPlace) {
+                $data = $data->toArray();
                 if ($data['is_standard'] == CarPlaceConstant::STANDARD) {
                     $data['is_standard'] = '标准车位';
                 } else {
@@ -226,6 +227,8 @@ class CarPlaceModule extends Module
                 $data['images'] = array_map(function ($image) {
                     return ImageConstant::BASE_IMAGE_URL . $image;
                 }, explode('|', $data['images']));
+            } else {
+                $data = [];
             }
             return $data;
         } catch (\Exception $e) {
