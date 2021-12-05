@@ -189,7 +189,9 @@ class SecondhandGoodsModule extends Module
             if (!empty($data)) {
                 $data = $data->toArray();
                 $data['updated_at'] = date('Y-m-d', strtotime($data['updated_at']));
-                $data['images'] = explode('|', $data['images']);
+                $data['images'] = array_map(function ($image) {
+                    return ImageConstant::BASE_IMAGE_URL . $image;
+                }, explode('|', $data['images']));
             } else {
                 $data = [];
             }
