@@ -116,63 +116,39 @@ class RentService extends Service
     }
 
     /**
-     * 发布车位评论
+     * 更改状态
      *
      * @param Request $request
      * @param Response $response
      *
      * @return ServiceResponse
      */
-    public function comment(Request $request, Response $response)
+    public function changeStatus(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'reply_uid' => v::optional(v::intVal()),
-            'car_place_id'  => v::intVal(),
-            'content'  => v::notEmpty()
+            'id'  => v::intVal(),
+            'status' => v::in([1, 2, 3, 4])->notEmpty()
         ]);
 
         if ($validation->failed()) {
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $replyUid = isset($params['reply_uid']) ? intval($params['reply_uid']) : 0;
-        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->comment($this->uid, $replyUid, $carPlaceId, $params['content']);
+        $id = intval($params['id']);
+        $status = intval($params['status']);
+        $data = RentModule::getInstance($this->container)->changeStatus($this->uid, $id, $status);
         return new ServiceResponse($data);
     }
 
     /**
-     * 获取车位评论列表
+     * 删除工具
      *
      * @param Request $request
      * @param Response $response
      *
      * @return ServiceResponse
      */
-    public function commentList(Request $request, Response $response)
-    {
-        $validation = $this->validation->validate($request, [
-            'car_place_id'  => v::intVal()
-        ]);
-
-        if ($validation->failed()) {
-            return $validation->outputError($response);
-        }
-        $params = Help::getParams($request);
-        $carPlaceId = isset($params['car_place_id']) ? intval($params['car_place_id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->commentList($carPlaceId);
-        return new ServiceResponse($data);
-    }
-
-    /**
-     * 删除车位评论
-     *
-     * @param Request $request
-     * @param Response $response
-     *
-     * @return ServiceResponse
-     */
-    public function deleteComment(Request $request, Response $response)
+    public function delete(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
             'id'  => v::intVal()
@@ -183,7 +159,7 @@ class RentService extends Service
         }
         $params = Help::getParams($request);
         $id = isset($params['id']) ? intval($params['id']) : 0;
-        $data = CarPlaceModule::getInstance($this->container)->deleteComment($this->uid, $id);
+        $data = RentModule::getInstance($this->container)->delete($this->uid, $id);
         return new ServiceResponse($data);
     }
 }

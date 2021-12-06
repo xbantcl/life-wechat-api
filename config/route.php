@@ -47,6 +47,9 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('vegetable/list', 'Dolphin\Ting\Http\Service\VegetableService:getList');
     $group->post('vegetable/tag/list', 'Dolphin\Ting\Http\Service\VegetableService:getTagList');
     $group->post('vegetable/category/list', 'Dolphin\Ting\Http\Service\VegetableService:getCategoryList');
+
+    // ------------------ 动态信息相关接口 -----------------------------------
+    $group->post('information/list', 'Dolphin\Ting\Http\Service\InformationService:getList');
 });
 
 $app->group('/api/', function (RouteCollectorProxy $group) {
@@ -88,6 +91,8 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 租借相关接口 -----------------------------------
     $group->post('rent/add', 'Dolphin\Ting\Http\Service\RentService:add');
+    $group->post('rent/delete', 'Dolphin\Ting\Http\Service\RentService:delete');
+    $group->post('rent/status/change', 'Dolphin\Ting\Http\Service\RentService:changeStatus');
 
     // ------------------ 地址相关接口 -----------------------------------
     $group->post('address/add', 'Dolphin\Ting\Http\Service\AddressService:add');
@@ -136,7 +141,6 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
 
     // ------------------ 动态信息相关接口 -----------------------------------
     $group->post('information/add', 'Dolphin\Ting\Http\Service\InformationService:add');
-    $group->post('information/list', 'Dolphin\Ting\Http\Service\InformationService:getList');
     $group->post('information/delete', 'Dolphin\Ting\Http\Service\InformationService:delete');
     $group->post('information/status/change', 'Dolphin\Ting\Http\Service\InformationService:changeStatus');
 

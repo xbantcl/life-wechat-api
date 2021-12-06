@@ -2,17 +2,24 @@
 
 namespace Dolphin\Ting\Http\Modules;
 
-use Dolphin\Ting\Http\Constant\CarPlaceConstant;
 use Dolphin\Ting\Http\Constant\CommonConstant;
 use Dolphin\Ting\Http\Constant\ImageConstant;
 use Dolphin\Ting\Http\Exception\RentException;
+use Dolphin\Ting\Http\Exception\RiskyException;
 use Dolphin\Ting\Http\Model\Rent;
 use Dolphin\Ting\Http\Model\CarPlaceComment;
 use Dolphin\Ting\Http\Utils\Geohash;
 use Dolphin\Ting\Http\Utils\Help;
+use Psr\Container\ContainerInterface as Container;
 
 class RentModule extends Module
 {
+    private $openid;
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+        $this->openid = $container->get('Config')['weixin']['program']['openid'];
+    }
     /**
      * 发布租用信息
      *
@@ -35,6 +42,13 @@ class RentModule extends Module
     public function add($uid, $type, $price, $mobile, $title, $category, $address, $lat, $lng, $desc, $images)
     {
         try {
+
+            $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
+            $res = Help::secCheckContent($accessToken, $this->openid, 2, $title.$desc);
+            if ($res !== 'pass') {
+                throw new RiskyException('COMMENT_NOT_PASS');
+            }
+
             $rent = Rent::create([
                 'uid' => $uid,
                 'type' => $type,
@@ -49,6 +63,8 @@ class RentModule extends Module
                 'desc' => $desc,
                 'images' => $images
             ]);
+        } catch (RiskyException $e) {
+            throw new RiskyException('COMMENT_NOT_PASS');
         } catch (\Exception $e) {
             throw new RentException('ADD_RENT_DATA_ERROR');
         }
@@ -178,76 +194,53 @@ class RentModule extends Module
     }
 
     /**
-     * 发布车位评论
-     *
-     * @param int    $uid        评论作者id
-     * @param int    $replyUid   被回复的用户id
-     * @param int    $carPlaceId 车位id
-     * @param string $content    评论类容
-     *
-     * @return mixed
-     *
-     * @throws RentException
-     */
-    public function comment($uid, $replyUid, $carPlaceId, $content)
-    {
-        try {
-            $carPlaceComment = CarPlaceComment::create([
-                'uid' => $uid,
-                'reply_uid' => $replyUid,
-                'car_place_id' => $carPlaceId,
-                'content' => $content
-            ]);
-        } catch (\Exception $e) {
-            throw new RentException('ADD_CAR_PLACE_COMMENT_ERROR');
-        }
-        return $carPlaceComment->id;
-    }
-
-    /**
-     * 获取车位评论列表
-     *
-     * @param int $carPlaceId 车位id
+     * 更改数据状态
+     * @param $uid
+     * @param $id
+     * @param $status
      * @return mixed
      * @throws RentException
      */
-    public function commentList($carPlaceId)
+    public function changeStatus($uid, $id, $status)
     {
         try {
-            $comments = CarPlaceComment::leftjoin('user as u', 'u.id', '=', 'car_place_comments.uid')
-                ->leftjoin('user as u1', 'u1.id', '=', 'car_place_comments.reply_uid')
-                ->select('car_place_comments.id', 'car_place_comments.uid', 'u.username', 'u.avatar', 'u1.username as reply_username',
-                    'u1.avatar as reply_avatar', 'car_place_comments.content', 'car_place_comments.car_place_id', 'car_place_comments.created_at')
-                ->where('car_place_comments.car_place_id', $carPlaceId)
-                ->orderBy('car_place_comments.created_at', 'desc')
-                ->get()->toArray();
-            if (!empty($comments)) {
-                foreach ($comments as &$item) {
-                    $item['created_at'] = strtotime($item['created_at']);
+            if ($uid != 1) {
+                Rent::where('id', $id)->where('uid', $uid)->update([
+                    'post_status' => $status
+                ]);
+            } else {
+                if ($status == 1) {
+                    $status = CommonConstant::ADMIN_OFF_SHELVES;
                 }
+                Rent::where('id', $id)->update([
+                    'post_status' => $status
+                ]);
             }
-            return $comments;
+            return true;
         } catch (\Exception $e) {
-            throw new RentException('GET_COMMENTS_ERROR');
+            throw new RentException('CHANGE_DATA_STATUS_ERROR');
         }
     }
 
     /**
-     * 删除评论
+     * 删除数据
      *
      * @param $uid
      * @param $id
-     * @return bool
-     * @throws CarPlaceException
+     * @return array|Rent
+     * @throws RentException
      */
-    public function deleteComment($uid, $id)
+    public function delete($uid, $id)
     {
         try {
-            CarPlaceComment::where('id', $id)->where('uid', $uid)->delete();
+            if ($uid !== 1) {
+                Rent::where('id', $id)->where('uid', $uid)->delete();
+            } else {
+                Rent::where('id', $id)->delete();
+            }
             return true;
         } catch (\Exception $e) {
-            throw new CarPlaceException('DELETE_COMMENT_ERROR');
+            throw new RentException('DELETE_RENT_DATA_ERROR');
         }
     }
-
 }

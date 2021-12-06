@@ -45,7 +45,7 @@ class CarPlaceModule extends Module
         try {
             if ($describe) {
                 $accessToken = CacheModule::getInstance($this->container)->getAccessToken();
-                $res = Help::secCheckContent($accessToken, $this->openid, 2, $describe);
+                $res = Help::secCheckContent($accessToken, $this->openid, 2, $subdistrict.$describe);
                 if ($res !== 'pass') {
                     throw new RiskyException('COMMENT_NOT_PASS');
                 }
