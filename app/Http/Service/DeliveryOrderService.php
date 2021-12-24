@@ -48,7 +48,7 @@ class DeliveryOrderService extends Service
         $addressId = intval($params['address_id']);
         $price = floatval($params['price']);
         $packageNum = trim($params['package_num']);
-        $orderNo = trim($params['orderNo']);
+        $orderNo = trim($params['order_no']);
         $packageQua = intval($params['package_qua']);
         $weight = trim($params['weight']);
         $remarks = isset($params['remarks']) ? trim($params['remarks']) : '';
