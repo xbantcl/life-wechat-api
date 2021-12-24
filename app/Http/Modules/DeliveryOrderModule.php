@@ -12,6 +12,7 @@ class DeliveryOrderModule extends Module
      * 添加取快递订单
      *
      * @param $uid
+     * @param $orderNo
      * @param $addressId
      * @param $price
      * @param $packageNum
@@ -21,11 +22,12 @@ class DeliveryOrderModule extends Module
      * @return mixed
      * @throws DeliveryOrderException
      */
-    public function add($uid, $addressId, $price, $packageNum, $packageQua, $weight, $remarks)
+    public function add($uid, $orderNo, $addressId, $price, $packageNum, $packageQua, $weight, $remarks)
     {
         try {
             $order = DeliveryOrder::create([
                 'uid' => $uid,
+                'order_no' => $orderNo,
                 'address_id' => $addressId,
                 'price' => $price,
                 'package_qua' => $packageQua,

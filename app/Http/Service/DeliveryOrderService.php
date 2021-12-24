@@ -37,6 +37,7 @@ class DeliveryOrderService extends Service
             'price' => v::floatVal(),
             'package_num' => v::notEmpty(),
             'package_qua' => v::numericVal()->notEmpty(),
+            'order_no' => v::notEmpty(),
             'weight' => v::notEmpty()
         ]);
 
@@ -47,10 +48,11 @@ class DeliveryOrderService extends Service
         $addressId = intval($params['address_id']);
         $price = floatval($params['price']);
         $packageNum = trim($params['package_num']);
+        $orderNo = trim($params['orderNo']);
         $packageQua = intval($params['package_qua']);
         $weight = trim($params['weight']);
         $remarks = isset($params['remarks']) ? trim($params['remarks']) : '';
-        $data = DeliveryOrderModule::getInstance($this->container)->add($this->uid, $addressId, $price, $packageNum, $packageQua, $weight, $remarks);
+        $data = DeliveryOrderModule::getInstance($this->container)->add($this->uid, $orderNo, $addressId, $price, $packageNum, $packageQua, $weight, $remarks);
         return new ServiceResponse($data);
     }
 
