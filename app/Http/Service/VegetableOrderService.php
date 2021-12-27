@@ -88,7 +88,7 @@ class VegetableOrderService extends Service
     public function getList (Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'status' => v::in([1, 2, 3]),
+            'status' => v::in([0, 1, 2, 3]),
             'start' => v::optional(v::numericVal()),
             'limit' => v::optional(v::numericVal())
         ]);

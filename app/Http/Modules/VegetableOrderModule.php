@@ -79,8 +79,10 @@ class VegetableOrderModule extends Module
     public function getList($uid, $status, $start = 0, $limit = 20)
     {
         try {
-            $query = VegetableOrders::select('id', 'order_no', 'status', 'product_num', 'products', 'amount', 'created_at')
-                ->where('status', $status);
+            $query = VegetableOrders::select('id', 'order_no', 'status', 'product_num', 'products', 'amount', 'created_at');
+            if ($status != 0) {
+                $query->where('status', $status);
+            }
             if ($uid !== 1) {
                 $query->where('uid', $uid);
             }
@@ -99,7 +101,7 @@ class VegetableOrderModule extends Module
             $start = end($data)['id'];
             foreach ($data as &$item) {
                 $item['products'] = json_decode($item['products'], true);
-                $item['created_time'] = date('Y-m-d H:i:s', $item['created_at']);
+                $item['created_time'] = date('Y-m-d H:i:s', strtotime($item['created_at']));
                 $item['name'] = array_map(function ($d) {
                     return $d['name'];
                 }, $item['products']);
