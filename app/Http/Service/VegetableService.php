@@ -210,4 +210,26 @@ class VegetableService extends Service
         $data = VegetableModule::getInstance($this->container)->getCategoryList();
         return new ServiceResponse($data);
     }
+
+    /**
+     * 批量获取蔬菜商品价格
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
+    public function getVegetablesPrice (Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'ids' => v::notEmpty()
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $ids = explode(',', trim($params['ids']));
+        $data = VegetableModule::getInstance($this->container)->getVegetablesPrice($ids);
+        return new ServiceResponse($data);
+    }
 }

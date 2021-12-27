@@ -228,4 +228,28 @@ class VegetableModule extends Module
         }
         return $data;
     }
+
+    /**
+     * 批量获取蔬菜商品价格
+     *
+     * @param $ids
+     *
+     * @return array
+     * @throws VegetableException
+     */
+    public function getVegetablesPrice($ids)
+    {
+        try {
+            $data = VegetableCategory::select('id', 'price')
+                ->whereIn('id', $ids)
+                ->get()->toArray();
+            $res = [];
+            foreach ($data as $item) {
+                $res[$item['id']] = $item['price'];
+            }
+            return $res;
+        } catch (\Exception $e) {
+            throw new VegetableException('GET_VEGETABLE_PRICE_DATA_ERROR');
+        }
+    }
 }
