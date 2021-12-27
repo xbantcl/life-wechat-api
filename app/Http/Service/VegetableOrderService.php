@@ -72,9 +72,9 @@ class VegetableOrderService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $orderNo = intval($params['order_no']);
+        $orderNo = trim($params['order_no']);
         $status = intval($params['status']);
-        $data = VegetableOrderModule::getInstance($this->container)->update($orderNo, $status);
+        $data = VegetableOrderModule::getInstance($this->container)->update($this->uid, $orderNo, $status);
         return new ServiceResponse($data);
     }
 

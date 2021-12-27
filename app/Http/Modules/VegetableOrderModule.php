@@ -41,22 +41,20 @@ class VegetableOrderModule extends Module
     }
 
     /**
-     * 更新菜品
+     * 更新买菜订单
      *
-     * @param $id
-     * @param $name
-     * @param $price
-     * @param $desc
-     * @param $images
-     *
+     * @param $uid
+     * @param $orderNo
+     * @param $status
      * @return bool
-     *
      * @throws VegetableOrderException
      */
-    public function update($orderNo, $status)
+    public function update($uid, $orderNo, $status)
     {
         try {
-            VegetableOrders::where('order_no', $orderNo)->update([
+            VegetableOrders::where('order_no', $orderNo)
+                ->where('uid', $uid)
+               ->update([
                 'status' => $status
             ]);
         } catch (\Exception $e) {
