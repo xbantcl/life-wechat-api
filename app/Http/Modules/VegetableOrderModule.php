@@ -106,6 +106,7 @@ class VegetableOrderModule extends Module
                     return $d['name'];
                 }, $item['products']);
                 unset($item['products']);
+                unset($item['created_at']);
             }
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
