@@ -144,8 +144,8 @@ class VegetableOrderService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $orderNo = intval($params['orderNo']);
-        $data = VegetableOrderModule::getInstance($this->container)->delete($orderNo);
+        $orderNo = trim($params['orderNo']);
+        $data = VegetableOrderModule::getInstance($this->container)->delete($this->uid, $orderNo);
         return new ServiceResponse($data);
     }
 }

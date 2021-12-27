@@ -77,7 +77,9 @@ class VegetableOrderModule extends Module
     public function getList($uid, $status, $start = 0, $limit = 20)
     {
         try {
-            $query = VegetableOrders::select('id', 'order_no', 'status', 'product_num', 'products', 'amount', 'created_at');
+            $query = VegetableOrders::select('id', 'order_no', 'status', 'product_num',
+                'products', 'amount', 'created_at')
+                ->orderBy('id', 'DESC');
             if ($status != 0) {
                 $query->where('status', $status);
             }
