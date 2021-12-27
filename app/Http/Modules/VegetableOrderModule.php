@@ -22,7 +22,7 @@ class VegetableOrderModule extends Module
     public function add($uid, $orderNo, $addressId, $productNum, $products, $amount, $remarks)
     {
         try {
-            $vegetable = VegetableOrders::create([
+            $order = VegetableOrders::create([
                 'uid' => $uid,
                 'order_no' => $orderNo,
                 'status' => CommonConstant::OFF_SHELVES,
@@ -30,12 +30,13 @@ class VegetableOrderModule extends Module
                 'product_num' => $productNum,
                 'products' => $products,
                 'amount' => $amount,
+                'weight' => 5,
                 'remarks' => $remarks
             ]);
         } catch (\Exception $e) {
             throw new VegetableOrderException('ADD_VEGETABLE_ORDER_DATA_ERROR');
         }
-        return $vegetable->id;
+        return $order->id;
     }
 
     /**
