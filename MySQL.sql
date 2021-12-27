@@ -363,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `vegetable_orders`
     `products`         VARCHAR(512)        NOT NULL COMMENT '产品详情',
     `weight`           FLOAT               NOT NULL COMMENT '预估重量',
     `amount`           FLOAT               NOT NULL COMMENT '金额',
-    `status`           TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '快递订单状态：1-已取，2-已经支付，3-完成',
+    `status`           TINYINT(1)          NOT NULL DEFAULT 1 COMMENT '订单状态：1-未支付，2-已支付，3-已取消',
     `appointment_time` INT(11)             NOT NULL COMMENT '预约时间',
     `remarks`          VARCHAR(512)                 DEFAULT '' COMMENT '备注',
     `created_at`       TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP,
