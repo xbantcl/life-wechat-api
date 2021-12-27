@@ -240,7 +240,7 @@ class VegetableModule extends Module
     public function getVegetablesPrice($ids)
     {
         try {
-            $data = VegetableCategory::select('id', 'price')
+            $data = Vegetables::select('id', 'price')
                 ->whereIn('id', $ids)
                 ->get()->toArray();
             $res = [];
