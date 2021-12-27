@@ -31,6 +31,7 @@ class VegetableOrderModule extends Module
                 'products' => $products,
                 'amount' => $amount,
                 'weight' => 5,
+                'appointment_time' => time(),
                 'remarks' => $remarks
             ]);
         } catch (\Exception $e) {
