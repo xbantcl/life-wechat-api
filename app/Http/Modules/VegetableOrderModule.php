@@ -53,10 +53,10 @@ class VegetableOrderModule extends Module
      *
      * @throws VegetableOrderException
      */
-    public function update($id, $status)
+    public function update($orderNo, $status)
     {
         try {
-            VegetableOrders::where('id', $id)->update([
+            VegetableOrders::where('order_no', $orderNo)->update([
                 'status' => $status
             ]);
         } catch (\Exception $e) {

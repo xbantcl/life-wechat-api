@@ -64,7 +64,7 @@ class VegetableOrderService extends Service
     public function update(Request $request, Response $response)
     {
         $validation = $this->validation->validate($request, [
-            'id' => v::intVal()->notEmpty(),
+            'order_no' => v::notEmpty(),
             'status' => v::in([1, 2, 3]),
         ]);
 
@@ -72,9 +72,9 @@ class VegetableOrderService extends Service
             return $validation->outputError($response);
         }
         $params = Help::getParams($request);
-        $id = intval($params['id']);
+        $orderNo = intval($params['order_no']);
         $status = intval($params['status']);
-        $data = VegetableOrderModule::getInstance($this->container)->update($id, $status);
+        $data = VegetableOrderModule::getInstance($this->container)->update($orderNo, $status);
         return new ServiceResponse($data);
     }
 
