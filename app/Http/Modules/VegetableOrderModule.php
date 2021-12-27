@@ -79,7 +79,7 @@ class VegetableOrderModule extends Module
     public function getList($uid, $status, $start = 0, $limit = 20)
     {
         try {
-            $query = VegetableOrders::select('id', 'order_no', 'status', 'product_num', 'products', 'amount')
+            $query = VegetableOrders::select('id', 'order_no', 'status', 'product_num', 'products', 'amount', 'created_at')
                 ->where('status', $status);
             if ($uid !== 1) {
                 $query->where('uid', $uid);
@@ -97,6 +97,14 @@ class VegetableOrderModule extends Module
                 array_pop($data);
             }
             $start = end($data)['id'];
+            foreach ($data as &$item) {
+                $item['products'] = json_decode($item['products'], true);
+                $item['created_time'] = date('Y-m-d H:i:s', $item['created_at']);
+                $item['name'] = array_map(function ($d) {
+                    return $d['name'];
+                }, $item['products']);
+                unset($item['products']);
+            }
             return ['start' => $start, 'more' => $more, 'list' => $data];
         } catch (\Exception $e) {
             throw new VegetableOrderException('GET_VEGETABLES_ORDER_LIST_ERROR');
@@ -114,9 +122,13 @@ class VegetableOrderModule extends Module
     public function detail($orderNo)
     {
         try {
-            $data = VegetableOrders::select('id', 'name', 'price', 'desc', 'images')
+            $data = VegetableOrders::select('id', 'order_no', 'products', 'created_at')
                 ->where('order_no', $orderNo)
                 ->first();
+            if ($data instanceof VegetableOrders) {
+                $data->products = json_decode($data->products, true);
+                $data->created_time = date('Y-m-d H:i:s', $data->created_at);
+            }
             return $data;
         } catch (\Exception $e) {
             throw new VegetableOrderException('GET_VEGETABLES_DETAIL_ERROR');
@@ -137,7 +149,6 @@ class VegetableOrderModule extends Module
         try {
             VegetableOrders::where('order_no', $orderNo)
                 ->where('uid', $uid)
-                ->where('status', CommonConstant::OFF_SHELVES)
                 ->delete();
             return true;
         } catch (\Exception $e) {

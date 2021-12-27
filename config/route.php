@@ -142,6 +142,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     $group->post('vegetable/order/add', 'Dolphin\Ting\Http\Service\VegetableOrderService:add');
     $group->post('vegetable/order/update', 'Dolphin\Ting\Http\Service\VegetableOrderService:update');
     $group->post('vegetable/order/list', 'Dolphin\Ting\Http\Service\VegetableOrderService:getList');
+    $group->post('vegetable/order/detail', 'Dolphin\Ting\Http\Service\VegetableOrderService:detail');
     $group->post('vegetable/order/delete', 'Dolphin\Ting\Http\Service\VegetableOrderService:delete');
 
     // ------------------ 动态信息相关接口 -----------------------------------
