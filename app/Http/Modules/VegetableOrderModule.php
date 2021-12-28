@@ -117,7 +117,7 @@ class VegetableOrderModule extends Module
     /**
      * 获取买菜订单详情
      *
-     * @param $id
+     * @param $orderNo
      * @return mixed
      *
      * @throws VegetableOrderException
@@ -125,12 +125,17 @@ class VegetableOrderModule extends Module
     public function detail($orderNo)
     {
         try {
-            $data = VegetableOrders::select('id', 'order_no', 'products', 'created_at')
-                ->where('order_no', $orderNo)
+            $data = VegetableOrders::leftjoin('address as adr', 'adr.id', '=', 'vegetable_orders.address_id')
+                ->select('vegetable_orders.id', 'vegetable_orders.order_no', 'vegetable_orders.products',
+                    'vegetable_orders.remarks', 'vegetable_orders.created_at', 'adr.name', 'adr.address', 'adr.mobile')
+                ->where('vegetable_orders.order_no', $orderNo)
                 ->first();
             if ($data instanceof VegetableOrders) {
                 $data->products = json_decode($data->products, true);
                 $data->created_time = date('Y-m-d H:i:s', $data->created_at);
+                unset($data->created_at);
+            } else {
+                return [];
             }
             return $data;
         } catch (\Exception $e) {
