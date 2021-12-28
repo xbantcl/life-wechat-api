@@ -126,7 +126,7 @@ class VegetableOrderModule extends Module
     {
         try {
             $data = VegetableOrders::leftjoin('address as adr', 'adr.id', '=', 'vegetable_orders.address_id')
-                ->select('vegetable_orders.id', 'vegetable_orders.order_no', 'vegetable_orders.products',
+                ->select('vegetable_orders.id', 'vegetable_orders.order_no', 'vegetable_orders.products',  'vegetable_orders.status',
                     'vegetable_orders.remarks', 'vegetable_orders.created_at', 'adr.name', 'adr.address', 'adr.mobile')
                 ->where('vegetable_orders.order_no', $orderNo)
                 ->first();
