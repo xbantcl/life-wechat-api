@@ -132,7 +132,7 @@ class VegetableOrderModule extends Module
                 ->first();
             if ($data instanceof VegetableOrders) {
                 $data->products = json_decode($data->products, true);
-                $data->created_time = date('Y-m-d H:i:s', $data->created_at);
+                $data->created_time = date('Y-m-d H:i:s', strtotime($data->created_at));
                 unset($data->created_at);
             } else {
                 return [];
