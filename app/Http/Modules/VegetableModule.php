@@ -95,7 +95,7 @@ class VegetableModule extends Module
                 $data = VegetableCategory::select('vegetable_ids')->where('id', $categoryId)->first();
                 $vegetableIds = explode(',' ,$data->vegetable_ids);
             }
-            $query = Vegetables::select('id', 'name', 'price', 'desc', 'material', 'image');
+            $query = Vegetables::select('id', 'name', 'price', 'desc', 'material', 'images');
             if ($vegetableIds) {
                 $query->whereIn('id', $vegetableIds);
             }
