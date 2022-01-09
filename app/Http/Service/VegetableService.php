@@ -35,7 +35,8 @@ class VegetableService extends Service
         $validation = $this->validation->validate($request, [
             'name' => v::notEmpty(),
             'desc' => v::notEmpty(),
-            'price' => v::floatVal()->notEmpty()
+            'price' => v::floatVal()->notEmpty(),
+            'material' => v::notEmpty()
         ]);
 
         if ($validation->failed()) {
@@ -45,8 +46,9 @@ class VegetableService extends Service
         $name = trim($params['name']);
         $desc = trim($params['desc']);
         $price = trim($params['price']);
+        $material = trim($params['material']);
         $images = isset($params['images']) ? trim($params['images']) : '';
-        $data = VegetableModule::getInstance($this->container)->add($name, $price, $desc, $images);
+        $data = VegetableModule::getInstance($this->container)->add($name, $price, $desc, $images, $material);
         return new ServiceResponse($data);
     }
 
@@ -64,6 +66,7 @@ class VegetableService extends Service
             'name' => v::notEmpty(),
             'price' => v::floatVal(),
             'desc' => v::notEmpty(),
+            'material' => v::notEmpty()
         ]);
 
         if ($validation->failed()) {
@@ -74,8 +77,9 @@ class VegetableService extends Service
         $name = trim($params['name']);
         $desc = trim($params['desc']);
         $price = trim($params['price']);
+        $material = trim($params['material']);
         $images = isset($params['images']) ? trim($params['images']) : '';
-        $data = VegetableModule::getInstance($this->container)->update($id, $name, $price, $desc, $images);
+        $data = VegetableModule::getInstance($this->container)->update($id, $name, $price, $desc, $images, $material);
         return new ServiceResponse($data);
     }
 

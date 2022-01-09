@@ -19,7 +19,7 @@ class VegetableModule extends Module
      *
      * @throws VegetableException
      */
-    public function add($name, $price, $desc, $images)
+    public function add($name, $price, $desc, $images, $material)
     {
         try {
             $vegetable = Vegetables::select('id')->where('name', $name)->first();
@@ -29,6 +29,7 @@ class VegetableModule extends Module
                     'price' => $price,
                     'desc' => $desc,
                     'images' => $images,
+                    'material' => $material
                 ]);
                 return $vegetable->id;
             }
@@ -37,6 +38,7 @@ class VegetableModule extends Module
                 'price' => $price,
                 'desc' => $desc,
                 'images' => $images,
+                'material' => $material
             ]);
         } catch (VegetableException $e) {
             throw new VegetableException('VEGETABLE_DATA_ALREADY_EXIST');
@@ -59,14 +61,15 @@ class VegetableModule extends Module
      *
      * @throws VegetableException
      */
-    public function update($id, $name, $price, $desc, $images)
+    public function update($id, $name, $price, $desc, $images, $material)
     {
         try {
             Vegetables::where('id', $id)->update([
                 'name' => $name,
                 'price' => $price,
                 'desc' => $desc,
-                'images' => $images
+                'images' => $images,
+                'material' => $material
             ]);
         } catch (\Exception $e) {
             throw new VegetableException('UPDATE_VEGETABLE_DATA_ERROR');
@@ -92,7 +95,7 @@ class VegetableModule extends Module
                 $data = VegetableCategory::select('vegetable_ids')->where('id', $categoryId)->first();
                 $vegetableIds = explode(',' ,$data->vegetable_ids);
             }
-            $query = Vegetables::select('id', 'name', 'price', 'desc');
+            $query = Vegetables::select('id', 'name', 'price', 'desc', 'material', 'image');
             if ($vegetableIds) {
                 $query->whereIn('id', $vegetableIds);
             }
