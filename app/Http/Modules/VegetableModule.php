@@ -78,6 +78,28 @@ class VegetableModule extends Module
     }
 
     /**
+     * 更新菜品价格
+     *
+     * @param $id
+     * @param $price
+     *
+     * @return bool
+     *
+     * @throws VegetableException
+     */
+    public function updatePrice($id, $price)
+    {
+        try {
+            Vegetables::where('id', $id)->update([
+                'price' => $price,
+            ]);
+        } catch (\Exception $e) {
+            throw new VegetableException('UPDATE_VEGETABLE_DATA_ERROR');
+        }
+        return true;
+    }
+
+    /**
      * 获取菜品列表
      *
      * @param $categoryId

@@ -84,6 +84,30 @@ class VegetableService extends Service
     }
 
     /**
+     * 更新菜品价格
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
+    public function updatePrice(Request $request, Response $response)
+    {
+        $validation = $this->validation->validate($request, [
+            'id' => v::notEmpty()->intVal(),
+            'price' => v::floatVal(),
+        ]);
+
+        if ($validation->failed()) {
+            return $validation->outputError($response);
+        }
+        $params = Help::getParams($request);
+        $id = intval($params['id']);
+        $price = trim($params['price']);
+        $data = VegetableModule::getInstance($this->container)->updatePrice($id, $price);
+        return new ServiceResponse($data);
+    }
+
+    /**
      * 获取菜品列表
      *
      * @param Request $request

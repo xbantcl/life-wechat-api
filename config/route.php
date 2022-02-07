@@ -136,6 +136,7 @@ $app->group('/api/', function (RouteCollectorProxy $group) {
     // ------------------ 买菜相关接口 -----------------------------------
     $group->post('vegetable/add', 'Dolphin\Ting\Http\Service\VegetableService:add');
     $group->post('vegetable/update', 'Dolphin\Ting\Http\Service\VegetableService:update');
+    $group->post('vegetable/price/update', 'Dolphin\Ting\Http\Service\VegetableService:updatePrice');
     $group->post('vegetable/delete', 'Dolphin\Ting\Http\Service\VegetableService:delete');
     $group->post('vegetable/category/add', 'Dolphin\Ting\Http\Service\VegetableService:addCategory');
     $group->post('vegetable/price', 'Dolphin\Ting\Http\Service\VegetableService:getVegetablesPrice');
